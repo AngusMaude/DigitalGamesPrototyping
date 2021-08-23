@@ -19,10 +19,13 @@ public class PlayerController : MonoBehaviour {
 
     private Vector2 movementInput = Vector2.zero;
     private float controlFreeze = 0;
-    private bool jumped = false;
-    private bool isGrounded = false;
+    private bool jump = false;
+    private bool dash = false;
     private bool dashing = false;
     private bool canDash = false;
+    private bool isGrounded = false;
+
+
 
     enum Wall {
         Left,
@@ -42,7 +45,12 @@ public class PlayerController : MonoBehaviour {
 
     public void OnJump(InputAction.CallbackContext context) {
         if (context.started)
-            jumped = true;
+            jump = true;
+    }
+
+    public void OnDash(InputAction.CallbackContext context) {
+        if (context.started)
+            dash = true;
     }
 
     private void GroundedCheck() {
@@ -69,13 +77,14 @@ public class PlayerController : MonoBehaviour {
             if (dashing) {
                 playerVelocity.y = rb.velocity.y * 0.25f;
                 dashing = false;
+                canDash = false;
             }
         }
 
         if (isGrounded)
             canDash = true;
 
-        if (jumped) {
+        if (jump) {
             if (isGrounded)
                 playerVelocity.y = jumpHeight;
             else {
@@ -88,20 +97,21 @@ public class PlayerController : MonoBehaviour {
                         playerVelocity = new Vector2(-playerSpeed, jumpHeight);
                         controlFreeze = wallTimeout;
                         break;
-                    case Wall.None:
-                        if (canDash) {
-                            float mag = (float)Math.Sqrt(Math.Pow(movementInput.x, 2) + Math.Pow(movementInput.y, 2));
-                            playerVelocity.x = (movementInput.x / mag) * playerSpeed * 3;
-                            playerVelocity.y = (movementInput.y / mag) * playerSpeed * 3;
-                            controlFreeze = dashTimeout;
-                            canDash = false;
-                            dashing = true;
-                        }
-                        break;
                 }
             }
-            jumped = false;
+            jump = false;
         }
+
+        if (canDash && dash) {
+            float mag = (float)Math.Sqrt(Math.Pow(movementInput.x, 2) + Math.Pow(movementInput.y, 2));
+            playerVelocity.x = (movementInput.x / mag) * playerSpeed * 3;
+            playerVelocity.y = (movementInput.y / mag) * playerSpeed * 3;
+            controlFreeze = dashTimeout;
+            dashing = true;
+        }
+        dash = false;
+
+        Debug.DrawRay(this.transform.position, new Vector3(playerVelocity.x, playerVelocity.y, 0f), Color.red, 0f, false);
 
         rb.velocity = playerVelocity;
         controlFreeze -= Time.deltaTime;
