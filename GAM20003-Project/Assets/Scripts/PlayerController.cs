@@ -2,8 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 
-//TODO: wall jump
-//TODO: dash
 public class PlayerController : MonoBehaviour {
 
     [SerializeField] private float wallTimeout = 0.2f;
@@ -39,18 +37,16 @@ public class PlayerController : MonoBehaviour {
         coll = GetComponent<BoxCollider2D>();
     }
 
-    public void OnMove(InputAction.CallbackContext context) {
-        movementInput = context.ReadValue<Vector2>();
+    public void OnMovement(InputValue value) {
+        movementInput = value.Get<Vector2>();
     }
-
-    public void OnJump(InputAction.CallbackContext context) {
-        if (context.started)
-            jump = true;
+    
+    public void OnJump() {
+        jump = true;
     }
-
-    public void OnDash(InputAction.CallbackContext context) {
-        if (context.started)
-            dash = true;
+    
+    public void OnDash() {
+        dash = true;
     }
 
     private void GroundedCheck() {
@@ -104,14 +100,16 @@ public class PlayerController : MonoBehaviour {
 
         if (canDash && dash) {
             float mag = (float)Math.Sqrt(Math.Pow(movementInput.x, 2) + Math.Pow(movementInput.y, 2));
-            playerVelocity.x = (movementInput.x / mag) * playerSpeed * 3;
-            playerVelocity.y = (movementInput.y / mag) * playerSpeed * 3;
-            controlFreeze = dashTimeout;
-            dashing = true;
+            if (mag != 0) {
+                playerVelocity.x = (movementInput.x / mag) * playerSpeed * 3;
+                playerVelocity.y = (movementInput.y / mag) * playerSpeed * 3;
+                controlFreeze = dashTimeout;
+                dashing = true;
+                canDash = false;
+            }
         }
         dash = false;
 
-        Debug.DrawRay(this.transform.position, new Vector3(playerVelocity.x, playerVelocity.y, 0f), Color.red, 0f, false);
 
         rb.velocity = playerVelocity;
         controlFreeze -= Time.deltaTime;
