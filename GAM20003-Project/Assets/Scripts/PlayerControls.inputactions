@@ -20,6 +20,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Aiming",
+                    "type": "PassThrough",
+                    "id": "80bc5359-2a63-47c4-869e-d93b95f5a3a0",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -108,6 +116,17 @@
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d98805e-9e56-4463-9244-0a76f1fa81a4",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Aiming",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
