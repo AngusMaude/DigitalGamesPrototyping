@@ -22,10 +22,10 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Aiming",
-                    "type": "PassThrough",
-                    "id": "80bc5359-2a63-47c4-869e-d93b95f5a3a0",
-                    "expectedControlType": "Vector2",
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "c08331ab-a58d-4175-ae87-deef68a77940",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -100,7 +100,7 @@
                 {
                     "name": "",
                     "id": "323d0620-0b71-4f40-be03-bbb4df71f8fc",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
@@ -121,12 +121,23 @@
                 },
                 {
                     "name": "",
-                    "id": "6d98805e-9e56-4463-9244-0a76f1fa81a4",
-                    "path": "<Gamepad>/rightStick",
+                    "id": "f742f57a-b665-4ff7-b6eb-1a7cca189ca0",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Controller",
-                    "action": "Aiming",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c600072-1ed7-46dc-8d55-72aad31f7233",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
