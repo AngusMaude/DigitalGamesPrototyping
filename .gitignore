@@ -52,3 +52,7 @@ GAM20003-Project/Logs/AssetImportWorker3.log
 GAM20003-Project/Logs/AssetImportWorker2.log
 GAM20003-Project/Logs/AssetImportWorker1.log
 GAM20003-Project/Logs/AssetImportWorker0.log
+GAM20003-Project/Logs/AssetImportWorker0.log
+GAM20003-Project/UserSettings/EditorUserSettings.asset
+*.log
+*.asset
