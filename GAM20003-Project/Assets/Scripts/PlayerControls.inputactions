@@ -30,7 +30,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Aiming",
+                    "name": "Aim",
                     "type": "PassThrough",
                     "id": "b743a01d-4c65-40f4-852f-a4ed99eb10a3",
                     "expectedControlType": "Vector2",
@@ -43,7 +43,7 @@
                     "id": "4b17ce65-e82c-42b8-9c2d-bde0ba9fb09d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
@@ -164,7 +164,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "Aiming",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -176,6 +176,28 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9ac1c48b-0fe9-4f65-9c6d-d1a29c8e6afd",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c7a25168-ab12-468c-84de-7219e9d55b09",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

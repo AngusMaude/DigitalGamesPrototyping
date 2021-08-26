@@ -15,16 +15,25 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField] private float fireRate;
     private float fireRateTimer;
+    private string controlScheme;
 
 
     // Start is called before the first frame update
     void Start()
     {
         player = this.transform.parent.parent.gameObject;
+        controlScheme = player.GetComponent<PlayerInput>().currentControlScheme;
     }
 
-    public void OnAiming(InputValue value) {
-        aimInput = value.Get<Vector2>();
+    public void OnAim(InputValue value) {
+        if (controlScheme == "Controller")
+            aimInput = value.Get<Vector2>();
+        else if (controlScheme == "KeyboardMouse") {
+            aimInput = Camera.main.ScreenToWorldPoint(value.Get<Vector2>()) - transform.position;
+            Debug.LogError(transform.position);
+        }
+        else
+            Debug.LogError("Control Scheme not found" + controlScheme);
     }
     
     public void OnShoot(InputValue value) {
@@ -33,7 +42,7 @@ public class WeaponController : MonoBehaviour
         else
             shooting = false;
         
-    } 
+    }
 
     // Update is called once per frame
     void Update()
@@ -52,7 +61,6 @@ public class WeaponController : MonoBehaviour
 
         if (shooting && (fireRateTimer <= 0)) {
             Instantiate(projectile, firePoint.position, transform.rotation);
-            Debug.Log(rotZ);
             fireRateTimer = fireRate;
         }
         fireRateTimer -= Time.deltaTime;
