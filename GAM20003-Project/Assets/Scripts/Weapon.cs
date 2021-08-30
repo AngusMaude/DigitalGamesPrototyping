@@ -21,20 +21,25 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-    }
-
-    private void OnEnable() {
-        // should probably be a switch statement
         if (transform.parent.name == "WeaponHandler") {
-            player = this.transform.parent.parent.gameObject;
-            controlScheme = player.GetComponent<PlayerInput>().currentControlScheme;
+            GetComponent<Rigidbody2D>().simulated = false;
         }
         else if (transform.parent.name == "SceneWeapons") {
+            GetComponent<Rigidbody2D>().simulated = true;
             this.enabled = false;
         }
         else
             Debug.LogError("Weapon parent not recognised: " + transform.parent.name);
+    }
+
+    private void OnEnable() {
+        shooting = false;
+        UpdatePlayer();
+    }
+
+    private void UpdatePlayer() {
+        player = this.transform.parent.parent.gameObject;
+        controlScheme = player.GetComponent<PlayerInput>().currentControlScheme;
     }
 
     // Update is called once per frame
