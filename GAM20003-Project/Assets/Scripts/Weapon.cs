@@ -38,8 +38,10 @@ public class Weapon : MonoBehaviour
     }
 
     private void UpdatePlayer() {
-        player = this.transform.parent.parent.gameObject;
-        controlScheme = player.GetComponent<PlayerInput>().currentControlScheme;
+        if (transform.parent.name == "WeaponHandler") {
+            player = this.transform.parent.parent.gameObject;
+            controlScheme = player.GetComponent<PlayerInput>().currentControlScheme;
+        }
     }
 
     // Update is called once per frame

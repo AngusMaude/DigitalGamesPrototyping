@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 2454065955055894123}
   - component: {fileID: 93095265876815449}
   m_Layer: 7
-  m_Name: ARexample
+  m_Name: WeaponExample
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
