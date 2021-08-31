@@ -7,20 +7,29 @@ public class Weapon : MonoBehaviour
 {
     protected GameObject player;
     protected Vector2 aimInput = Vector2.zero;
-    protected bool shooting = false;
 
-    [SerializeField] protected float offset;
     [SerializeField] protected GameObject projectile;
     [SerializeField] protected Transform firePoint;
 
+    [SerializeField] protected bool semiAutomatic = false;
     [SerializeField] protected float fireRate;
-    protected float fireRateTimer;
+    [SerializeField] protected float bloomAngle;
+    [SerializeField] protected int magSize;
+    protected int magAmmo;
+    [SerializeField] protected float reloadTime;
+    [SerializeField] protected int reserveAmmo;
+
+    protected float weaponCooldown;
     protected string controlScheme;
+
+    protected bool shooting = false;
+    protected bool reloading = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        magAmmo = magSize;
         if (transform.parent.name == "WeaponHandler") {
             GetComponent<Rigidbody2D>().simulated = false;
         }
@@ -64,14 +73,47 @@ public class Weapon : MonoBehaviour
     }
 
     protected virtual void Shoot() {
-        if (shooting && (fireRateTimer <= 0)) {
-            Instantiate(projectile, firePoint.position, transform.rotation);
-            fireRateTimer = fireRate;
+        if (shooting && (weaponCooldown <= 0)) {
+            if (reloading)
+                Reload();
+
+            float bloom = (Random.value - 0.5f) * bloomAngle;
+
+            Debug.Log(bloom);
+
+            if (magAmmo <= 0) {
+                weaponCooldown = reloadTime;
+                reloading = true;
+            }
+            else {
+                Instantiate(projectile, firePoint.position, transform.rotation * Quaternion.Euler(Vector3.forward * bloom));
+
+                weaponCooldown = fireRate;
+                if (semiAutomatic)
+                    shooting = false;
+
+                magAmmo -= 1;
+            }
         }
-        fireRateTimer -= Time.deltaTime;
+        weaponCooldown -= Time.deltaTime;
+    }
+
+    protected void Reload() {
+        reloading = false;
+        if (reserveAmmo > magSize) {
+            magAmmo = magSize;
+            reserveAmmo -= magSize;
+        }
+        else {
+            magAmmo = reserveAmmo;
+            reserveAmmo = 0;
+        }
     }
 
 
+
+
+    // Input handlers
     public void OnAim(InputValue value) {
         if (controlScheme == "Controller")
             aimInput = value.Get<Vector2>();
