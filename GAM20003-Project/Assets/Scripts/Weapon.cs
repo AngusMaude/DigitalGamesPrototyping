@@ -79,8 +79,6 @@ public class Weapon : MonoBehaviour
 
             float bloom = (Random.value - 0.5f) * bloomAngle;
 
-            Debug.Log(bloom);
-
             if (magAmmo <= 0) {
                 weaponCooldown = reloadTime;
                 reloading = true;
@@ -99,6 +97,7 @@ public class Weapon : MonoBehaviour
     }
 
     protected void Reload() {
+        Debug.Log("reload");
         reloading = false;
         if (reserveAmmo > magSize) {
             magAmmo = magSize;
@@ -129,5 +128,10 @@ public class Weapon : MonoBehaviour
         else
             shooting = false;
 
+    }
+
+    public void OnReload() {
+        weaponCooldown = reloadTime;
+        reloading = true;
     }
 }
