@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
+    public GameObject pauseFirstButton;
     public string menuScene;
     public GameObject pauseMenu;
-        public bool isPaused;
+    public bool isPaused;
 
     void Update()
     {
@@ -22,6 +24,9 @@ public class PauseMenu : MonoBehaviour
                 isPaused = true;
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0f;
+
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(pauseFirstButton);
 
 
 
