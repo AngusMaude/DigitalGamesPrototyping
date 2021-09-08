@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 4147758859450482349}
   - component: {fileID: 4147758859450482350}
   - component: {fileID: 4147758859450482351}
+  - component: {fileID: 962872899619598014}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -79,6 +80,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5732845362299987218}
+  - {fileID: 6113689527921293668}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -96,8 +98,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallTimeout: 0.1
   dashTimeout: 0.2
-  playerSpeed: 10
-  jumpHeight: 15
   terrain:
     serializedVersion: 2
     m_Bits: 64
@@ -306,3 +306,66 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &962872899619598014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4147758859450482344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb6a7e1e7c1c894bbcc24f07127e13d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  knockback: 1
+  moveSpeed: 10
+  jumpHeight: 20
+  reloadTime: 1
+  dashSpeed: 3
+  dashCount: 1
+  bloom: 1
+--- !u!1 &6485675152063690418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6113689527921293668}
+  - component: {fileID: 2264076430738281842}
+  m_Layer: 0
+  m_Name: BuffHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6113689527921293668
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6485675152063690418}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.77400005, y: -0.56200004, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4147758859450482322}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2264076430738281842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6485675152063690418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c7824d7319466d43ae399659068f224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

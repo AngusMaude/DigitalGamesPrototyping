@@ -6,6 +6,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     protected GameObject player;
+    protected PlayerStats stats;
     protected Vector2 aimInput = Vector2.zero;
 
     [SerializeField] protected GameObject projectile;
@@ -49,6 +50,7 @@ public class Weapon : MonoBehaviour
     private void UpdatePlayer() {
         if (transform.parent.name == "WeaponHandler") {
             player = this.transform.parent.parent.gameObject;
+            stats = player.GetComponent<PlayerStats>();
             controlScheme = player.GetComponent<PlayerInput>().currentControlScheme;
         }
     }
@@ -77,10 +79,10 @@ public class Weapon : MonoBehaviour
             if (reloading)
                 Reload();
 
-            float bloom = (Random.value - 0.5f) * bloomAngle;
+            float bloom = (Random.value - 0.5f) * bloomAngle * stats.GetBloom();
 
             if (magAmmo <= 0) {
-                weaponCooldown = reloadTime;
+                weaponCooldown = reloadTime * stats.GetReloadTime();
                 reloading = true;
             }
             else {
