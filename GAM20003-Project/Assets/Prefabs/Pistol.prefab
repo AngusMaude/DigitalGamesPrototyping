@@ -1,5 +1,26 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &6614877854748914601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6070784532797060572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a067b1ab8a49eee44aa8323405169380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 9211405108907944263}
+  semiAutomatic: 1
+  fireRate: 0.2
+  knockback: 10
+  bloomAngle: 20
+  magSize: 6
+  reloadTime: 1
+  reserveAmmo: 1
+  baseDamage: 10
 --- !u!1001 &261892313367092266
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7,6 +28,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 93095265876815449, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: m_Size.x
+      value: 0.64129996
+      objectReference: {fileID: 0}
+    - target: {fileID: 93095265876815449, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: m_Size.y
+      value: 0.49789318
+      objectReference: {fileID: 0}
+    - target: {fileID: 93095265876815449, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.086449265
+      objectReference: {fileID: 0}
+    - target: {fileID: 93095265876815449, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.09661977
+      objectReference: {fileID: 0}
+    - target: {fileID: 93095265876815449, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 93095265876815449, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256806326169272738, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0fc0bbcd6b9019b4e855835bfaf444ac, type: 3}
     - target: {fileID: 4675099176148300192, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -53,7 +102,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6313395722178488822, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: m_Name
-      value: WeaponExample
+      value: Pistol
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+--- !u!1 &6070784532797060572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6313395722178488822, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+  m_PrefabInstance: {fileID: 261892313367092266}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &9211405108907944263 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8968656491310200173, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+  m_PrefabInstance: {fileID: 261892313367092266}
+  m_PrefabAsset: {fileID: 0}
