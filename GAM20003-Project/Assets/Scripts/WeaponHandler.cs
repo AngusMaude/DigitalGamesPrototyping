@@ -17,9 +17,7 @@ public class WeaponHandler : MonoBehaviour {
 
     void OnPickUp() {
         foreach (Transform weapon in sceneWeapons.transform) {
-            Debug.Log(Vector3.Distance(transform.position, weapon.position));
             if (Vector3.Distance(transform.position, weapon.position) < weaponReach) {
-                Debug.Log("weapon found");
                 Drop();
                 PickUp(weapon);
                 weapon.GetComponent<Weapon>().enabled = true;
