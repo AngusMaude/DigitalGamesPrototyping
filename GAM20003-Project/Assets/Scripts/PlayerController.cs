@@ -4,23 +4,17 @@ using System;
 
 public class PlayerController : MonoBehaviour {
 
-    [SerializeField] private float wallTimeout = 0.2f;
-    [SerializeField] private float dashTimeout = 0.2f;
-
     private Player player;
     [SerializeField] private LayerMask terrain;
 
-    private Vector2 playerVelocity;
-
     private Vector2 movementInput = Vector2.zero;
-    private float controlFreeze = 0;
     private bool jump = false;
     private bool dash = false;
     private bool dashing = false;
     private bool canDash = false;
     private bool isGrounded = false;
 
-
+    private float dashT;
 
     enum Wall {
         Left,
@@ -31,18 +25,6 @@ public class PlayerController : MonoBehaviour {
 
     private void Start() {
         player = GetComponent<Player>();
-    }
-
-    public void OnMovement(InputValue value) {
-        movementInput = value.Get<Vector2>();
-    }
-    
-    public void OnJump() {
-        jump = true;
-    }
-    
-    public void OnDash() {
-        dash = true;
     }
 
     private void GroundedCheck() {
@@ -58,58 +40,87 @@ public class PlayerController : MonoBehaviour {
             wall = Wall.None;
     }
 
-    void Update() {
-        GroundedCheck();
-        WallCheck();
-
-        playerVelocity = player.GetRigidbody().velocity;
-
-        if (controlFreeze <= 0) {
-            playerVelocity.x = movementInput.x * player.GetStats().GetMoveSpeed() ;
-            if (dashing) {
-                playerVelocity.y = player.GetRigidbody().velocity.y * 0.25f;
-                dashing = false;
-                canDash = false;
-            }
-        }
-
-        if (isGrounded)
-            canDash = true;
-
+    private void Jump() {
         if (jump) {
             if (isGrounded)
-                playerVelocity.y = player.GetStats().GetJumpHeight();
+                player.GetRigidbody().AddForce(new Vector2(0, player.GetStats().GetJumpHeight()), ForceMode2D.Impulse);
             else {
                 switch (wall) {
                     case Wall.Left:
-                        playerVelocity = new Vector2(player.GetStats().GetMoveSpeed(), player.GetStats().GetJumpHeight());
-                        controlFreeze = wallTimeout;
+                        player.GetRigidbody().velocity = Vector2.zero;
+                        player.GetRigidbody().AddForce(new Vector2(player.GetStats().GetJumpHeight(), player.GetStats().GetJumpHeight()), ForceMode2D.Impulse);
                         break;
                     case Wall.Right:
-                        playerVelocity = new Vector2(-player.GetStats().GetMoveSpeed(), player.GetStats().GetJumpHeight());
-                        controlFreeze = wallTimeout;
+                        player.GetRigidbody().velocity = Vector2.zero;
+                        player.GetRigidbody().AddForce(new Vector2(-player.GetStats().GetJumpHeight(), player.GetStats().GetJumpHeight()), ForceMode2D.Impulse);
                         break;
                 }
             }
             jump = false;
         }
+    }
 
+    private void Dash() {
         if (canDash && dash) {
-            float mag = (float)Math.Sqrt(Math.Pow(movementInput.x, 2) + Math.Pow(movementInput.y, 2));
-            if (mag != 0) {
-                playerVelocity.x = (movementInput.x / mag) * player.GetStats().GetMoveSpeed() * player.GetStats().GetDashSpeed();
-                playerVelocity.y = (movementInput.y / mag) * player.GetStats().GetMoveSpeed() * player.GetStats().GetDashSpeed();
-                controlFreeze = dashTimeout;
-                dashing = true;
-                canDash = false;
-            }
+            Vector2 dashForce = Vector2.zero;
+            dashForce.x = movementInput.x * player.GetStats().GetDashSpeed();
+            dashForce.y = movementInput.y * player.GetStats().GetDashSpeed();
+
+            player.GetRigidbody().velocity = Vector2.zero;
+            player.GetRigidbody().AddForce(dashForce, ForceMode2D.Impulse);
+
+            dashT = player.GetStats().GetDashTime();
+            dashing = true;
+            canDash = false;
         }
         dash = false;
 
-
-        player.GetRigidbody().velocity = playerVelocity;
-        controlFreeze -= Time.deltaTime;
+        if (dashing) {
+            dashT -= Time.deltaTime;
+            if (dashT <= 0) {
+                dashing = false;
+                player.GetRigidbody().velocity *= 0.25f;
+            }
+        }
     }
 
+    private void Move() {
 
+        Vector2 moveForce = (movementInput * player.GetStats().GetAcceleration()) - player.GetRigidbody().velocity;
+        //clamps velocity
+        
+        if ((player.GetRigidbody().velocity.x > player.GetStats().GetMaxSpeed()) && (moveForce.x > 0))
+            moveForce.x = 0;
+        else if ((player.GetRigidbody().velocity.x < -player.GetStats().GetMaxSpeed()) && (moveForce.x < 0))
+            moveForce.x = 0;
+
+        moveForce.y = 0;
+        player.GetRigidbody().AddForce(moveForce);
+    }
+
+    void Update() {
+        GroundedCheck();
+        WallCheck();
+
+        if (isGrounded)
+            canDash = true;
+
+        
+        Jump();
+        Dash();
+        Move();
+    }
+
+    public void OnMovement(InputValue value) {
+        movementInput = value.Get<Vector2>();
+        movementInput.Normalize();
+    }
+
+    public void OnJump() {
+        jump = true;
+    }
+
+    public void OnDash() {
+        dash = true;
+    }
 }

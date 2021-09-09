@@ -32,6 +32,7 @@ public class Player : MonoBehaviour {
         Debug.Log("hit " + health);
         if (health <= 0) {
             Debug.Log("dead");
+            health = stats.GetMaxHealth();
         }
     }
 
