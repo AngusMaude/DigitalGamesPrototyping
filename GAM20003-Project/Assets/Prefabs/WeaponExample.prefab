@@ -132,6 +132,7 @@ MonoBehaviour:
   firePoint: {fileID: 8968656491310200173}
   semiAutomatic: 0
   fireRate: 0.2
+  knockback: 10
   bloomAngle: 20
   magSize: 20
   reloadTime: 2

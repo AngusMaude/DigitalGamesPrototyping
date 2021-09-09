@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected Transform firePoint;
     [SerializeField] protected bool semiAutomatic = false;
     [SerializeField] protected float fireRate;
+    [SerializeField] protected float knockback;
     [SerializeField] protected float bloomAngle;
     [SerializeField] protected int magSize;
     protected int magAmmo;
@@ -60,7 +61,7 @@ public class Weapon : MonoBehaviour
             player.transform.eulerAngles = new Vector3(0f, 180, 0f);
 
 
-        Debug.DrawRay(this.transform.position, new Vector3(aimInput.x * 5f, aimInput.y * 5f, 0f), Color.red, 0f, false);
+        Debug.DrawRay(this.transform.position, new Vector3(aimInput.x * 5f, aimInput.y * 5f, 0f), Color.blue, 0f, false);
 
         float rotZ = Mathf.Atan2(aimInput.y, aimInput.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0f, 0f, rotZ);
@@ -83,11 +84,11 @@ public class Weapon : MonoBehaviour
                 //Instantiate(projectile, firePoint.position, transform.rotation * Quaternion.Euler(Vector3.forward * bloom));
                 //TODO:: ADD BLOOM
                 RaycastHit2D hit = Physics2D.Raycast(firePoint.position, aimInput);
+                Debug.DrawRay(firePoint.position, new Vector3(aimInput.x * 10f, aimInput.y * 10f, 0f), Color.red, 1f, false);
 
                 if (hit.collider != null) {
                     if (hit.transform.name != "Terrain") {
-                        //TODO:: REDO MOVEMENT TO BE FORCE BASED INSTEAD OF DISPLACEMENT BASED FOR KNOCKBACK
-                        //hit.rigidbody.AddForce(aimInput * 100);
+                        hit.rigidbody.AddForce(aimInput * knockback * player.GetStats().GetKnockback(), ForceMode2D.Impulse);
 
                         //probably a better way to do this
                         if (hit.transform.name == "Player(Clone)") {
@@ -106,7 +107,7 @@ public class Weapon : MonoBehaviour
         weaponCooldown -= Time.deltaTime;
     }
 
-    protected void Reload() {
+    protected virtual void Reload() {
         Debug.Log("reload");
         reloading = false;
         if (reserveAmmo > magSize) {
