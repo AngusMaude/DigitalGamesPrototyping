@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class BuffHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        ApplyAllBuffs();
-    }
-
-    private void ApplyAllBuffs() {
+    public void ApplyAllBuffs() {
         foreach (Transform buff in transform) {
             buff.GetComponent<Buff>().ApplyBuff();
         }
