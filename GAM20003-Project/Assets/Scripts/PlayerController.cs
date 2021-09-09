@@ -2,17 +2,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 
-//TODO: wall jump
-//TODO: dash
 public class PlayerController : MonoBehaviour {
 
     [SerializeField] private float wallTimeout = 0.2f;
     [SerializeField] private float dashTimeout = 0.2f;
-    [SerializeField] private float playerSpeed = 10.0f;
-    [SerializeField] private float jumpHeight = 20.0f;
 
     private Rigidbody2D rb;
     private BoxCollider2D coll;
+    private PlayerStats stats;
     [SerializeField] private LayerMask terrain;
 
     private Vector2 playerVelocity;
@@ -37,20 +34,19 @@ public class PlayerController : MonoBehaviour {
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
+        stats = GetComponent<PlayerStats>();
     }
 
-    public void OnMove(InputAction.CallbackContext context) {
-        movementInput = context.ReadValue<Vector2>();
+    public void OnMovement(InputValue value) {
+        movementInput = value.Get<Vector2>();
     }
-
-    public void OnJump(InputAction.CallbackContext context) {
-        if (context.started)
-            jump = true;
+    
+    public void OnJump() {
+        jump = true;
     }
-
-    public void OnDash(InputAction.CallbackContext context) {
-        if (context.started)
-            dash = true;
+    
+    public void OnDash() {
+        dash = true;
     }
 
     private void GroundedCheck() {
@@ -73,7 +69,7 @@ public class PlayerController : MonoBehaviour {
         playerVelocity = rb.velocity;
 
         if (controlFreeze <= 0) {
-            playerVelocity.x = movementInput.x * playerSpeed;
+            playerVelocity.x = movementInput.x * stats.GetMoveSpeed() ;
             if (dashing) {
                 playerVelocity.y = rb.velocity.y * 0.25f;
                 dashing = false;
@@ -86,15 +82,15 @@ public class PlayerController : MonoBehaviour {
 
         if (jump) {
             if (isGrounded)
-                playerVelocity.y = jumpHeight;
+                playerVelocity.y = stats.GetJumpHeight();
             else {
                 switch (wall) {
                     case Wall.Left:
-                        playerVelocity = new Vector2(playerSpeed, jumpHeight);
+                        playerVelocity = new Vector2(stats.GetMoveSpeed(), stats.GetJumpHeight());
                         controlFreeze = wallTimeout;
                         break;
                     case Wall.Right:
-                        playerVelocity = new Vector2(-playerSpeed, jumpHeight);
+                        playerVelocity = new Vector2(-stats.GetMoveSpeed(), stats.GetJumpHeight());
                         controlFreeze = wallTimeout;
                         break;
                 }
@@ -104,14 +100,16 @@ public class PlayerController : MonoBehaviour {
 
         if (canDash && dash) {
             float mag = (float)Math.Sqrt(Math.Pow(movementInput.x, 2) + Math.Pow(movementInput.y, 2));
-            playerVelocity.x = (movementInput.x / mag) * playerSpeed * 3;
-            playerVelocity.y = (movementInput.y / mag) * playerSpeed * 3;
-            controlFreeze = dashTimeout;
-            dashing = true;
+            if (mag != 0) {
+                playerVelocity.x = (movementInput.x / mag) * stats.GetMoveSpeed() * stats.GetDashSpeed();
+                playerVelocity.y = (movementInput.y / mag) * stats.GetMoveSpeed() * stats.GetDashSpeed();
+                controlFreeze = dashTimeout;
+                dashing = true;
+                canDash = false;
+            }
         }
         dash = false;
 
-        Debug.DrawRay(this.transform.position, new Vector3(playerVelocity.x, playerVelocity.y, 0f), Color.red, 0f, false);
 
         rb.velocity = playerVelocity;
         controlFreeze -= Time.deltaTime;
