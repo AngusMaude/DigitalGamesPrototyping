@@ -7,9 +7,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float wallTimeout = 0.2f;
     [SerializeField] private float dashTimeout = 0.2f;
 
-    private Rigidbody2D rb;
-    private BoxCollider2D coll;
-    private PlayerStats stats;
+    private Player player;
     [SerializeField] private LayerMask terrain;
 
     private Vector2 playerVelocity;
@@ -32,9 +30,7 @@ public class PlayerController : MonoBehaviour {
     private Wall wall = Wall.None;
 
     private void Start() {
-        rb = GetComponent<Rigidbody2D>();
-        coll = GetComponent<BoxCollider2D>();
-        stats = GetComponent<PlayerStats>();
+        player = GetComponent<Player>();
     }
 
     public void OnMovement(InputValue value) {
@@ -50,13 +46,13 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void GroundedCheck() {
-        isGrounded = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, 0.1f, terrain);
+        isGrounded = Physics2D.BoxCast(player.GetCollider().bounds.center, player.GetCollider().bounds.size, 0f, Vector2.down, 0.1f, terrain);
     }
 
     private void WallCheck() {
-        if (Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.left, 0.1f, terrain))
+        if (Physics2D.BoxCast(player.GetCollider().bounds.center, player.GetCollider().bounds.size, 0f, Vector2.left, 0.1f, terrain))
             wall = Wall.Left;
-        else if (Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.right, 0.1f, terrain))
+        else if (Physics2D.BoxCast(player.GetCollider().bounds.center, player.GetCollider().bounds.size, 0f, Vector2.right, 0.1f, terrain))
             wall = Wall.Right;
         else
             wall = Wall.None;
@@ -66,12 +62,12 @@ public class PlayerController : MonoBehaviour {
         GroundedCheck();
         WallCheck();
 
-        playerVelocity = rb.velocity;
+        playerVelocity = player.GetRigidbody().velocity;
 
         if (controlFreeze <= 0) {
-            playerVelocity.x = movementInput.x * stats.GetMoveSpeed() ;
+            playerVelocity.x = movementInput.x * player.GetStats().GetMoveSpeed() ;
             if (dashing) {
-                playerVelocity.y = rb.velocity.y * 0.25f;
+                playerVelocity.y = player.GetRigidbody().velocity.y * 0.25f;
                 dashing = false;
                 canDash = false;
             }
@@ -82,15 +78,15 @@ public class PlayerController : MonoBehaviour {
 
         if (jump) {
             if (isGrounded)
-                playerVelocity.y = stats.GetJumpHeight();
+                playerVelocity.y = player.GetStats().GetJumpHeight();
             else {
                 switch (wall) {
                     case Wall.Left:
-                        playerVelocity = new Vector2(stats.GetMoveSpeed(), stats.GetJumpHeight());
+                        playerVelocity = new Vector2(player.GetStats().GetMoveSpeed(), player.GetStats().GetJumpHeight());
                         controlFreeze = wallTimeout;
                         break;
                     case Wall.Right:
-                        playerVelocity = new Vector2(-stats.GetMoveSpeed(), stats.GetJumpHeight());
+                        playerVelocity = new Vector2(-player.GetStats().GetMoveSpeed(), player.GetStats().GetJumpHeight());
                         controlFreeze = wallTimeout;
                         break;
                 }
@@ -101,8 +97,8 @@ public class PlayerController : MonoBehaviour {
         if (canDash && dash) {
             float mag = (float)Math.Sqrt(Math.Pow(movementInput.x, 2) + Math.Pow(movementInput.y, 2));
             if (mag != 0) {
-                playerVelocity.x = (movementInput.x / mag) * stats.GetMoveSpeed() * stats.GetDashSpeed();
-                playerVelocity.y = (movementInput.y / mag) * stats.GetMoveSpeed() * stats.GetDashSpeed();
+                playerVelocity.x = (movementInput.x / mag) * player.GetStats().GetMoveSpeed() * player.GetStats().GetDashSpeed();
+                playerVelocity.y = (movementInput.y / mag) * player.GetStats().GetMoveSpeed() * player.GetStats().GetDashSpeed();
                 controlFreeze = dashTimeout;
                 dashing = true;
                 canDash = false;
@@ -111,7 +107,9 @@ public class PlayerController : MonoBehaviour {
         dash = false;
 
 
-        rb.velocity = playerVelocity;
+        player.GetRigidbody().velocity = playerVelocity;
         controlFreeze -= Time.deltaTime;
     }
+
+
 }

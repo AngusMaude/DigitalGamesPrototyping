@@ -55,6 +55,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4147758859450482322}
+  - component: {fileID: 1935294874670857714}
   - component: {fileID: 4147758859450482323}
   - component: {fileID: 4147758859450482348}
   - component: {fileID: 4147758859450482349}
@@ -84,6 +85,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1935294874670857714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4147758859450482344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfeb898fda8bac44588824ac59ca7993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4147758859450482323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,7 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb6a7e1e7c1c894bbcc24f07127e13d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  maxHealth: 100
   knockback: 1
   moveSpeed: 10
   jumpHeight: 20

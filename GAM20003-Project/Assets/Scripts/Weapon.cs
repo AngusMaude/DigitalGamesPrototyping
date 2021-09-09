@@ -5,13 +5,10 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    protected GameObject player;
-    protected PlayerStats stats;
+    protected Player player;
     protected Vector2 aimInput = Vector2.zero;
 
-    [SerializeField] protected GameObject projectile;
     [SerializeField] protected Transform firePoint;
-
     [SerializeField] protected bool semiAutomatic = false;
     [SerializeField] protected float fireRate;
     [SerializeField] protected float bloomAngle;
@@ -19,10 +16,9 @@ public class Weapon : MonoBehaviour
     protected int magAmmo;
     [SerializeField] protected float reloadTime;
     [SerializeField] protected int reserveAmmo;
+    [SerializeField] protected float baseDamage;
 
     protected float weaponCooldown;
-    protected string controlScheme;
-
     protected bool shooting = false;
     protected bool reloading = false;
 
@@ -49,9 +45,7 @@ public class Weapon : MonoBehaviour
 
     private void UpdatePlayer() {
         if (transform.parent.name == "WeaponHandler") {
-            player = this.transform.parent.parent.gameObject;
-            stats = player.GetComponent<PlayerStats>();
-            controlScheme = player.GetComponent<PlayerInput>().currentControlScheme;
+            player = this.transform.parent.parent.gameObject.GetComponent<Player>();
         }
     }
 
@@ -79,14 +73,28 @@ public class Weapon : MonoBehaviour
             if (reloading)
                 Reload();
 
-            float bloom = (Random.value - 0.5f) * bloomAngle * stats.GetBloom();
+            float bloom = (Random.value - 0.5f) * bloomAngle * player.GetStats().GetBloom();
 
             if (magAmmo <= 0) {
-                weaponCooldown = reloadTime * stats.GetReloadTime();
+                weaponCooldown = reloadTime * player.GetStats().GetReloadTime();
                 reloading = true;
             }
             else {
-                Instantiate(projectile, firePoint.position, transform.rotation * Quaternion.Euler(Vector3.forward * bloom));
+                //Instantiate(projectile, firePoint.position, transform.rotation * Quaternion.Euler(Vector3.forward * bloom));
+                //TODO:: ADD BLOOM
+                RaycastHit2D hit = Physics2D.Raycast(firePoint.position, aimInput);
+
+                if (hit.collider != null) {
+                    if (hit.transform.name != "Terrain") {
+                        //TODO:: REDO MOVEMENT TO BE FORCE BASED INSTEAD OF DISPLACEMENT BASED FOR KNOCKBACK
+                        //hit.rigidbody.AddForce(aimInput * 100);
+
+                        //probably a better way to do this
+                        if (hit.transform.name == "Player(Clone)") {
+                            hit.transform.GetComponent<Player>().Hit(baseDamage);
+                        }
+                    }
+                }
 
                 weaponCooldown = fireRate;
                 if (semiAutomatic)
@@ -116,12 +124,15 @@ public class Weapon : MonoBehaviour
 
     // Input handlers
     public void OnAim(InputValue value) {
-        if (controlScheme == "Controller")
+        //TODO::probably should be switch statement
+        if (player.GetControlScheme() == "Controller")
             aimInput = value.Get<Vector2>();
-        else if (controlScheme == "KeyboardMouse")
+        else if (player.GetControlScheme() == "KeyboardMouse")
             aimInput = Camera.main.ScreenToWorldPoint(value.Get<Vector2>()) - transform.position;
         else
-            Debug.LogError("Control Scheme not found" + controlScheme);
+            Debug.LogError("Control Scheme not found" + player.GetControlScheme());
+
+        aimInput.Normalize();
     }
 
     public void OnShoot(InputValue value) {
