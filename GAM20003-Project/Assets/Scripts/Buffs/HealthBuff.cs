@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementBuff : Buff
+public class HealthBuff : Buff
 {
     public void Start() {
         string[] temp = {
-            "Increase move speed by 30%"
+            "Increase health by 50%"
         };
         SetBuffString(temp);
     }
 
     public override void ApplyBuff() {
         PlayerStats stats = GetStats();
-        stats.SetMaxSpeed(1.3f);
+        stats.SetMaxHealth(1.5f);
     }
 }

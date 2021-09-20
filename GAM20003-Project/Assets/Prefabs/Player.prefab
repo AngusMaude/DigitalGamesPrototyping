@@ -335,7 +335,6 @@ MonoBehaviour:
   acceleration: 40
   jumpHeight: 20
   reloadTime: 1
-  dashSpeed: 40
   dashTime: 0.15
   dashCount: 1
   bloom: 1
