@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
     private bool jump = false;
     private bool dash = false;
     private bool dashing = false;
-    private bool canDash = false;
+    private int dashCount = 0;
     private bool isGrounded = false;
 
     private float dashT;
@@ -61,7 +61,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Dash() {
-        if (canDash && dash) {
+        if (isGrounded && !dashing)
+            dashCount = player.GetStats().GetDashCount();
+
+        if ((dashCount > 0) && dash) {
             Vector2 dashForce = Vector2.zero;
             dashForce.x = movementInput.x * player.GetStats().GetDashSpeed();
             dashForce.y = movementInput.y * player.GetStats().GetDashSpeed();
@@ -71,7 +74,7 @@ public class PlayerController : MonoBehaviour {
 
             dashT = player.GetStats().GetDashTime();
             dashing = true;
-            canDash = false;
+            dashCount -= 1;
         }
         dash = false;
 
@@ -101,10 +104,6 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         GroundedCheck();
         WallCheck();
-
-        if (isGrounded)
-            canDash = true;
-
         
         Jump();
         Dash();
