@@ -74,17 +74,20 @@ public class Weapon : MonoBehaviour
             if (reloading)
                 Reload();
 
-            float bloom = (Random.value - 0.5f) * bloomAngle * player.GetStats().GetBloom();
-
             if (magAmmo <= 0) {
                 weaponCooldown = reloadTime * player.GetStats().GetReloadTime();
                 reloading = true;
             }
             else {
-                //Instantiate(projectile, firePoint.position, transform.rotation * Quaternion.Euler(Vector3.forward * bloom));
-                //TODO:: ADD BLOOM
-                RaycastHit2D hit = Physics2D.Raycast(firePoint.position, aimInput);
-                Debug.DrawRay(firePoint.position, new Vector3(aimInput.x * 10f, aimInput.y * 10f, 0f), Color.red, 1f, false);
+
+                float bloom = (Random.value - 0.5f) * bloomAngle * player.GetStats().GetBloom() * Mathf.Deg2Rad;
+                Vector2 bloomAim = aimInput;
+
+                bloomAim.x = aimInput.x * Mathf.Cos(bloom) - aimInput.y * Mathf.Sin(bloom);
+                bloomAim.y = aimInput.x * Mathf.Sin(bloom) + aimInput.y * Mathf.Cos(bloom);
+
+                RaycastHit2D hit = Physics2D.Raycast(firePoint.position, bloomAim);
+                Debug.DrawRay(firePoint.position, new Vector3(bloomAim.x * 10f, bloomAim.y * 10f, 0f), Color.red, 1f, false);
 
                 if (hit.collider != null) {
                     if (hit.transform.name != "Terrain") {
