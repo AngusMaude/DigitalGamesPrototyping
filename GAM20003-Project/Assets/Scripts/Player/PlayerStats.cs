@@ -8,7 +8,6 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float acceleration;
     [SerializeField] private float jumpHeight;
     [SerializeField] private float reloadTime;
-    [SerializeField] private float dashSpeed;
     [SerializeField] private float dashTime;
     [SerializeField] private int dashCount;
     [SerializeField] private float bloom;
@@ -20,7 +19,6 @@ public class PlayerStats : MonoBehaviour
     public float GetAcceleration() { return acceleration; }
     public float GetJumpHeight() { return jumpHeight; }
     public float GetReloadTime() { return reloadTime; }
-    public float GetDashSpeed() { return dashSpeed; }
     public float GetDashTime() { return dashTime; }
     public int GetDashCount() { return dashCount; }
     public float GetBloom() { return bloom; }
@@ -32,7 +30,6 @@ public class PlayerStats : MonoBehaviour
     public void SetAcceleration(float amount) { maxSpeed *= amount; }
     public void SetJumpHeight(float amount) { jumpHeight *= amount; }
     public void SetReloadTime(float amount) { reloadTime *= amount; }
-    public void SetDashSpeed(float amount) { dashSpeed *= amount; }
     public void SetDashTime(float amount) { dashTime *= amount; }
     public void SetDashCount(int amount) { dashCount += amount; }
     public void SetBloom(float amount) { bloom *= amount; }
