@@ -66,8 +66,8 @@ public class PlayerController : MonoBehaviour {
 
         if ((dashCount > 0) && dash) {
             Vector2 dashForce = Vector2.zero;
-            dashForce.x = movementInput.x * player.GetStats().GetDashSpeed();
-            dashForce.y = movementInput.y * player.GetStats().GetDashSpeed();
+            dashForce.x = movementInput.x * player.GetStats().GetMaxSpeed() * 3f;
+            dashForce.y = movementInput.y * player.GetStats().GetMaxSpeed() * 3f;
 
             player.GetRigidbody().velocity = Vector2.zero;
             player.GetRigidbody().AddForce(dashForce, ForceMode2D.Impulse);
