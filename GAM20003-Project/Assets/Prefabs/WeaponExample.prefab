@@ -129,7 +129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da5ae8ef39636ae49be46eb9c7e51302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 2577404442369130578, guid: 8f11a8c001fec2e4aa1b2aa33f7bd28e, type: 3}
   firePoint: {fileID: 8968656491310200173}
   semiAutomatic: 0
   fireRate: 0.2
@@ -137,6 +136,7 @@ MonoBehaviour:
   magSize: 20
   reloadTime: 2
   reserveAmmo: 40
+  baseDamage: 20
 --- !u!50 &2454065955055894123
 Rigidbody2D:
   serializedVersion: 4

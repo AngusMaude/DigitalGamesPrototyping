@@ -12,6 +12,6 @@ public class MovementBuff : Buff
     }
     public override void ApplyBuff() {
         PlayerStats stats = GetStats();
-        stats.SetMoveSpeed(2f);
+        stats.SetMaxSpeed(2f);
     }
 }
