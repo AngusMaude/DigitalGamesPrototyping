@@ -21,6 +21,8 @@ MonoBehaviour:
   reloadTime: 1
   reserveAmmo: 1
   baseDamage: 10
+  particleHitPrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}
+  particleFirePrefab: {fileID: 8127829906890014, guid: f3a36a2fce2a53f4fbb052999cbba319, type: 3}
 --- !u!1001 &261892313367092266
 PrefabInstance:
   m_ObjectHideFlags: 0

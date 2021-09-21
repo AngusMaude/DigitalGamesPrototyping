@@ -3,7 +3,10 @@ guid: da5ae8ef39636ae49be46eb9c7e51302
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - firePoint: {instanceID: 0}
+  - particleHitPrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}
+  - particleFirePrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
