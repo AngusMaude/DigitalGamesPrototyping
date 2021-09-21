@@ -23,14 +23,17 @@ public class Weapon : MonoBehaviour
     protected bool shooting = false;
     protected bool reloading = false;
 
-    // Particle 
+    // Particles 
     public GameObject particleHitPrefab;
     public GameObject particleFirePrefab;
 
+    // Audio
+    public AudioSource fireAudio;
 
     // Start is called before the first frame update
     void Start()
     {
+        fireAudio = GetComponent<AudioSource>();
         magAmmo = magSize;
         if (transform.parent.name == "WeaponHandler") {
             GetComponent<Rigidbody2D>().simulated = false;
@@ -89,7 +92,7 @@ public class Weapon : MonoBehaviour
 
                 bloomAim.x = aimInput.x * Mathf.Cos(bloom) - aimInput.y * Mathf.Sin(bloom);
                 bloomAim.y = aimInput.x * Mathf.Sin(bloom) + aimInput.y * Mathf.Cos(bloom);
-                Instantiate(particleFirePrefab, firePoint.position, Quaternion.FromToRotation(Vector3.forward, aimInput));
+                Instantiate(particleFirePrefab, firePoint.position, Quaternion.FromToRotation(Vector3.forward, bloomAim));
 
                 RaycastHit2D hit = Physics2D.Raycast(firePoint.position, bloomAim);
                 Debug.DrawRay(firePoint.position, new Vector3(bloomAim.x * 10f, bloomAim.y * 10f, 0f), Color.red, 1f, false);
@@ -105,7 +108,7 @@ public class Weapon : MonoBehaviour
                     
                     Instantiate(particleHitPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
                 }
-
+                fireAudio.Play(0);
                 weaponCooldown = fireRate;
                 if (semiAutomatic)
                     shooting = false;
