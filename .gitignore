@@ -8,7 +8,6 @@
 [Oo]bj/
 [Tt]emp/
 [Uu]nityGenerated/
-[Ll]og/
 # file on crash reports
 sysinfo.txt
 # Unity3D generated meta files
@@ -47,7 +46,7 @@ GAM20003-Project/Logs/AssetImportWorker0.log
 *.log
 GAM20003-Project/Logs/shadercompiler-UnityShaderCompiler.exe2.log
 GAM20003-Project/Logs/shadercompiler-UnityShaderCompiler.exe1.log
-GAM20003-Project/Logs/shadercompiler-UnityShaderCompiler.exe0.log
+GAM20003-Project\Logs\shadercompiler-UnityShaderCompiler.exe0.log
 GAM20003-Project/Logs/AssetImportWorker4.log
 GAM20003-Project/Logs/AssetImportWorker3.log
 GAM20003-Project/Logs/AssetImportWorker2.log
