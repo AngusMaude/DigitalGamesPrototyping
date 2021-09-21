@@ -26,6 +26,7 @@ sysinfo.txt
 *.user
 *.userprefs
 *.pidb
+*.log
 .DS_Store
 
 ###
@@ -46,7 +47,7 @@ GAM20003-Project/Logs/AssetImportWorker0.log
 *.log
 GAM20003-Project/Logs/shadercompiler-UnityShaderCompiler.exe2.log
 GAM20003-Project/Logs/shadercompiler-UnityShaderCompiler.exe1.log
-GAM20003-Project\Logs\shadercompiler-UnityShaderCompiler.exe0.log
+GAM20003-Project/Logs/shadercompiler-UnityShaderCompiler.exe0.log
 GAM20003-Project/Logs/AssetImportWorker4.log
 GAM20003-Project/Logs/AssetImportWorker3.log
 GAM20003-Project/Logs/AssetImportWorker2.log
