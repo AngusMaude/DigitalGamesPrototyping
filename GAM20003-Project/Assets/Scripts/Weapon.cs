@@ -140,7 +140,6 @@ public class Weapon : MonoBehaviour
             shooting = true;
         else
             shooting = false;
-
     }
 
     public void OnReload() {

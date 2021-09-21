@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
     private PlayerStats stats;
     private BuffHandler buffHandler;
     private string controlScheme;
+    [SerializeField] private Vector2 spawnPoint;
 
     private float health;
     private void OnEnable() {
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour {
         if (health <= 0) {
             Debug.Log("dead");
             health = stats.GetMaxHealth();
+            rb.position = spawnPoint;
         }
     }
 
