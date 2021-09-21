@@ -1790,7 +1790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 3928319361853390396}
   m_sendNavigationEvents: 1
-  m_DragThreshold: 8
+  m_DragThreshold: 10
   m_PlayerRoot: {fileID: 6851671285516966720}
 --- !u!114 &9148994377578003289
 MonoBehaviour:
@@ -1804,12 +1804,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MoveRepeatDelay: 0.4
+  m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_ActionsAsset: {fileID: -944628639613478452, guid: 7169aefb5f9867742b4e3f8a724f0282, type: 3}
   m_PointAction: {fileID: 0}
   m_MoveAction: {fileID: -35911204580423097, guid: 7169aefb5f9867742b4e3f8a724f0282, type: 3}
-  m_SubmitAction: {fileID: 3919889112135752606, guid: 7169aefb5f9867742b4e3f8a724f0282, type: 3}
+  m_SubmitAction: {fileID: 3413210370623473135, guid: 7169aefb5f9867742b4e3f8a724f0282, type: 3}
   m_CancelAction: {fileID: 0}
   m_LeftClickAction: {fileID: 0}
   m_MiddleClickAction: {fileID: 0}

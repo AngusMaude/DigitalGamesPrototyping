@@ -70,9 +70,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Select",
+                    "name": "Selecy",
                     "type": "Button",
-                    "id": "2a49beaa-a44d-4345-877a-5a6064c30288",
+                    "id": "103111c0-0b98-4eab-818f-0d01c4f7c930",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -301,12 +301,12 @@
                 },
                 {
                     "name": "",
-                    "id": "5fdda8cd-fb44-4df5-a1bf-26c0909df1e5",
+                    "id": "4984cfe3-9af2-41f1-8aed-d3d07a0f1cb1",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "Select",
+                    "action": "Selecy",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
