@@ -138,6 +138,8 @@ MonoBehaviour:
   reloadTime: 2
   reserveAmmo: 40
   baseDamage: 20
+  particleHitPrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}
+  particleFirePrefab: {fileID: 8127829906890014, guid: f3a36a2fce2a53f4fbb052999cbba319, type: 3}
 --- !u!50 &2454065955055894123
 Rigidbody2D:
   serializedVersion: 4

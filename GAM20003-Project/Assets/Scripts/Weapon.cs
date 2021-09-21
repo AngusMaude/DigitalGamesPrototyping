@@ -23,6 +23,10 @@ public class Weapon : MonoBehaviour
     protected bool shooting = false;
     protected bool reloading = false;
 
+    // Particle 
+    public GameObject particleHitPrefab;
+    public GameObject particleFirePrefab;
+
 
     // Start is called before the first frame update
     void Start()
@@ -85,10 +89,10 @@ public class Weapon : MonoBehaviour
 
                 bloomAim.x = aimInput.x * Mathf.Cos(bloom) - aimInput.y * Mathf.Sin(bloom);
                 bloomAim.y = aimInput.x * Mathf.Sin(bloom) + aimInput.y * Mathf.Cos(bloom);
+                Instantiate(particleFirePrefab, firePoint.position, Quaternion.FromToRotation(Vector3.forward, aimInput));
 
                 RaycastHit2D hit = Physics2D.Raycast(firePoint.position, bloomAim);
                 Debug.DrawRay(firePoint.position, new Vector3(bloomAim.x * 10f, bloomAim.y * 10f, 0f), Color.red, 1f, false);
-
                 if (hit.collider != null) {
                     if (hit.transform.name != "Terrain") {
                         hit.rigidbody.AddForce(aimInput * knockback * player.GetStats().GetKnockback(), ForceMode2D.Impulse);
@@ -98,6 +102,8 @@ public class Weapon : MonoBehaviour
                             hit.transform.GetComponent<Player>().Hit(baseDamage);
                         }
                     }
+                    
+                    Instantiate(particleHitPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
                 }
 
                 weaponCooldown = fireRate;
@@ -115,7 +121,7 @@ public class Weapon : MonoBehaviour
         reloading = false;
         if (reserveAmmo > magSize) {
             magAmmo = magSize;
-            reserveAmmo -= magSize;
+            // reserveAmmo -= magSize;
         }
         else {
             magAmmo = reserveAmmo;
