@@ -12,6 +12,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float dashTime;
     [SerializeField] private int dashCount;
     [SerializeField] private float bloom;
+    [SerializeField] private float wallFriction;
     private float health { get; set; }
 
     public float GetMaxHealth() { return maxHealth; }
@@ -24,6 +25,7 @@ public class PlayerStats : MonoBehaviour
     public float GetDashTime() { return dashTime; }
     public int GetDashCount() { return dashCount; }
     public float GetBloom() { return bloom; }
+    public float GetWallFriction() { return wallFriction; }
 
 
     public void SetMaxHealth(float amount) { maxHealth *= amount; }
@@ -36,4 +38,5 @@ public class PlayerStats : MonoBehaviour
     public void SetDashTime(float amount) { dashTime *= amount; }
     public void SetDashCount(int amount) { dashCount += amount; }
     public void SetBloom(float amount) { bloom *= amount; }
+    public void SetWallFriction(float amount) { wallFriction *= amount; }
 }
