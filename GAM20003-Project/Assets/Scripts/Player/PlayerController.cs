@@ -99,6 +99,11 @@ public class PlayerController : MonoBehaviour {
 
         moveForce.y = 0;
         player.GetRigidbody().AddForce(moveForce);
+
+        if (wall != Wall.None) {
+            float wallSpeed = player.GetStats().GetMaxSpeed() * player.GetStats().GetWallFriction();
+            player.GetRigidbody().velocity = new Vector2(player.GetRigidbody().velocity.x, Mathf.Clamp(player.GetRigidbody().velocity.y, -wallSpeed, float.MaxValue));
+        }
     }
 
     void Update() {
