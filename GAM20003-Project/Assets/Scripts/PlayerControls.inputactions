@@ -68,6 +68,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Selecy",
+                    "type": "Button",
+                    "id": "103111c0-0b98-4eab-818f-0d01c4f7c930",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -288,6 +296,17 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4984cfe3-9af2-41f1-8aed-d3d07a0f1cb1",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Selecy",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
