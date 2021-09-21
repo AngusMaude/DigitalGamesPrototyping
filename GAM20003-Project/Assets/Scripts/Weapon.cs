@@ -115,7 +115,7 @@ public class Weapon : MonoBehaviour
         reloading = false;
         if (reserveAmmo > magSize) {
             magAmmo = magSize;
-            reserveAmmo -= magSize;
+            // reserveAmmo -= magSize;
         }
         else {
             magAmmo = reserveAmmo;
