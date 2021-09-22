@@ -31,19 +31,31 @@ public class Weapon : MonoBehaviour
     public AudioSource fireAudio;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         fireAudio = GetComponent<AudioSource>();
         magAmmo = magSize;
-        if (transform.parent.name == "WeaponHandler") {
-            GetComponent<Rigidbody2D>().simulated = false;
+
+        string parent = transform.parent.name;
+        if (parent.Contains(" ("))
+            parent = parent.Substring(0, parent.IndexOf(" ("));
+
+        switch (parent) {
+            case "WeaponHandler":
+                GetComponent<Rigidbody2D>().simulated = false;
+                break;
+
+            case "DroppedWeapons":
+                GetComponent<Rigidbody2D>().simulated = true;
+                this.enabled = false;
+                break;
+            case "WeaponSpawner":
+                GetComponent<Rigidbody2D>().simulated = false;
+                this.enabled = false;
+                break;
+            default:
+                Debug.LogError("Weapon parent not recognised: " + transform.parent.name);
+                break;
         }
-        else if (transform.parent.name == "SceneWeapons") {
-            GetComponent<Rigidbody2D>().simulated = true;
-            this.enabled = false;
-        }
-        else
-            Debug.LogError("Weapon parent not recognised: " + transform.parent.name);
     }
 
     private void OnEnable() {

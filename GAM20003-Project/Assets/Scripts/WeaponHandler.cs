@@ -9,21 +9,25 @@ public class WeaponHandler : MonoBehaviour {
     [SerializeField] private float dropRotation;
     [SerializeField] private float dropForce;
     [SerializeField] private GameObject defaultWeapon;
+    private Transform droppedWeapons;
     
     // Start is called before the first frame update
     void Start()
     {
         sceneWeapons = GameObject.Find("SceneWeapons");
+        droppedWeapons = sceneWeapons.transform.Find("DroppedWeapons");
         Instantiate(defaultWeapon, transform);
     }
 
     void OnPickUp() {
-        foreach (Transform weapon in sceneWeapons.transform) {
-            if (Vector3.Distance(transform.position, weapon.position) < weaponReach) {
-                Drop();
-                PickUp(weapon);
-                weapon.GetComponent<Weapon>().enabled = true;
-                break;
+        foreach (Transform container in sceneWeapons.transform) {
+            foreach (Transform weapon in container) {
+                if (Vector3.Distance(transform.position, weapon.position) < weaponReach) {
+                    Drop();
+                    PickUp(weapon);
+                    weapon.GetComponent<Weapon>().enabled = true;
+                    break;
+                }
             }
         }
     }
@@ -53,7 +57,7 @@ public class WeaponHandler : MonoBehaviour {
                 rb.simulated = true;
                 rb.velocity = new Vector2((Random.value - 0.5f) * dropForce, dropForce);
                 rb.AddTorque((Random.value - 0.5f) * dropRotation);
-                weapon.SetParent(sceneWeapons.transform);
+                weapon.SetParent(droppedWeapons);
             }
         }
     }
