@@ -560,7 +560,11 @@ PrefabInstance:
       objectReference: {fileID: 1972746895}
     - target: {fileID: 2969030038667080385, guid: fd676cf340e36124fb5115e54bb7705a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -7.8
+      value: 0.10000038
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638998502988627740, guid: fd676cf340e36124fb5115e54bb7705a, type: 3}
+      propertyPath: m_Text
+      value: How to Play
       objectReference: {fileID: 0}
     - target: {fileID: 4892553417036248682, guid: fd676cf340e36124fb5115e54bb7705a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
