@@ -7,15 +7,17 @@ public class PlayerController : MonoBehaviour {
     private Player player;
     [SerializeField] private LayerMask terrain;
     [SerializeField] private float groundFriction;
+    [SerializeField] private float coyoteTime;
 
     private Vector2 movementInput = Vector2.zero;
-    private bool jump = false;
-    private bool dash = false;
+    private bool jumpInput = false;
+    private bool dashInput = false;
     private bool dashing = false;
     private int dashCount = 0;
     private bool isGrounded = false;
 
     private float dashT;
+    private float canJumpT;
 
     enum Wall {
         Left,
@@ -42,8 +44,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Jump() {
-        if (jump) {
-            if (isGrounded)
+        if (isGrounded) {
+            canJumpT = coyoteTime;
+        }
+        if (jumpInput) {
+            if (canJumpT > 0)
                 player.GetRigidbody().AddForce(new Vector2(0, player.GetStats().GetJumpHeight()), ForceMode2D.Impulse);
             else {
                 switch (wall) {
@@ -57,15 +62,16 @@ public class PlayerController : MonoBehaviour {
                         break;
                 }
             }
-            jump = false;
+            jumpInput = false;
         }
+        canJumpT -= Time.deltaTime;
     }
 
     private void Dash() {
         if (isGrounded && !dashing)
             dashCount = player.GetStats().GetDashCount();
 
-        if ((dashCount > 0) && dash) {
+        if ((dashCount > 0) && dashInput) {
             Vector2 dashForce = Vector2.zero;
             dashForce.x = movementInput.x * player.GetStats().GetMaxSpeed() * 3f;
             dashForce.y = movementInput.y * player.GetStats().GetMaxSpeed() * 3f;
@@ -77,7 +83,7 @@ public class PlayerController : MonoBehaviour {
             dashing = true;
             dashCount -= 1;
         }
-        dash = false;
+        dashInput = false;
 
         if (dashing) {
             dashT -= Time.deltaTime;
@@ -126,10 +132,10 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnJump() {
-        jump = true;
+        jumpInput = true;
     }
 
     public void OnDash() {
-        dash = true;
+        dashInput = true;
     }
 }

@@ -114,7 +114,8 @@ MonoBehaviour:
   terrain:
     serializedVersion: 2
     m_Bits: 64
-  groundFriction: 0.5
+  groundFriction: 0.8
+  coyoteTime: 0.2
 --- !u!114 &4147758859450482348
 MonoBehaviour:
   m_ObjectHideFlags: 0
