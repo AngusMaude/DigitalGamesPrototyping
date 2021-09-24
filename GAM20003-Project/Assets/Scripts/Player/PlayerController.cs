@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 
     private Player player;
     [SerializeField] private LayerMask terrain;
+    [SerializeField] private float groundFriction;
 
     private Vector2 movementInput = Vector2.zero;
     private bool jump = false;
@@ -99,6 +100,10 @@ public class PlayerController : MonoBehaviour {
 
         moveForce.y = 0;
         player.GetRigidbody().AddForce(moveForce);
+
+        if (isGrounded && (movementInput == Vector2.zero)) {
+            player.GetRigidbody().AddForce(player.GetRigidbody().velocity * -groundFriction);
+        }
 
         if (wall != Wall.None) {
             float wallSpeed = player.GetStats().GetMaxSpeed() * player.GetStats().GetWallFriction();
