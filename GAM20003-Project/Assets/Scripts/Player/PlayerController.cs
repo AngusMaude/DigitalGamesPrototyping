@@ -49,7 +49,6 @@ public class PlayerController : MonoBehaviour {
     private void Jump() {
         if (isGrounded) {
             canJumpT = coyoteTime;
-            Debug.Log(canJumpT);
         }
         if (jumpInput) {
             if (canJumpT > 0) {
