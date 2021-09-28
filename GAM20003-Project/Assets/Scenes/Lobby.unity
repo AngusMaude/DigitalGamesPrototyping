@@ -4171,7 +4171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a77cb651dddfdf4781ae79050b1dade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leveltoLoad: Arena
+  leveltoLoad: Map1
   startCountdownText: {fileID: 755910201}
   startExtraText: {fileID: 1110036108}
   timetoStart: 3
