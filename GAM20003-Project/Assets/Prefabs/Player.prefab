@@ -305,7 +305,7 @@ MonoBehaviour:
   terrain:
     serializedVersion: 2
     m_Bits: 256
-  groundFriction: 0.8
+  groundFriction: 0.9
   coyoteTime: 0.2
 --- !u!114 &4147758859450482348
 MonoBehaviour:
@@ -527,7 +527,7 @@ MonoBehaviour:
   maxHealth: 100
   knockback: 1
   maxSpeed: 15
-  acceleration: 40
+  acceleration: 90
   jumpHeight: 20
   reloadTime: 1
   dashTime: 0.15
