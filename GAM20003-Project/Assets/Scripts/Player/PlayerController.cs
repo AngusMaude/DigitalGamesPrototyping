@@ -49,10 +49,12 @@ public class PlayerController : MonoBehaviour {
     private void Jump() {
         if (isGrounded) {
             canJumpT = coyoteTime;
+            Debug.Log(canJumpT);
         }
         if (jumpInput) {
-            if (canJumpT > 0)
-                player.GetRigidbody().AddForce(new Vector2(0, player.GetStats().GetJumpHeight()), ForceMode2D.Impulse);
+            if (canJumpT > 0) {
+                player.GetRigidbody().AddForce(new Vector2(0, player.GetStats().GetJumpHeight()), ForceMode2D.Impulse); 
+            }
             else {
                 switch (wall) {
                     case Wall.Left:

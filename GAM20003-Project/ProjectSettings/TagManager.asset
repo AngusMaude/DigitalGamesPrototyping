@@ -11,9 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Weapons
+  - Players
+  - Terrain
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Terrain
+    uniqueID: 3256236521
+    locked: 0
+  - name: Players
+    uniqueID: 230962837
+    locked: 0
+  - name: Weapons
+    uniqueID: 2325273145
     locked: 0
