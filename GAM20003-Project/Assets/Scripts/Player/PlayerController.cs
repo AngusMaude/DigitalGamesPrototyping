@@ -27,7 +27,10 @@ public class PlayerController : MonoBehaviour {
     private Wall wall = Wall.None;
 
     private void Start() {
+        DontDestroyOnLoad(gameObject);
+
         player = GetComponent<Player>();
+        GameManager.instance.AddPlayer(this);
     }
 
     private void GroundedCheck() {
