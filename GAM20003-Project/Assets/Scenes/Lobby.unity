@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 179516575}
   - component: {fileID: 179516574}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 287546344}
   - component: {fileID: 287546343}
   - component: {fileID: 287546342}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
