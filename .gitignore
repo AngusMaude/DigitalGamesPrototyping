@@ -69,3 +69,11 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+GAM20003-Project/ProjectSettings/PackageManagerSettings.asset
+GAM20003-Project/ProjectSettings/EditorBuildSettings.asset
+GAM20003-Project/ProjectSettings/ProjectSettings.asset
+GAM20003-Project/UserSettings/EditorUserSettings.asset
+GAM20003-Project/ProjectSettings/ProjectSettings.asset
+GAM20003-Project/UserSettings/EditorUserSettings.asset
+GAM20003-Project/ProjectSettings/ProjectSettings.asset
+*.asset
