@@ -2,30 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     private Rigidbody2D rb;
     private BoxCollider2D coll;
     private PlayerStats stats;
     private BuffHandler buffHandler;
+
     private string controlScheme;
     [SerializeField] private Vector2 spawnPoint;
 
+    public ProgressBar healthBar;
     private float health;
+    private float maxHealth;
+    
+    
     private void OnEnable() {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         stats = GetComponent<PlayerStats>();
         buffHandler = transform.Find("BuffHandler").GetComponent<BuffHandler>();
         controlScheme = GetComponent<PlayerInput>().currentControlScheme;
-
+        
         buffHandler.ApplyAllBuffs();
         health = stats.GetMaxHealth();
+        maxHealth = health;
+        healthBar.UpdateProgressBar(maxHealth, health);
+
         Debug.Log(health);
     }
 
     private void Update() {
-        
+
     }
 
     public void Hit(float damage) {
@@ -36,6 +45,7 @@ public class Player : MonoBehaviour {
             health = stats.GetMaxHealth();
             rb.position = spawnPoint;
         }
+        healthBar.UpdateProgressBar(maxHealth, health);
     }
 
     public Rigidbody2D GetRigidbody() { return rb; }
