@@ -134,14 +134,21 @@ MonoBehaviour:
   semiAutomatic: 0
   fireRate: 0.2
   knockback: 10
-  bloomAngle: 20
+  bloomAngle: 8
+  bloomAccumulationRate: 0.7
+  bloomDecayRate: 0.4
   magSize: 20
   reloadTime: 2
   reserveAmmo: 40
   baseDamage: 20
   particleHitPrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}
   particleFirePrefab: {fileID: 8127829906890014, guid: f3a36a2fce2a53f4fbb052999cbba319, type: 3}
-  fireAudio: {fileID: 0}
+  WeaponAudio: {fileID: 0}
+  AudioClips:
+  - {fileID: 8300000, guid: 7d5b22a3e528b8b45a80db94b481f0d2, type: 3}
+  - {fileID: 8300000, guid: 68d9bcfac828e534cbdd236c164875c4, type: 3}
+  ReloadClip: {fileID: 8300000, guid: 5699e9babef41a64bbd4d851aeed0d8c, type: 3}
+  DryFireClip: {fileID: 8300000, guid: e817f8ca21bf33b459ea17ea98e470bc, type: 3}
 --- !u!50 &2454065955055894123
 Rigidbody2D:
   serializedVersion: 4
@@ -245,7 +252,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.687
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

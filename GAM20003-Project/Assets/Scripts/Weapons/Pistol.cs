@@ -6,11 +6,14 @@ public class Pistol : Weapon
 {
     protected override void Reload() {
         Debug.Log("reload");
-        if (weaponCooldown <= 0)
-        {
+        if (weaponCooldown <= 0) {
             reloading = false;
             magAmmo = magSize;
             player.UpdateUIReloadTimer(reloadTime * player.GetStats().GetReloadTime(), 0);
+            if (ReloadClip != null) {
+                WeaponAudio.clip = ReloadClip;
+                WeaponAudio.Play(0);
+            }
         }
     }
 }
