@@ -52,7 +52,8 @@ public class PlayerController : MonoBehaviour {
         }
         if (jumpInput) {
             if (canJumpT > 0) {
-                player.GetRigidbody().AddForce(new Vector2(0, player.GetStats().GetJumpHeight()), ForceMode2D.Impulse); 
+                player.GetRigidbody().AddForce(new Vector2(0, player.GetStats().GetJumpHeight()), ForceMode2D.Impulse);
+                
             }
             else {
                 switch (wall) {
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour {
                         break;
                 }
             }
+            canJumpT = 0;
             jumpInput = false;
         }
         canJumpT -= Time.deltaTime;
