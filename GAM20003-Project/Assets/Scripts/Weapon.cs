@@ -97,8 +97,6 @@ public class Weapon : MonoBehaviour
 
     protected virtual void Shoot() {
         if (shooting && (weaponCooldown <= 0)){
-            if (reloading)
-                Reload();
 
             if (magAmmo <= 0) {
                 weaponCooldown = reloadTime * player.GetStats().GetReloadTime();
