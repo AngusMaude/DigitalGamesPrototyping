@@ -56,6 +56,9 @@ public class Weapon : MonoBehaviour
                 Debug.LogError("Weapon parent not recognised: " + transform.parent.name);
                 break;
         }
+        if (player != null){
+            player.UpdateUIAmmoCount(magSize, magAmmo);
+        }
     }
 
     private void OnEnable() {
@@ -72,7 +75,11 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (reloading){
+            Reload();
+            player.UpdateUIReloadTimer(reloadTime * player.GetStats().GetReloadTime(), weaponCooldown);
+            player.UpdateUIAmmoCount(magSize, magAmmo);
+        }
         // flip player depending on aiming direction
         if (aimInput.x > 0.1)
             player.transform.eulerAngles = new Vector3(0f, 0f, 0f);
@@ -89,7 +96,7 @@ public class Weapon : MonoBehaviour
     }
 
     protected virtual void Shoot() {
-        if (shooting && (weaponCooldown <= 0)) {
+        if (shooting && (weaponCooldown <= 0)){
             if (reloading)
                 Reload();
 
@@ -98,7 +105,6 @@ public class Weapon : MonoBehaviour
                 reloading = true;
             }
             else {
-
                 float bloom = (Random.value - 0.5f) * bloomAngle * player.GetStats().GetBloom() * Mathf.Deg2Rad;
                 Vector2 bloomAim = aimInput;
 
@@ -126,21 +132,30 @@ public class Weapon : MonoBehaviour
                     shooting = false;
 
                 magAmmo -= 1;
+                player.UpdateUIAmmoCount(magSize, magAmmo);
             }
         }
-        weaponCooldown -= Time.deltaTime;
+        else {
+            weaponCooldown -= Time.deltaTime;
+        }
+
     }
 
     protected virtual void Reload() {
         Debug.Log("reload");
-        reloading = false;
-        if (reserveAmmo > magSize) {
-            magAmmo = magSize;
-            // reserveAmmo -= magSize;
-        }
-        else {
-            magAmmo = reserveAmmo;
-            reserveAmmo = 0;
+        if (weaponCooldown <= 0) {
+            reloading = false;
+            if (reserveAmmo > magSize)
+            {
+                magAmmo = magSize;
+                // reserveAmmo -= magSize;
+            }
+            else
+            {
+                magAmmo = reserveAmmo;
+                reserveAmmo = 0;
+            }
+            player.UpdateUIReloadTimer(reloadTime * player.GetStats().GetReloadTime(), 0);
         }
     }
 
@@ -161,14 +176,15 @@ public class Weapon : MonoBehaviour
     }
 
     public void OnShoot(InputValue value) {
-        if (value.isPressed)
+        if (value.isPressed && reloading == false)
             shooting = true;
-        else
+        else {
             shooting = false;
+        }
     }
 
     public void OnReload() {
-        weaponCooldown = reloadTime;
+        weaponCooldown = reloadTime * player.GetStats().GetReloadTime();
         reloading = true;
     }
 }

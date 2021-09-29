@@ -14,6 +14,9 @@ public class Player : MonoBehaviour {
     [SerializeField] private Vector2 spawnPoint;
 
     public ProgressBar healthBar;
+    public ProgressBar ammoCount;
+    public ProgressBar reloadTimer;
+
     private float health;
     private float maxHealth;
     
@@ -31,6 +34,8 @@ public class Player : MonoBehaviour {
         healthBar.UpdateProgressBar(maxHealth, health);
 
         Debug.Log(health);
+
+        UpdateUIReloadTimer(1f, 0f);
     }
 
     private void Update() {
@@ -46,6 +51,16 @@ public class Player : MonoBehaviour {
             rb.position = spawnPoint;
         }
         healthBar.UpdateProgressBar(maxHealth, health);
+    }
+
+    public void UpdateUIAmmoCount(int maxAmmo, int remainingAmmo){
+        ammoCount.UpdateProgressBar(maxAmmo, remainingAmmo);
+    }
+
+    public void UpdateUIReloadTimer(float maxReloadTime, float remainingTime)
+    {
+        reloadTimer.UpdateProgressBar(maxReloadTime, remainingTime);
+
     }
 
     public Rigidbody2D GetRigidbody() { return rb; }
