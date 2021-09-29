@@ -13,6 +13,9 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float fireRate;
     [SerializeField] protected float knockback;
     [SerializeField] protected float bloomAngle;
+    [SerializeField] protected float bloomAccumulationRate;
+    [SerializeField] protected float bloomDecayRate;
+    [SerializeField] protected float bloomMinimum;
     [SerializeField] protected int magSize;
     protected int magAmmo;
     [SerializeField] protected float reloadTime;
@@ -22,17 +25,21 @@ public class Weapon : MonoBehaviour
     protected float weaponCooldown;
     protected bool shooting = false;
     protected bool reloading = false;
+    private float bloomAccum = 0f; // running accumulation of current bloom
 
     // Particles 
     public GameObject particleHitPrefab;
     public GameObject particleFirePrefab;
 
     // Audio
-    public AudioSource fireAudio;
+    public AudioSource WeaponAudio;
+    public AudioClip[] AudioClips;
+    public AudioClip ReloadClip;
+    public AudioClip DryFireClip;
 
     // Start is called before the first frame update
     void Start() {
-        fireAudio = GetComponent<AudioSource>();
+        WeaponAudio = GetComponent<AudioSource>();
         magAmmo = magSize;
 
         string parent = transform.parent.name;
@@ -75,6 +82,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (reloading){
             Reload();
             player.UpdateUIReloadTimer(reloadTime * player.GetStats().GetReloadTime(), weaponCooldown);
@@ -88,6 +96,11 @@ public class Weapon : MonoBehaviour
 
 
         Debug.DrawRay(this.transform.position, new Vector3(aimInput.x * 5f, aimInput.y * 5f, 0f), Color.blue, 0f, false);
+        // Debug show bloom range
+
+        Debug.DrawRay(firePoint.position, new Vector3((aimInput.x * Mathf.Cos(0.5f * bloomAccum) - aimInput.y * Mathf.Sin(0.5f * bloomAccum)) * 10f, (aimInput.x * Mathf.Sin(0.5f * bloomAccum) + aimInput.y * Mathf.Cos(0.5f * bloomAccum)) * 10f, 0f), Color.yellow, 0f, false);
+        Debug.DrawRay(firePoint.position, new Vector3((aimInput.x * Mathf.Cos(-0.5f * bloomAccum) - aimInput.y * Mathf.Sin(-0.5f * bloomAccum)) * 10f, (aimInput.x * Mathf.Sin(-0.5f * bloomAccum) + aimInput.y * Mathf.Cos(-0.5f * bloomAccum)) * 10f, 0f), Color.yellow, 0f, false);
+
 
         float rotZ = Mathf.Atan2(aimInput.y, aimInput.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0f, 0f, rotZ);
@@ -101,9 +114,13 @@ public class Weapon : MonoBehaviour
             if (magAmmo <= 0) {
                 weaponCooldown = reloadTime * player.GetStats().GetReloadTime();
                 reloading = true;
+                if (DryFireClip != null) {
+                    WeaponAudio.clip = DryFireClip;
+                    WeaponAudio.Play(0);
+                }
             }
-            else {
-                float bloom = (Random.value - 0.5f) * bloomAngle * player.GetStats().GetBloom() * Mathf.Deg2Rad;
+            else {              
+                float bloom = ((Random.value - 0.5f) * bloomAccum);
                 Vector2 bloomAim = aimInput;
 
                 bloomAim.x = aimInput.x * Mathf.Cos(bloom) - aimInput.y * Mathf.Sin(bloom);
@@ -111,7 +128,7 @@ public class Weapon : MonoBehaviour
                 Instantiate(particleFirePrefab, firePoint.position, Quaternion.FromToRotation(Vector3.forward, bloomAim));
 
                 RaycastHit2D hit = Physics2D.Raycast(firePoint.position, bloomAim);
-                Debug.DrawRay(firePoint.position, new Vector3(bloomAim.x * 10f, bloomAim.y * 10f, 0f), Color.red, 1f, false);
+                //Debug.DrawRay(firePoint.position, new Vector3(bloomAim.x * 10f, bloomAim.y * 10f, 0f), Color.red, 1f, false);
                 if (hit.collider != null) {
                     if (hit.transform.name != "Terrain") {
                         hit.rigidbody.AddForce(aimInput * knockback * player.GetStats().GetKnockback(), ForceMode2D.Impulse);
@@ -124,8 +141,15 @@ public class Weapon : MonoBehaviour
                     
                     Instantiate(particleHitPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
                 }
-                fireAudio.Play(0);
+                // Play audio
+                if (AudioClips.Length > 0) {
+                    WeaponAudio.clip = AudioClips[Random.Range(0, AudioClips.Length)];
+                    WeaponAudio.Play(0);
+                }
+
                 weaponCooldown = fireRate;
+                // Accumulate bloom after firing
+                bloomAccum += (bloomAngle * player.GetStats().GetBloom() * Mathf.Deg2Rad) * bloomAccumulationRate;
                 if (semiAutomatic)
                     shooting = false;
 
@@ -135,6 +159,7 @@ public class Weapon : MonoBehaviour
         }
         else {
             weaponCooldown -= Time.deltaTime;
+            bloomAccum = Mathf.Clamp(bloomAccum - (Time.deltaTime * bloomDecayRate), bloomMinimum, bloomAngle);
         }
 
     }
@@ -143,17 +168,19 @@ public class Weapon : MonoBehaviour
         Debug.Log("reload");
         if (weaponCooldown <= 0) {
             reloading = false;
-            if (reserveAmmo > magSize)
-            {
+            if (reserveAmmo > magSize) {
                 magAmmo = magSize;
                 // reserveAmmo -= magSize;
             }
-            else
-            {
+            else {
                 magAmmo = reserveAmmo;
                 reserveAmmo = 0;
             }
             player.UpdateUIReloadTimer(reloadTime * player.GetStats().GetReloadTime(), 0);
+            if (ReloadClip != null) {
+                WeaponAudio.clip = ReloadClip;
+                WeaponAudio.Play(0);
+            }
         }
     }
 
@@ -184,5 +211,6 @@ public class Weapon : MonoBehaviour
     public void OnReload() {
         weaponCooldown = reloadTime * player.GetStats().GetReloadTime();
         reloading = true;
+
     }
 }

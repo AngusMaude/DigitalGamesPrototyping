@@ -1067,13 +1067,22 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.051344287
         - serializedVersion: 3
-          time: 1
+          time: 0.9098518
           value: 0
-          inSlope: 0.18106693
-          outSlope: 0.18106693
+          inSlope: -0.031102594
+          outSlope: -0.031102594
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.085135855
+          inWeight: 0.33333334
+          outWeight: 0.85940564
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: 0.059412587
+          outSlope: 0.059412587
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.097413406
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -4855,7 +4864,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -745728017
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
