@@ -24,8 +24,6 @@ public class PauseMenu : MonoBehaviour
                 isPaused = true;
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0f;
-
-                EventSystem.current.SetSelectedGameObject(null);
                 EventSystem.current.SetSelectedGameObject(pauseFirstButton);
 
 
