@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
     private Rigidbody2D rb;
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour {
         Debug.Log("hit " + health);
         if (health <= 0) {
             Debug.Log("dead");
+            SceneManager.LoadScene("Buffs");
             health = stats.GetMaxHealth();
             rb.position = spawnPoint;
         }
