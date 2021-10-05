@@ -10,6 +10,7 @@ public class WeaponHandler : MonoBehaviour {
     [SerializeField] private float dropForce;
     [SerializeField] private GameObject defaultWeapon;
     private Transform droppedWeapons;
+    private string defaultName;
     
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class WeaponHandler : MonoBehaviour {
         sceneWeapons = GameObject.Find("SceneWeapons");
         droppedWeapons = sceneWeapons.transform.Find("DroppedWeapons");
         Instantiate(defaultWeapon, transform);
+        defaultName = defaultWeapon.name;
     }
 
     void OnPickUp() {
@@ -40,15 +42,16 @@ public class WeaponHandler : MonoBehaviour {
     }
 
     void OnDrop() {
-        if (!transform.GetChild(0).name.Contains("Pistol")) {
+        if (!transform.GetChild(0).name.Contains(defaultName)) {
             Drop();
-            Instantiate(defaultWeapon, transform);
+            GameObject weapon = Instantiate(defaultWeapon, transform) as GameObject;
+            weapon.GetComponent<Weapon>().SetInfiniteAmmo(true);
         }
     }
 
     void Drop() {
         foreach (Transform weapon in transform) {
-            if (weapon.name.Contains("Pistol")) {
+            if (weapon.name.Contains(defaultName)) {
                 Destroy(weapon.gameObject);
             }
             else {

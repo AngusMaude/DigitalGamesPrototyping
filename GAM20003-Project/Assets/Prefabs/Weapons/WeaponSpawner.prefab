@@ -99,6 +99,6 @@ MonoBehaviour:
   randomWeapons: 1
   spawnWeapon: {fileID: 6313395722178488822, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
   weaponList:
-  - {fileID: 6313395722178488822, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+  - {fileID: 8724295282708969683, guid: 6bad01c02e6b28b4486db0b8cefcc542, type: 3}
   - {fileID: 7401903943598759753, guid: 9aa6bd74fff082f4bb982eb87613ce2e, type: 3}
   spawnTime: 5
