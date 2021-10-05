@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private float coyoteTime;
 
     private Vector2 movementInput = Vector2.zero;
+    private Vector2 aimInput = Vector2.zero;
     private bool jumpInput = false;
     private bool dashInput = false;
     private bool dashing = false;
@@ -79,8 +80,19 @@ public class PlayerController : MonoBehaviour {
 
         if ((dashCount > 0) && dashInput) {
             Vector2 dashForce = Vector2.zero;
-            dashForce.x = movementInput.x * player.GetStats().GetMaxSpeed() * 3f;
-            dashForce.y = movementInput.y * player.GetStats().GetMaxSpeed() * 3f;
+
+            switch (player.GetControlScheme()) {
+                case "Controller":
+                    dashForce.x = movementInput.x * player.GetStats().GetMaxSpeed() * 3f;
+                    dashForce.y = movementInput.y * player.GetStats().GetMaxSpeed() * 3f;
+                    break;
+                case "KeyboardMouse":
+                    dashForce.x = aimInput.x * player.GetStats().GetMaxSpeed() * 3f;
+                    dashForce.y = aimInput.y * player.GetStats().GetMaxSpeed() * 3f;
+                    break;
+                default:
+                    break;
+            }
 
             player.GetRigidbody().velocity = Vector2.zero;
             player.GetRigidbody().AddForce(dashForce, ForceMode2D.Impulse);
@@ -143,5 +155,12 @@ public class PlayerController : MonoBehaviour {
 
     public void OnDash() {
         dashInput = true;
+    }
+
+    public void OnAim(InputValue value) {
+        if (player.GetControlScheme() == "KeyboardMouse")
+            aimInput = Camera.main.ScreenToWorldPoint(value.Get<Vector2>()) - transform.position;
+
+        aimInput.Normalize();
     }
 }
