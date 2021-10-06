@@ -10,13 +10,16 @@ public class WeaponHandler : MonoBehaviour {
     [SerializeField] private float dropForce;
     [SerializeField] private GameObject defaultWeapon;
     private Transform droppedWeapons;
+    private string defaultName;
     
     // Start is called before the first frame update
     void Start()
     {
         sceneWeapons = GameObject.Find("SceneWeapons");
         droppedWeapons = sceneWeapons.transform.Find("DroppedWeapons");
-        Instantiate(defaultWeapon, transform);
+        defaultName = defaultWeapon.name;
+        defaultWeapon = Instantiate(defaultWeapon, transform);
+        defaultWeapon.GetComponent<Weapon>().SetInfiniteAmmo(true);
     }
 
     void OnPickUp() {
@@ -24,9 +27,10 @@ public class WeaponHandler : MonoBehaviour {
             foreach (Transform weapon in container) {
                 if (Vector3.Distance(transform.position, weapon.position) < weaponReach) {
                     Drop();
+                    defaultWeapon.SetActive(false);
                     PickUp(weapon);
                     weapon.GetComponent<Weapon>().enabled = true;
-                    break;
+                    return;
                 }
             }
         }
@@ -40,18 +44,15 @@ public class WeaponHandler : MonoBehaviour {
     }
 
     void OnDrop() {
-        if (!transform.GetChild(0).name.Contains("Pistol")) {
+        if (transform.GetChild(0) != defaultWeapon) {
             Drop();
-            Instantiate(defaultWeapon, transform);
+            defaultWeapon.SetActive(true);
         }
     }
 
     void Drop() {
         foreach (Transform weapon in transform) {
-            if (weapon.name.Contains("Pistol")) {
-                Destroy(weapon.gameObject);
-            }
-            else {
+            if (weapon != defaultWeapon.transform) {
                 Rigidbody2D rb = weapon.GetComponent<Rigidbody2D>();
                 weapon.GetComponent<Weapon>().enabled = false;
                 rb.simulated = true;

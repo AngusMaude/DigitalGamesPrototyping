@@ -21,6 +21,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected float reloadTime;
     [SerializeField] protected int reserveAmmo;
     [SerializeField] protected float baseDamage;
+    [SerializeField] protected bool infiniteAmmo;
 
     protected float weaponCooldown;
     protected bool shooting = false;
@@ -165,12 +166,12 @@ public class Weapon : MonoBehaviour
     }
 
     protected virtual void Reload() {
-        Debug.Log("reload");
         if (weaponCooldown <= 0) {
             reloading = false;
             if (reserveAmmo > magSize) {
                 magAmmo = magSize;
-                // reserveAmmo -= magSize;
+                if (!infiniteAmmo)
+                    reserveAmmo -= magSize;
             }
             else {
                 magAmmo = reserveAmmo;
@@ -213,4 +214,6 @@ public class Weapon : MonoBehaviour
         reloading = true;
 
     }
+
+    public void SetInfiniteAmmo(bool value) { infiniteAmmo = value; }
 }
