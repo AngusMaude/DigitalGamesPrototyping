@@ -11,6 +11,8 @@ public class Player : MonoBehaviour {
     private BuffHandler buffHandler;
 
     private string controlScheme;
+    private PlayerSpawner spawner;
+    private int playerID;
     [SerializeField] private Vector2 spawnPoint;
 
     public ProgressBar healthBar;
@@ -40,6 +42,14 @@ public class Player : MonoBehaviour {
 
     private void Update() {
 
+    }
+
+    public void AssignSpawn(PlayerSpawner spawn)
+    {
+        spawner = spawn;
+        spawner.playerToSpawn = this;
+        spawnPoint = spawner.spawnLocation;
+        playerID = spawner.spawnID;
     }
 
     public void Hit(float damage) {
