@@ -35,6 +35,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: b62ddae0de0708146891f4e9aca44a8a, type: 3}
+    - target: {fileID: 2256806326169272738, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4675099176148300192, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -81,7 +85,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6313395722178488822, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: m_Name
-      value: SMGexample
+      value: SMG
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: fireRate
@@ -92,6 +96,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 86b4bc7be6b662241a031a4366f9dd77, type: 3}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: baseDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: bloomAngle
       value: 15
       objectReference: {fileID: 0}
@@ -100,12 +108,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 731868386647983822}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: bloomMaximum
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: bloomMinimum
-      value: 0.15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: bloomDecayRate
-      value: 1.2
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: AudioClips.Array.size
@@ -113,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: bloomAccumulationRate
-      value: 0.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: AudioClips.Array.data[0]

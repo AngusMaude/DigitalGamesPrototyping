@@ -134,9 +134,9 @@ MonoBehaviour:
   semiAutomatic: 0
   fireRate: 0.2
   knockback: 10
-  bloomAngle: 8
-  bloomAccumulationRate: 0.7
-  bloomDecayRate: 0.4
+  bloomMaximum: 40
+  bloomAccumulationRate: 10
+  bloomDecayRate: 10
   bloomMinimum: 0
   magSize: 20
   reloadTime: 2

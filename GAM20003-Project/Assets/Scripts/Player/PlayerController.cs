@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnAim(InputValue value) {
-        if (player.GetControlScheme() == "KeyboardMouse")
+        if (player && player.GetControlScheme() == "KeyboardMouse")
             aimInput = Camera.main.ScreenToWorldPoint(value.Get<Vector2>()) - transform.position;
 
         aimInput.Normalize();

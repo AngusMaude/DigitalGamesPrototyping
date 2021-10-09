@@ -1,6 +1,40 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3354974617919852837
+--- !u!114 &7200333561559551890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4470909801896250618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b87a7ac05e215b84eb5d06e2bfdf4f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 1576649907693310049}
+  semiAutomatic: 0
+  fireRate: 0
+  knockback: 10
+  bloomMaximum: 40
+  bloomAccumulationRate: 20
+  bloomDecayRate: 10
+  bloomMinimum: 20
+  magSize: 1
+  reloadTime: 3
+  reserveAmmo: 3
+  baseDamage: 15
+  infiniteAmmo: 0
+  particleHitPrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}
+  particleFirePrefab: {fileID: 8127829906890014, guid: f3a36a2fce2a53f4fbb052999cbba319, type: 3}
+  WeaponAudio: {fileID: 0}
+  AudioClips:
+  - {fileID: 8300000, guid: 68d9bcfac828e534cbdd236c164875c4, type: 3}
+  - {fileID: 8300000, guid: 7d5b22a3e528b8b45a80db94b481f0d2, type: 3}
+  ReloadClip: {fileID: 8300000, guid: 5699e9babef41a64bbd4d851aeed0d8c, type: 3}
+  DryFireClip: {fileID: 8300000, guid: e817f8ca21bf33b459ea17ea98e470bc, type: 3}
+  pelletCount: 5
+--- !u!1001 &7608395284548019468
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,25 +42,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 93095265876815449, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.x
-      value: 2.1363637
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.8916667
       objectReference: {fileID: 0}
     - target: {fileID: 93095265876815449, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 1.5454545
-      objectReference: {fileID: 0}
-    - target: {fileID: 2256806326169272738, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
-      propertyPath: m_Size.x
-      value: 2.1363637
-      objectReference: {fileID: 0}
-    - target: {fileID: 2256806326169272738, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
-      propertyPath: m_Size.y
-      value: 1.5454545
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.0583334
       objectReference: {fileID: 0}
     - target: {fileID: 2256806326169272738, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: cd6fb08a8b0387a419a69249fe26df1f, type: 3}
+      objectReference: {fileID: 21300000, guid: 6785aaa33738094448fea38e8e0923a2, type: 3}
     - target: {fileID: 2256806326169272738, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -77,31 +103,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6313395722178488822, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: m_Name
-      value: AR
+      value: Shotgun
       objectReference: {fileID: 0}
-    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
-      propertyPath: magSize
-      value: 10
+    - target: {fileID: 8968656491310200173, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.093
       objectReference: {fileID: 0}
-    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
-      propertyPath: reloadTime
-      value: 3
+    - target: {fileID: 8968656491310200173, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.09
       objectReference: {fileID: 0}
-    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
-      propertyPath: reserveAmmo
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
-      propertyPath: bloomMaximum
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
-      propertyPath: bloomDecayRate
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
-      propertyPath: bloomAccumulationRate
-      value: 5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+--- !u!1 &4470909801896250618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6313395722178488822, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+  m_PrefabInstance: {fileID: 7608395284548019468}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1576649907693310049 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8968656491310200173, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+  m_PrefabInstance: {fileID: 7608395284548019468}
+  m_PrefabAsset: {fileID: 0}

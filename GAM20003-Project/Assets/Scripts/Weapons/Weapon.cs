@@ -12,7 +12,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected bool semiAutomatic = false;
     [SerializeField] protected float fireRate;
     [SerializeField] protected float knockback;
-    [SerializeField] protected float bloomAngle;
+    [SerializeField] protected float bloomMaximum;
     [SerializeField] protected float bloomAccumulationRate;
     [SerializeField] protected float bloomDecayRate;
     [SerializeField] protected float bloomMinimum;
@@ -26,7 +26,7 @@ public class Weapon : MonoBehaviour
     protected float weaponCooldown;
     protected bool shooting = false;
     protected bool reloading = false;
-    private float bloomAccum = 0f; // running accumulation of current bloom
+    private float currentBloom = 0f; // running accumulation of current bloom
 
     // Particles 
     public GameObject particleHitPrefab;
@@ -98,19 +98,16 @@ public class Weapon : MonoBehaviour
 
         Debug.DrawRay(this.transform.position, new Vector3(aimInput.x * 5f, aimInput.y * 5f, 0f), Color.blue, 0f, false);
         // Debug show bloom range
-
-        Debug.DrawRay(firePoint.position, new Vector3((aimInput.x * Mathf.Cos(0.5f * bloomAccum) - aimInput.y * Mathf.Sin(0.5f * bloomAccum)) * 10f, (aimInput.x * Mathf.Sin(0.5f * bloomAccum) + aimInput.y * Mathf.Cos(0.5f * bloomAccum)) * 10f, 0f), Color.yellow, 0f, false);
-        Debug.DrawRay(firePoint.position, new Vector3((aimInput.x * Mathf.Cos(-0.5f * bloomAccum) - aimInput.y * Mathf.Sin(-0.5f * bloomAccum)) * 10f, (aimInput.x * Mathf.Sin(-0.5f * bloomAccum) + aimInput.y * Mathf.Cos(-0.5f * bloomAccum)) * 10f, 0f), Color.yellow, 0f, false);
+        float tempMax = 0.5f * currentBloom * Mathf.Deg2Rad;
+        float tempMin = -0.5f * currentBloom * Mathf.Deg2Rad;
+        Debug.DrawRay(firePoint.position, new Vector3((aimInput.x * Mathf.Cos(tempMax) - aimInput.y * Mathf.Sin(tempMax)) * 10f, (aimInput.x * Mathf.Sin(tempMax) + aimInput.y * Mathf.Cos(tempMax)) * 10f, 0f), Color.yellow, 0f, false);
+        Debug.DrawRay(firePoint.position, new Vector3((aimInput.x * Mathf.Cos(tempMin) - aimInput.y * Mathf.Sin(tempMin)) * 10f, (aimInput.x * Mathf.Sin(tempMin) + aimInput.y * Mathf.Cos(tempMin)) * 10f, 0f), Color.yellow, 0f, false);
 
 
         float rotZ = Mathf.Atan2(aimInput.y, aimInput.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0f, 0f, rotZ);
 
-        Shoot();
-    }
-
-    protected virtual void Shoot() {
-        if (shooting && (weaponCooldown <= 0)){
+        if (shooting && (weaponCooldown <= 0)) {
 
             if (magAmmo <= 0) {
                 weaponCooldown = reloadTime * player.GetStats().GetReloadTime();
@@ -120,28 +117,10 @@ public class Weapon : MonoBehaviour
                     WeaponAudio.Play(0);
                 }
             }
-            else {              
-                float bloom = ((Random.value - 0.5f) * bloomAccum);
-                Vector2 bloomAim = aimInput;
+            else {
 
-                bloomAim.x = aimInput.x * Mathf.Cos(bloom) - aimInput.y * Mathf.Sin(bloom);
-                bloomAim.y = aimInput.x * Mathf.Sin(bloom) + aimInput.y * Mathf.Cos(bloom);
-                Instantiate(particleFirePrefab, firePoint.position, Quaternion.FromToRotation(Vector3.forward, bloomAim));
+                Shoot();
 
-                RaycastHit2D hit = Physics2D.Raycast(firePoint.position, bloomAim);
-                //Debug.DrawRay(firePoint.position, new Vector3(bloomAim.x * 10f, bloomAim.y * 10f, 0f), Color.red, 1f, false);
-                if (hit.collider != null) {
-                    if (hit.transform.name != "Terrain") {
-                        hit.rigidbody.AddForce(aimInput * knockback * player.GetStats().GetKnockback(), ForceMode2D.Impulse);
-
-                        //probably a better way to do this
-                        if (hit.transform.name == "Player(Clone)") {
-                            hit.transform.GetComponent<Player>().Hit(baseDamage);
-                        }
-                    }
-                    
-                    Instantiate(particleHitPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
-                }
                 // Play audio
                 if (AudioClips.Length > 0) {
                     WeaponAudio.clip = AudioClips[Random.Range(0, AudioClips.Length)];
@@ -150,7 +129,7 @@ public class Weapon : MonoBehaviour
 
                 weaponCooldown = fireRate;
                 // Accumulate bloom after firing
-                bloomAccum += (bloomAngle * player.GetStats().GetBloom() * Mathf.Deg2Rad) * bloomAccumulationRate;
+                currentBloom += bloomAccumulationRate;
                 if (semiAutomatic)
                     shooting = false;
 
@@ -160,9 +139,38 @@ public class Weapon : MonoBehaviour
         }
         else {
             weaponCooldown -= Time.deltaTime;
-            bloomAccum = Mathf.Clamp(bloomAccum - (Time.deltaTime * bloomDecayRate), bloomMinimum, bloomAngle);
+            currentBloom = currentBloom - (Time.deltaTime * bloomDecayRate);
         }
+        currentBloom = Mathf.Clamp(currentBloom, bloomMinimum, bloomMaximum * player.GetStats().GetBloom());
+    }
 
+    protected virtual void Shoot() {
+        HitScanShot();
+    }
+
+    protected void HitScanShot() {
+
+        float bloom = ((Random.value - 0.5f) * currentBloom * Mathf.Deg2Rad);
+        Vector2 bloomAim = aimInput;
+
+        bloomAim.x = aimInput.x * Mathf.Cos(bloom) - aimInput.y * Mathf.Sin(bloom);
+        bloomAim.y = aimInput.x * Mathf.Sin(bloom) + aimInput.y * Mathf.Cos(bloom);
+
+        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, bloomAim);
+        Debug.DrawRay(firePoint.position, new Vector3(bloomAim.x * 10f, bloomAim.y * 10f, 0f), Color.red, 1f, false);
+        if (hit.collider != null) {
+            if (hit.transform.name != "Terrain") {
+                hit.rigidbody.AddForce(aimInput * knockback * player.GetStats().GetKnockback(), ForceMode2D.Impulse);
+
+                //probably a better way to do this
+                if (hit.transform.name == "Player(Clone)") {
+                    hit.transform.GetComponent<Player>().Hit(baseDamage);
+                }
+            }
+
+            Instantiate(particleHitPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+            Instantiate(particleFirePrefab, firePoint.position, Quaternion.FromToRotation(Vector3.forward, bloomAim));
+        }
     }
 
     protected virtual void Reload() {
@@ -184,8 +192,6 @@ public class Weapon : MonoBehaviour
             }
         }
     }
-
-
 
 
     // Input handlers
