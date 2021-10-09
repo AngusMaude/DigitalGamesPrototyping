@@ -26,7 +26,7 @@ public class Weapon : MonoBehaviour
     protected float weaponCooldown;
     protected bool shooting = false;
     protected bool reloading = false;
-    private float currentBloom = 0f; // running accumulation of current bloom
+    protected float currentBloom = 0f; // running accumulation of current bloom
 
     // Particles 
     public GameObject particleHitPrefab;
@@ -105,40 +105,40 @@ public class Weapon : MonoBehaviour
         transform.eulerAngles = new Vector3(0f, 0f, rotZ);
 
         if (shooting && (weaponCooldown <= 0)) {
+            Shoot();
 
-            if (magAmmo <= 0) {
-                weaponCooldown = reloadTime * player.GetStats().GetReloadTime();
-                reloading = true;
-                if (DryFireClip != null) {
-                    WeaponAudio.clip = DryFireClip;
-                    WeaponAudio.Play(0);
-                }
+            // Play audio
+            if (AudioClips.Length > 0) {
+                WeaponAudio.clip = AudioClips[Random.Range(0, AudioClips.Length)];
+                WeaponAudio.Play(0);
             }
-            else {
 
-                Shoot();
+            weaponCooldown = fireRate;
+            // Accumulate bloom after firing
+            currentBloom += bloomAccumulationRate;
+            if (semiAutomatic)
+                shooting = false;
 
-                // Play audio
-                if (AudioClips.Length > 0) {
-                    WeaponAudio.clip = AudioClips[Random.Range(0, AudioClips.Length)];
-                    WeaponAudio.Play(0);
-                }
+            magAmmo -= 1;
+            player.UpdateUIAmmoCount(magSize, magAmmo);
+        }
+        weaponCooldown -= Time.deltaTime;
 
-                weaponCooldown = fireRate;
-                // Accumulate bloom after firing
-                currentBloom += bloomAccumulationRate;
-                if (semiAutomatic)
-                    shooting = false;
+        UpdateBloom();
 
-                magAmmo -= 1;
-                player.UpdateUIAmmoCount(magSize, magAmmo);
+        if (magAmmo <= 0 && !reloading) {
+            weaponCooldown = reloadTime * player.GetStats().GetReloadTime();
+            reloading = true;
+            if (DryFireClip != null) {
+                WeaponAudio.clip = DryFireClip;
+                WeaponAudio.Play(0);
             }
         }
-        else {
-            weaponCooldown -= Time.deltaTime;
-            currentBloom = currentBloom - (Time.deltaTime * bloomDecayRate);
-        }
-        currentBloom = Mathf.Clamp(currentBloom, bloomMinimum, bloomMaximum * player.GetStats().GetBloom());
+    }
+
+    protected virtual void UpdateBloom() {
+        currentBloom = currentBloom - (Time.deltaTime * bloomDecayRate);
+        currentBloom = Mathf.Clamp(currentBloom * player.GetStats().GetBloom(), bloomMinimum, bloomMaximum * player.GetStats().GetBloom());
     }
 
     protected virtual void Shoot() {
@@ -216,8 +216,8 @@ public class Weapon : MonoBehaviour
         aimInput.Normalize();
     }
 
-    public void OnShoot(InputValue value) {
-        if (value.isPressed && reloading == false)
+    public virtual void OnShoot(InputValue value) {
+        if (value.isPressed && !reloading)
             shooting = true;
         else {
             shooting = false;
