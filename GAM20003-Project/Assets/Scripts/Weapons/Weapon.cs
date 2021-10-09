@@ -80,29 +80,26 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    protected void UpdateSprites() {
+        // flip player depending on aiming direction
+        if (aimInput.x > 0.1) {
+            player.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+        }
+        else if (aimInput.x < -0.1) {
+            player.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
 
         if (reloading){
             Reload();
-            player.UpdateUIReloadTimer(reloadTime * player.GetStats().GetReloadTime(), weaponCooldown);
-            player.UpdateUIAmmoCount(magSize, magAmmo);
         }
-        // flip player depending on aiming direction
-        if (aimInput.x > 0.1)
-            player.transform.eulerAngles = new Vector3(0f, 0f, 0f);
-        else if (aimInput.x < -0.1)
-            player.transform.eulerAngles = new Vector3(0f, 180, 0f);
 
-
-        Debug.DrawRay(this.transform.position, new Vector3(aimInput.x * 5f, aimInput.y * 5f, 0f), Color.blue, 0f, false);
-        // Debug show bloom range
-        float tempMax = 0.5f * currentBloom * Mathf.Deg2Rad;
-        float tempMin = -0.5f * currentBloom * Mathf.Deg2Rad;
-        Debug.DrawRay(firePoint.position, new Vector3((aimInput.x * Mathf.Cos(tempMax) - aimInput.y * Mathf.Sin(tempMax)) * 10f, (aimInput.x * Mathf.Sin(tempMax) + aimInput.y * Mathf.Cos(tempMax)) * 10f, 0f), Color.yellow, 0f, false);
-        Debug.DrawRay(firePoint.position, new Vector3((aimInput.x * Mathf.Cos(tempMin) - aimInput.y * Mathf.Sin(tempMin)) * 10f, (aimInput.x * Mathf.Sin(tempMin) + aimInput.y * Mathf.Cos(tempMin)) * 10f, 0f), Color.yellow, 0f, false);
-
+        UpdateSprites();
+        DrawDebugLines();
 
         float rotZ = Mathf.Atan2(aimInput.y, aimInput.x) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0f, 0f, rotZ);
@@ -148,6 +145,16 @@ public class Weapon : MonoBehaviour
         HitScanShot();
     }
 
+    protected void DrawDebugLines() {
+        Debug.DrawRay(this.transform.position, new Vector3(aimInput.x * 5f, aimInput.y * 5f, 0f), Color.blue, 0f, false);
+        // Debug show bloom range
+        float tempMax = 0.5f * currentBloom * Mathf.Deg2Rad;
+        float tempMin = -0.5f * currentBloom * Mathf.Deg2Rad;
+        Debug.DrawRay(firePoint.position, new Vector3((aimInput.x * Mathf.Cos(tempMax) - aimInput.y * Mathf.Sin(tempMax)) * 10f, (aimInput.x * Mathf.Sin(tempMax) + aimInput.y * Mathf.Cos(tempMax)) * 10f, 0f), Color.yellow, 0f, false);
+        Debug.DrawRay(firePoint.position, new Vector3((aimInput.x * Mathf.Cos(tempMin) - aimInput.y * Mathf.Sin(tempMin)) * 10f, (aimInput.x * Mathf.Sin(tempMin) + aimInput.y * Mathf.Cos(tempMin)) * 10f, 0f), Color.yellow, 0f, false);
+
+    }
+
     protected void HitScanShot() {
 
         float bloom = ((Random.value - 0.5f) * currentBloom * Mathf.Deg2Rad);
@@ -191,6 +198,8 @@ public class Weapon : MonoBehaviour
                 WeaponAudio.Play(0);
             }
         }
+        player.UpdateUIReloadTimer(reloadTime * player.GetStats().GetReloadTime(), weaponCooldown);
+        player.UpdateUIAmmoCount(magSize, magAmmo);
     }
 
 
