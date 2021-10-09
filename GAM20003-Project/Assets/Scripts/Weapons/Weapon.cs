@@ -215,5 +215,7 @@ public class Weapon : MonoBehaviour
 
     }
 
+    public bool CheckEmpty() { return (magAmmo <= 0) && (reserveAmmo <= 0); }
+
     public void SetInfiniteAmmo(bool value) { infiniteAmmo = value; }
 }
