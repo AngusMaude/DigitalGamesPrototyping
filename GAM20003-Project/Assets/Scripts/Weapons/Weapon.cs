@@ -24,6 +24,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected bool infiniteAmmo;
 
     protected float weaponCooldown;
+    protected bool isHeld = false;
     protected bool shooting = false;
     protected bool reloading = false;
     protected float currentBloom = 0f; // running accumulation of current bloom
@@ -38,9 +39,12 @@ public class Weapon : MonoBehaviour
     public AudioClip ReloadClip;
     public AudioClip DryFireClip;
 
+    public WeaponBloomLines bloomLines;
+
     // Start is called before the first frame update
     void Start() {
         WeaponAudio = GetComponent<AudioSource>();
+        bloomLines = Instantiate(bloomLines, firePoint.position, firePoint.rotation);
         magAmmo = magSize;
 
         string parent = transform.parent.name;
@@ -150,8 +154,13 @@ public class Weapon : MonoBehaviour
         // Debug show bloom range
         float tempMax = 0.5f * currentBloom * Mathf.Deg2Rad;
         float tempMin = -0.5f * currentBloom * Mathf.Deg2Rad;
-        Debug.DrawRay(firePoint.position, new Vector3((aimInput.x * Mathf.Cos(tempMax) - aimInput.y * Mathf.Sin(tempMax)) * 10f, (aimInput.x * Mathf.Sin(tempMax) + aimInput.y * Mathf.Cos(tempMax)) * 10f, 0f), Color.yellow, 0f, false);
-        Debug.DrawRay(firePoint.position, new Vector3((aimInput.x * Mathf.Cos(tempMin) - aimInput.y * Mathf.Sin(tempMin)) * 10f, (aimInput.x * Mathf.Sin(tempMin) + aimInput.y * Mathf.Cos(tempMin)) * 10f, 0f), Color.yellow, 0f, false);
+
+        bloomLines.ShowBloom(firePoint.position, 
+            new Vector3((aimInput.x * Mathf.Cos(tempMax) - aimInput.y * Mathf.Sin(tempMax)) * 5f, (aimInput.x * Mathf.Sin(tempMax) + aimInput.y * Mathf.Cos(tempMax)) * 5f, 0f), 
+            new Vector3((aimInput.x * Mathf.Cos(tempMin) - aimInput.y * Mathf.Sin(tempMin)) * 5f, (aimInput.x * Mathf.Sin(tempMin) + aimInput.y * Mathf.Cos(tempMin)) * 5f, 0f));
+
+        //Debug.DrawRay(firePoint.position, new Vector3((aimInput.x * Mathf.Cos(tempMax) - aimInput.y * Mathf.Sin(tempMax)) * 10f, (aimInput.x * Mathf.Sin(tempMax) + aimInput.y * Mathf.Cos(tempMax)) * 10f, 0f), Color.yellow, 0f, false);
+        //Debug.DrawRay(firePoint.position, new Vector3((aimInput.x * Mathf.Cos(tempMin) - aimInput.y * Mathf.Sin(tempMin)) * 10f, (aimInput.x * Mathf.Sin(tempMin) + aimInput.y * Mathf.Cos(tempMin)) * 10f, 0f), Color.yellow, 0f, false);
 
     }
 

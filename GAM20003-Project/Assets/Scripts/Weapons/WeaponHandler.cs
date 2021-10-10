@@ -27,6 +27,7 @@ public class WeaponHandler : MonoBehaviour {
                     Drop();
                     PickUp(weapon);
                     weapon.GetComponent<Weapon>().enabled = true;
+                    weapon.GetComponent<Weapon>().bloomLines.EnableLines();
                     return;
                 }
             }
@@ -48,6 +49,7 @@ public class WeaponHandler : MonoBehaviour {
 
     void Drop() {
         foreach (Transform weapon in transform) {
+            weapon.GetComponent<Weapon>().bloomLines.DisableLines();
             if (weapon != defaultWeapon.transform) {
                 Rigidbody2D rb = weapon.GetComponent<Rigidbody2D>();
                 weapon.GetComponent<Weapon>().enabled = false;
@@ -55,7 +57,7 @@ public class WeaponHandler : MonoBehaviour {
                 rb.velocity = new Vector2((Random.value - 0.5f) * dropForce, dropForce);
                 rb.AddTorque((Random.value - 0.5f) * dropRotation);
                 weapon.SetParent(droppedWeapons);
-            }
+            } 
         }
     }
 
