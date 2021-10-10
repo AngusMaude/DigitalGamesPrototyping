@@ -54,7 +54,6 @@ public class Player : MonoBehaviour {
         health -= damage;
         if (health <= 0) {
             health = stats.GetMaxHealth();
-            rb.position = spawnPoint;
         }
         healthBar.UpdateProgressBar(maxHealth, health);
     }
