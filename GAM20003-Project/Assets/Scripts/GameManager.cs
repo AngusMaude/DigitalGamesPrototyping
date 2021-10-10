@@ -46,8 +46,30 @@ public class GameManager : MonoBehaviour
         foreach (KeyValuePair<int, Player> entry in activePlayers) {
             if (entry.Value.GetHealth() <= 0) {
                 entry.Value.gameObject.SetActive(false);
+                if (CheckRoundEnd()) {
+                    // TEMP FOR PLAYTEST
+                    ResetArena();
+                }
             }
         }
+    }
+
+    private void ResetArena() {
+        foreach (KeyValuePair<int, Player> entry in activePlayers) {
+            entry.Value.gameObject.SetActive(true);
+            entry.Value.ChangeScenes();
+            spawners[entry.Value.playerID].SpawnPlayer();
+        }
+    }
+
+    private bool CheckRoundEnd() {
+        int i = 0;
+        foreach (KeyValuePair<int, Player> entry in activePlayers) {
+            if (entry.Value.gameObject.activeSelf) {
+                i++;
+            }
+        }
+        return i <= 1;
     }
 
     private void ChangedActiveScene(Scene current, Scene next) {
