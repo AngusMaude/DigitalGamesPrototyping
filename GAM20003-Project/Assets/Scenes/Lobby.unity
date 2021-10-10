@@ -337,7 +337,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxPlayers: 4
-  activePlayers: []
   spawnEffect: {fileID: 5812214837387918087, guid: a3d5dd9689c6c504795752afdd79f6bd, type: 3}
 --- !u!4 &216375213
 Transform:
@@ -3306,14 +3305,21 @@ MonoBehaviour:
   semiAutomatic: 0
   fireRate: 0.1
   knockback: 10
-  bloomAngle: 20
+  bloomMaximum: 0
+  bloomAccumulationRate: 0
+  bloomDecayRate: 0
+  bloomMinimum: 0
   magSize: 20
   reloadTime: 2
   reserveAmmo: 40
   baseDamage: 20
+  infiniteAmmo: 0
   particleHitPrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}
   particleFirePrefab: {fileID: 8127829906890014, guid: f3a36a2fce2a53f4fbb052999cbba319, type: 3}
-  fireAudio: {fileID: 375113277}
+  WeaponAudio: {fileID: 0}
+  AudioClips: []
+  ReloadClip: {fileID: 0}
+  DryFireClip: {fileID: 0}
 --- !u!212 &375113281
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3558,8 +3564,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Stand Here to Start vvv
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 111a73c891dbf06408d7deb26f05b44b, type: 2}
-  m_sharedMaterial: {fileID: -2968073779900891322, guid: 111a73c891dbf06408d7deb26f05b44b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3736,7 +3742,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ec0a342826ad36748bee6a0cc2bfabce, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -4074,14 +4080,21 @@ MonoBehaviour:
   semiAutomatic: 0
   fireRate: 0.1
   knockback: 10
-  bloomAngle: 20
+  bloomMaximum: 0
+  bloomAccumulationRate: 0
+  bloomDecayRate: 0
+  bloomMinimum: 0
   magSize: 20
   reloadTime: 2
   reserveAmmo: 40
   baseDamage: 20
+  infiniteAmmo: 0
   particleHitPrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}
   particleFirePrefab: {fileID: 8127829906890014, guid: f3a36a2fce2a53f4fbb052999cbba319, type: 3}
-  fireAudio: {fileID: 540017351}
+  WeaponAudio: {fileID: 0}
+  AudioClips: []
+  ReloadClip: {fileID: 0}
+  DryFireClip: {fileID: 0}
 --- !u!212 &540017355
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4643,14 +4656,21 @@ MonoBehaviour:
   semiAutomatic: 0
   fireRate: 0.1
   knockback: 10
-  bloomAngle: 20
+  bloomMaximum: 0
+  bloomAccumulationRate: 0
+  bloomDecayRate: 0
+  bloomMinimum: 0
   magSize: 20
   reloadTime: 2
   reserveAmmo: 40
   baseDamage: 20
+  infiniteAmmo: 0
   particleHitPrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}
   particleFirePrefab: {fileID: 8127829906890014, guid: f3a36a2fce2a53f4fbb052999cbba319, type: 3}
-  fireAudio: {fileID: 909401075}
+  WeaponAudio: {fileID: 0}
+  AudioClips: []
+  ReloadClip: {fileID: 0}
+  DryFireClip: {fileID: 0}
 --- !u!212 &909401079
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4928,14 +4948,21 @@ MonoBehaviour:
   semiAutomatic: 0
   fireRate: 0.1
   knockback: 10
-  bloomAngle: 20
+  bloomMaximum: 0
+  bloomAccumulationRate: 0
+  bloomDecayRate: 0
+  bloomMinimum: 0
   magSize: 20
   reloadTime: 2
   reserveAmmo: 40
   baseDamage: 20
+  infiniteAmmo: 0
   particleHitPrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}
   particleFirePrefab: {fileID: 8127829906890014, guid: f3a36a2fce2a53f4fbb052999cbba319, type: 3}
-  fireAudio: {fileID: 1003351149}
+  WeaponAudio: {fileID: 0}
+  AudioClips: []
+  ReloadClip: {fileID: 0}
+  DryFireClip: {fileID: 0}
 --- !u!212 &1003351153
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5704,14 +5731,21 @@ MonoBehaviour:
   semiAutomatic: 0
   fireRate: 0.1
   knockback: 10
-  bloomAngle: 20
+  bloomMaximum: 0
+  bloomAccumulationRate: 0
+  bloomDecayRate: 0
+  bloomMinimum: 0
   magSize: 20
   reloadTime: 2
   reserveAmmo: 40
   baseDamage: 20
+  infiniteAmmo: 0
   particleHitPrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}
   particleFirePrefab: {fileID: 8127829906890014, guid: f3a36a2fce2a53f4fbb052999cbba319, type: 3}
-  fireAudio: {fileID: 1199692051}
+  WeaponAudio: {fileID: 0}
+  AudioClips: []
+  ReloadClip: {fileID: 0}
+  DryFireClip: {fileID: 0}
 --- !u!212 &1199692055
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6583,14 +6617,21 @@ MonoBehaviour:
   semiAutomatic: 0
   fireRate: 0.1
   knockback: 10
-  bloomAngle: 20
+  bloomMaximum: 0
+  bloomAccumulationRate: 0
+  bloomDecayRate: 0
+  bloomMinimum: 0
   magSize: 20
   reloadTime: 2
   reserveAmmo: 40
   baseDamage: 20
+  infiniteAmmo: 0
   particleHitPrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}
   particleFirePrefab: {fileID: 8127829906890014, guid: f3a36a2fce2a53f4fbb052999cbba319, type: 3}
-  fireAudio: {fileID: 1839185611}
+  WeaponAudio: {fileID: 0}
+  AudioClips: []
+  ReloadClip: {fileID: 0}
+  DryFireClip: {fileID: 0}
 --- !u!212 &1839185615
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6805,8 +6846,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press Any Button to Join!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bd6b28ea6d499844d8bb47712f4b0eb3, type: 2}
-  m_sharedMaterial: {fileID: -3536013100066667796, guid: bd6b28ea6d499844d8bb47712f4b0eb3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

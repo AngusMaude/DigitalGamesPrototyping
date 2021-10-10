@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
 
     private string controlScheme;
     private PlayerSpawner spawner;
-    private int playerID;
+    [SerializeField] public int playerID;
     [SerializeField] private Vector2 spawnPoint;
 
     public ProgressBar healthBar;
@@ -45,12 +45,9 @@ public class Player : MonoBehaviour {
 
     }
 
-    public void AssignSpawn(PlayerSpawner spawn)
-    {
+    public void AssignSpawn(PlayerSpawner spawn) {
         spawner = spawn;
         spawner.playerToSpawn = this;
-        spawnPoint = spawner.spawnLocation;
-        playerID = spawner.spawnID;
     }
 
     public void Hit(float damage) {
@@ -69,8 +66,7 @@ public class Player : MonoBehaviour {
         ammoCount.UpdateProgressBar(maxAmmo, remainingAmmo);
     }
 
-    public void UpdateUIReloadTimer(float maxReloadTime, float remainingTime)
-    {
+    public void UpdateUIReloadTimer(float maxReloadTime, float remainingTime) {
         reloadTimer.UpdateProgressBar(maxReloadTime, remainingTime);
 
     }

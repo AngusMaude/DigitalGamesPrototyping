@@ -5,15 +5,17 @@ using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour {
 
-    [SerializeField] protected int spawnID = -1;
+    public int spawnID = -1;
     [SerializeField] protected float spawnTime;
-    [SerializeField] protected Player playerToSpawn;
+    public Player playerToSpawn;
     private float spawning;
     //private Transform location;
-    public Vector2 spawnLocation;
+    private Vector2 spawnLocation;
 
-    void SpawnPlayer() {
-        spawning = spawnTime;
+    public void SpawnPlayer() {
+        Debug.Log("Spawning player with ID: " + spawnID);
+        //spawning = spawnTime;
+        playerToSpawn.GetRigidbody().position = spawnLocation;
         //playerToSpawn.GetRigidbody();
     }
     // Start is called before the first frame update
@@ -23,9 +25,10 @@ public class PlayerSpawner : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (spawning > 0) {
-            spawning = Mathf.Clamp(spawning - Time.deltaTime, 0, spawnTime);
-            playerToSpawn.GetRigidbody().position = Vector2.Lerp(playerToSpawn.GetRigidbody().position, spawnLocation, Time.deltaTime);
-        }
+        // Fancy spawning for later
+        //if (spawning > 0) {
+        //    spawning = Mathf.Clamp(spawning - Time.deltaTime, 0, spawnTime);
+        //    playerToSpawn.GetRigidbody().position = spawnLocation;
+        //}
     }
 }
