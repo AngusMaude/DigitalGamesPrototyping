@@ -10,11 +10,12 @@ public class Player : MonoBehaviour {
     private BoxCollider2D coll;
     private PlayerStats stats;
     private BuffHandler buffHandler;
-    private WeaponHandler weaponHandler;
-
     private string controlScheme;
+    private SpriteRenderer spriteR;
+    [SerializeField] private Sprite[] playerSpriteList;
+
+    [SerializeField] public int playerID = -1;
     private PlayerSpawner spawner;
-    [SerializeField] public int playerID;
     [SerializeField] private Vector2 spawnPoint;
 
     public ProgressBar healthBar;
@@ -25,24 +26,30 @@ public class Player : MonoBehaviour {
     private float maxHealth;
     
     
-    private void Start() {
+    private void OnEnable() {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         stats = GetComponent<PlayerStats>();
         buffHandler = transform.Find("BuffHandler").GetComponent<BuffHandler>();
-        weaponHandler = transform.Find("WeaponHandler").GetComponent<WeaponHandler>();
         controlScheme = GetComponent<PlayerInput>().currentControlScheme;
-
-        weaponHandler.ChangeScene();
+        spriteR = GetComponent<SpriteRenderer>();
+        buffHandler.ApplyAllBuffs();
         health = stats.GetMaxHealth();
         maxHealth = health;
         healthBar.UpdateProgressBar(maxHealth, health);
+
+        Debug.Log(health);
 
         UpdateUIReloadTimer(1f, 0f);
     }
 
     private void Update() {
 
+    }
+
+    public void AssignID(int newID) {
+        playerID = newID;
+        spriteR.sprite = playerSpriteList[playerID];
     }
 
     public void AssignSpawn(PlayerSpawner spawn) {
@@ -52,8 +59,12 @@ public class Player : MonoBehaviour {
 
     public void Hit(float damage) {
         health -= damage;
+        Debug.Log("hit " + health);
         if (health <= 0) {
+            Debug.Log("dead");
+            SceneManager.LoadScene("Buffs");
             health = stats.GetMaxHealth();
+            rb.position = spawnPoint;
         }
         healthBar.UpdateProgressBar(maxHealth, health);
     }
@@ -67,15 +78,9 @@ public class Player : MonoBehaviour {
 
     }
 
-    public void ChangeScenes() {
-        weaponHandler.ChangeScene();
-    }
-
     public Rigidbody2D GetRigidbody() { return rb; }
     public BoxCollider2D GetCollider() { return coll; }
     public PlayerStats GetStats () { return stats; }
     public string GetControlScheme() { return controlScheme; }
-
-    public float GetHealth() { return health; }
 
 }
