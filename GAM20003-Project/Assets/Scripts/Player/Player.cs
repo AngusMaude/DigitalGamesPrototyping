@@ -25,21 +25,18 @@ public class Player : MonoBehaviour {
     private float maxHealth;
     
     
-    private void OnEnable() {
+    private void Start() {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         stats = GetComponent<PlayerStats>();
         buffHandler = transform.Find("BuffHandler").GetComponent<BuffHandler>();
         weaponHandler = transform.Find("WeaponHandler").GetComponent<WeaponHandler>();
         controlScheme = GetComponent<PlayerInput>().currentControlScheme;
-        
-        buffHandler.ApplyAllBuffs();
+
         weaponHandler.ChangeScene();
         health = stats.GetMaxHealth();
         maxHealth = health;
         healthBar.UpdateProgressBar(maxHealth, health);
-
-        Debug.Log(health);
 
         UpdateUIReloadTimer(1f, 0f);
     }
@@ -55,10 +52,7 @@ public class Player : MonoBehaviour {
 
     public void Hit(float damage) {
         health -= damage;
-        Debug.Log("hit " + health);
         if (health <= 0) {
-            Debug.Log("dead");
-            SceneManager.LoadScene("Buffs");
             health = stats.GetMaxHealth();
             rb.position = spawnPoint;
         }
@@ -82,5 +76,7 @@ public class Player : MonoBehaviour {
     public BoxCollider2D GetCollider() { return coll; }
     public PlayerStats GetStats () { return stats; }
     public string GetControlScheme() { return controlScheme; }
+
+    public float GetHealth() { return health; }
 
 }

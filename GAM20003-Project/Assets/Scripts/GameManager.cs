@@ -42,6 +42,12 @@ public class GameManager : MonoBehaviour
             currentScene = thisScene;
             //transform.position = originalPos;
         }
+
+        foreach (KeyValuePair<int, Player> entry in activePlayers) {
+            if (entry.Value.GetHealth() <= 0) {
+                entry.Value.gameObject.SetActive(false);
+            }
+        }
     }
 
     private void ChangedActiveScene(Scene current, Scene next) {

@@ -14,7 +14,10 @@ public class WeaponHandler : MonoBehaviour {
     // Start is called before the first frame update
 
     public void ChangeScene() {
-
+        foreach (Transform weapon in transform) {
+            if (weapon != defaultWeapon.transform)
+                Destroy(weapon.gameObject);
+        }
         sceneWeapons = GameObject.Find("SceneWeapons");
         droppedWeapons = sceneWeapons.transform.Find("DroppedWeapons");
         defaultWeapon = Instantiate(defaultWeapon, transform);

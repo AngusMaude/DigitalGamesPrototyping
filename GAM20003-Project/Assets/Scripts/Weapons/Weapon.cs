@@ -43,6 +43,9 @@ public class Weapon : MonoBehaviour
         WeaponAudio = GetComponent<AudioSource>();
         magAmmo = magSize;
 
+        CheckPlayer();
+    }
+    private void CheckPlayer() {
         string parent = transform.parent.name;
         if (parent.Contains(" ("))
             parent = parent.Substring(0, parent.IndexOf(" ("));
@@ -64,7 +67,7 @@ public class Weapon : MonoBehaviour
                 Debug.LogError("Weapon parent not recognised: " + transform.parent.name);
                 break;
         }
-        if (player != null){
+        if (player != null) {
             player.UpdateUIAmmoCount(magSize, magAmmo);
         }
     }
@@ -72,6 +75,7 @@ public class Weapon : MonoBehaviour
     private void OnEnable() {
         shooting = false;
         UpdatePlayer();
+        CheckPlayer();
     }
 
     private void UpdatePlayer() {
@@ -140,6 +144,8 @@ public class Weapon : MonoBehaviour
 
     protected virtual void UpdateBloom() {
         currentBloom = currentBloom - (Time.deltaTime * bloomDecayRate);
+        if (!player)
+            Debug.LogError(transform.parent.name);
         currentBloom = Mathf.Clamp(currentBloom * player.GetStats().GetBloom(), bloomMinimum, bloomMaximum * player.GetStats().GetBloom());
     }
 
@@ -169,7 +175,6 @@ public class Weapon : MonoBehaviour
         Debug.DrawRay(firePoint.position, new Vector3(bloomAim.x * 10f, bloomAim.y * 10f, 0f), Color.red, 1f, false);
         if (hit.collider != null) {
             if (hit.transform.name == "Player(Clone)") {
-                Debug.LogError(hit.transform.name);
                 hit.rigidbody.AddForce(aimInput * knockback * player.GetStats().GetKnockback(), ForceMode2D.Impulse);
                 hit.transform.GetComponent<Player>().Hit(baseDamage);
             }
