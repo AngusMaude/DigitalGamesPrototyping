@@ -24,7 +24,7 @@ public class StartGameChecker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playersInZone > 1 && playersInZone == GameManager.instance.activePlayers.Count)
+        if(playersInZone >= 1 && playersInZone == GameManager.instance.activePlayers.Count)
         {
             startCountdownText.gameObject.SetActive(true);
             startExtraText.gameObject.SetActive(true);

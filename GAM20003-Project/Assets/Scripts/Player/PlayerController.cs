@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
 
         player = GetComponent<Player>();
-        GameManager.instance.AddPlayer(this);
+        GameManager.instance.AddPlayer(player);
     }
 
     private void GroundedCheck() {
