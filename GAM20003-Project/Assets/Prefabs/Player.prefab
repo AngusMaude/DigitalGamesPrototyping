@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803920880f6a93c449bd1691f5c20470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponReach: 1.5
+  weaponReach: 2
   dropRotation: 20
   dropForce: 6
   defaultWeapon: {fileID: 6070784532797060572, guid: 7896aa1d251784e4eb3df8e853064160, type: 3}

@@ -101,4 +101,5 @@ MonoBehaviour:
   weaponList:
   - {fileID: 8724295282708969683, guid: 6bad01c02e6b28b4486db0b8cefcc542, type: 3}
   - {fileID: 7401903943598759753, guid: 9aa6bd74fff082f4bb982eb87613ce2e, type: 3}
+  - {fileID: 4470909801896250618, guid: b4ae0ea38a22f234c8059ac33036009b, type: 3}
   spawnTime: 5
