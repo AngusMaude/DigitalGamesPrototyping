@@ -33,6 +33,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7d5b22a3e528b8b45a80db94b481f0d2, type: 3}
   ReloadClip: {fileID: 8300000, guid: 5699e9babef41a64bbd4d851aeed0d8c, type: 3}
   DryFireClip: {fileID: 8300000, guid: e817f8ca21bf33b459ea17ea98e470bc, type: 3}
+  bloomLines: {fileID: 3703431105490669101, guid: 3d89228b719511845bf54769927fd88c, type: 3}
   pelletCount: 5
 --- !u!1001 &7608395284548019468
 PrefabInstance:
