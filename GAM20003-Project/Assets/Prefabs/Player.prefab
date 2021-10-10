@@ -290,6 +290,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfeb898fda8bac44588824ac59ca7993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSpriteList:
+  - {fileID: -6367560908665664636, guid: 40de9a8703e2e5a47882b0b86451c741, type: 3}
+  - {fileID: -6367560908665664636, guid: d348dff3819df794186a80cb95777629, type: 3}
+  - {fileID: -6367560908665664636, guid: cd947491a13509945aa1b644f9db3ef2, type: 3}
+  - {fileID: -6367560908665664636, guid: df7bc1a505b8d6c4295d23ab5d157b55, type: 3}
+  playerID: 0
   spawnPoint: {x: 0, y: 0}
   healthBar: {fileID: 2437103958410297345}
   ammoCount: {fileID: 3816777279451516893}
