@@ -45,6 +45,10 @@ public class GameManager : MonoBehaviour
     }
 
     private void ChangedActiveScene(Scene current, Scene next) {
+        foreach(KeyValuePair<int, Player> entry in activePlayers) {
+            entry.Value.ChangeScenes();
+        }
+
         string currentName = current.name;
         if (currentName == null) {
             spawners.Clear();

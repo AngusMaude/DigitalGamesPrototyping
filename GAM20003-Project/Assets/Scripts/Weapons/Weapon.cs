@@ -93,7 +93,9 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (!player) {
+            UpdatePlayer();
+        }
         if (reloading){
             Reload();
         }

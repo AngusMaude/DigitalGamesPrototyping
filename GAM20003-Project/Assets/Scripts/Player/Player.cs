@@ -10,6 +10,7 @@ public class Player : MonoBehaviour {
     private BoxCollider2D coll;
     private PlayerStats stats;
     private BuffHandler buffHandler;
+    private WeaponHandler weaponHandler;
 
     private string controlScheme;
     private PlayerSpawner spawner;
@@ -29,9 +30,11 @@ public class Player : MonoBehaviour {
         coll = GetComponent<BoxCollider2D>();
         stats = GetComponent<PlayerStats>();
         buffHandler = transform.Find("BuffHandler").GetComponent<BuffHandler>();
+        weaponHandler = transform.Find("WeaponHandler").GetComponent<WeaponHandler>();
         controlScheme = GetComponent<PlayerInput>().currentControlScheme;
         
         buffHandler.ApplyAllBuffs();
+        weaponHandler.ChangeScene();
         health = stats.GetMaxHealth();
         maxHealth = health;
         healthBar.UpdateProgressBar(maxHealth, health);
@@ -69,6 +72,10 @@ public class Player : MonoBehaviour {
     public void UpdateUIReloadTimer(float maxReloadTime, float remainingTime) {
         reloadTimer.UpdateProgressBar(maxReloadTime, remainingTime);
 
+    }
+
+    public void ChangeScenes() {
+        weaponHandler.ChangeScene();
     }
 
     public Rigidbody2D GetRigidbody() { return rb; }
