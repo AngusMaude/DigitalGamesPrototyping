@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour
             activePlayers.Add(newPlayer.playerID, newPlayer);
             Debug.Log("Player added with ID: " + newPlayer.playerID);
             Instantiate(spawnEffect, newPlayer.transform.position, newPlayer.transform.rotation);
+            newPlayer.transform.SetParent(this.transform);
         }
         else {
             Destroy(newPlayer.gameObject);

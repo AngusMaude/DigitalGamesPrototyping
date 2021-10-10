@@ -45,6 +45,7 @@ public class Weapon : MonoBehaviour
     void Start() {
         WeaponAudio = GetComponent<AudioSource>();
         bloomLines = Instantiate(bloomLines, firePoint.position, firePoint.rotation);
+        bloomLines.transform.SetParent(this.transform);
         magAmmo = magSize;
 
         CheckPlayer();

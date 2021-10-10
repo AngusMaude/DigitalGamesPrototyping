@@ -148,7 +148,7 @@ MonoBehaviour:
   weaponReach: 2
   dropRotation: 20
   dropForce: 6
-  defaultWeapon: {fileID: 6070784532797060572, guid: 7896aa1d251784e4eb3df8e853064160, type: 3}
+  defaultWeaponPrefab: {fileID: 6070784532797060572, guid: 7896aa1d251784e4eb3df8e853064160, type: 3}
 --- !u!1 &2099671244225689752
 GameObject:
   m_ObjectHideFlags: 0

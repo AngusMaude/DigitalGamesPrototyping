@@ -8,19 +8,21 @@ public class WeaponHandler : MonoBehaviour {
     [SerializeField] private float weaponReach;
     [SerializeField] private float dropRotation;
     [SerializeField] private float dropForce;
-    [SerializeField] private GameObject defaultWeapon;
+    [SerializeField] private GameObject defaultWeaponPrefab;
+    private GameObject defaultWeapon;
     private Transform droppedWeapons;
-    
-    // Start is called before the first frame update
 
+    // Start is called before the first frame update
+    private void Start() {
+        ChangeScene();
+    }
     public void ChangeScene() {
         foreach (Transform weapon in transform) {
-            if (weapon != defaultWeapon.transform)
-                Destroy(weapon.gameObject);
+            Destroy(weapon.gameObject);
         }
         sceneWeapons = GameObject.Find("SceneWeapons");
         droppedWeapons = sceneWeapons.transform.Find("DroppedWeapons");
-        defaultWeapon = Instantiate(defaultWeapon, transform);
+        defaultWeapon = Instantiate(defaultWeaponPrefab, transform);
         defaultWeapon.GetComponent<Weapon>().SetInfiniteAmmo(true);
     }
 
