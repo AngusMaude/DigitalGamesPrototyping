@@ -16,14 +16,14 @@ MonoBehaviour:
   semiAutomatic: 0
   fireRate: 0
   knockback: 10
-  bloomMaximum: 40
+  bloomMaximum: 80
   bloomAccumulationRate: 20
   bloomDecayRate: 10
-  bloomMinimum: 20
+  bloomMinimum: 40
   magSize: 1
   reloadTime: 3
   reserveAmmo: 3
-  baseDamage: 15
+  baseDamage: 10
   infiniteAmmo: 0
   particleHitPrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}
   particleFirePrefab: {fileID: 8127829906890014, guid: f3a36a2fce2a53f4fbb052999cbba319, type: 3}
