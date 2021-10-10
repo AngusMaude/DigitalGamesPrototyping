@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
 
     public void AddPlayer(Player newPlayer) {
         if (activePlayers.Count < maxPlayers) {
-            newPlayer.playerID = activePlayers.Count;
+            newPlayer.AssignID(activePlayers.Count);
             activePlayers.Add(newPlayer.playerID, newPlayer);
             Debug.Log("Player added with ID: " + newPlayer.playerID);
             Instantiate(spawnEffect, newPlayer.transform.position, newPlayer.transform.rotation);

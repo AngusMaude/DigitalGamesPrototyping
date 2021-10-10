@@ -10,10 +10,12 @@ public class Player : MonoBehaviour {
     private BoxCollider2D coll;
     private PlayerStats stats;
     private BuffHandler buffHandler;
-
     private string controlScheme;
+    private SpriteRenderer spriteR;
+    [SerializeField] private Sprite[] playerSpriteList;
+
+    [SerializeField] public int playerID = -1;
     private PlayerSpawner spawner;
-    [SerializeField] public int playerID;
     [SerializeField] private Vector2 spawnPoint;
 
     public ProgressBar healthBar;
@@ -30,7 +32,7 @@ public class Player : MonoBehaviour {
         stats = GetComponent<PlayerStats>();
         buffHandler = transform.Find("BuffHandler").GetComponent<BuffHandler>();
         controlScheme = GetComponent<PlayerInput>().currentControlScheme;
-        
+        spriteR = GetComponent<SpriteRenderer>();
         buffHandler.ApplyAllBuffs();
         health = stats.GetMaxHealth();
         maxHealth = health;
@@ -43,6 +45,11 @@ public class Player : MonoBehaviour {
 
     private void Update() {
 
+    }
+
+    public void AssignID(int newID) {
+        playerID = newID;
+        spriteR.sprite = playerSpriteList[playerID];
     }
 
     public void AssignSpawn(PlayerSpawner spawn) {
