@@ -28,6 +28,8 @@ public class Player : MonoBehaviour {
 
     public void ChangeScenes() {
         weaponHandler.ChangeScene();
+        health = stats.GetMaxHealth();
+        healthBar.UpdateProgressBar(maxHealth, health);
     }
 
     private void OnEnable() {
