@@ -2,17 +2,40 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float knockback;
-    [SerializeField] private float maxSpeed;
-    [SerializeField] private float acceleration;
-    [SerializeField] private float jumpHeight;
-    [SerializeField] private float reloadTime;
-    [SerializeField] private float dashTime;
-    [SerializeField] private int dashCount;
-    [SerializeField] private float bloom;
-    [SerializeField] private float wallFriction;
-    private float health { get; set; }
+    [SerializeField] private float defMaxHealth;
+    [SerializeField] private float defKnockback;
+    [SerializeField] private float defMaxSpeed;
+    [SerializeField] private float defAcceleration;
+    [SerializeField] private float defJumpHeight;
+    [SerializeField] private float defReloadTime;
+    [SerializeField] private float defDashTime;
+    [SerializeField] private int defDashCount;
+    [SerializeField] private float defBloom;
+    [SerializeField] private float defWallFriction;
+
+    private float maxHealth;
+    private float knockback;
+    private float maxSpeed;
+    private float acceleration;
+    private float jumpHeight;
+    private float reloadTime;
+    private float dashTime;
+    private int dashCount;
+    private float bloom;
+    private float wallFriction;
+    
+    public void ResetStats() {
+        maxHealth = defMaxHealth;
+        knockback = defKnockback;
+        maxSpeed = defMaxSpeed;
+        acceleration = defAcceleration;
+        jumpHeight = defJumpHeight;
+        reloadTime = defReloadTime;
+        dashTime = defDashTime;
+        dashCount = defDashCount;
+        bloom = defBloom;
+        wallFriction = defWallFriction;
+    }
 
     public float GetMaxHealth() { return maxHealth; }
     public float GetKnockback() { return knockback; }

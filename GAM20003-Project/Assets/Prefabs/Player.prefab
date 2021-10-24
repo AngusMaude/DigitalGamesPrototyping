@@ -534,16 +534,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb6a7e1e7c1c894bbcc24f07127e13d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  knockback: 1
-  maxSpeed: 15
-  acceleration: 90
-  jumpHeight: 20
-  reloadTime: 1
-  dashTime: 0.15
-  dashCount: 1
-  bloom: 1
-  wallFriction: 0.5
+  defMaxHealth: 100
+  defKnockback: 1
+  defMaxSpeed: 15
+  defAcceleration: 90
+  defJumpHeight: 20
+  defReloadTime: 1
+  defDashTime: 0.15
+  defDashCount: 1
+  defBloom: 1
+  defWallFriction: 0.5
 --- !u!1 &5653789035253732067
 GameObject:
   m_ObjectHideFlags: 0

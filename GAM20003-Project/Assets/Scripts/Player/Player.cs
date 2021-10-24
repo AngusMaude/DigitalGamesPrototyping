@@ -32,26 +32,26 @@ public class Player : MonoBehaviour {
         healthBar.UpdateProgressBar(maxHealth, health);
     }
 
-    private void OnEnable() {
+    private void Start() {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
-        stats = GetComponent<PlayerStats>();
+        
         buffHandler = transform.Find("BuffHandler").GetComponent<BuffHandler>();
         weaponHandler = transform.Find("WeaponHandler").GetComponent<WeaponHandler>();
         controlScheme = GetComponent<PlayerInput>().currentControlScheme;
         spriteR = GetComponent<SpriteRenderer>();
-        buffHandler.ApplyAllBuffs();
+
+        stats = GetComponent<PlayerStats>();
+        stats.ResetStats();
         health = stats.GetMaxHealth();
         maxHealth = health;
         healthBar.UpdateProgressBar(maxHealth, health);
-
-        Debug.Log(health);
 
         UpdateUIReloadTimer(1f, 0f);
     }
 
     private void Update() {
-
+        Debug.Log(health);
     }
 
     public void AssignID(int newID) {
@@ -79,12 +79,21 @@ public class Player : MonoBehaviour {
 
     }
 
+    public void AddBuff(Buff buff) {
+        buff.transform.SetParent(buffHandler.transform);
+    }
+    public void ResetStats() {
+        stats.ResetStats();
+        buffHandler.ApplyAllBuffs();
+        health = stats.GetMaxHealth();
+    }
+
     public Rigidbody2D GetRigidbody() { return rb; }
     public BoxCollider2D GetCollider() { return coll; }
     public PlayerStats GetStats () { return stats; }
     public string GetControlScheme() { return controlScheme; }
     public float GetHealth() { return health; }
 
-    public void SetStats(PlayerStats value) { stats = value; }
+    
 
 }

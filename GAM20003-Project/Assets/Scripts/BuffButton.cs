@@ -17,7 +17,9 @@ public class BuffButton : MonoBehaviour
     }
 
     private void ButtonPress() {
-
+        GameManager gameManager = FindObjectOfType(typeof(GameManager)) as GameManager;
+        gameManager.SelectedBuff(buff);
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame

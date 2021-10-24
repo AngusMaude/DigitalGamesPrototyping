@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     private Scene currentScene;
     private List<Player> buffOrder = new List<Player>();
     private GameObject sceneWeapons;
-    [SerializeField] private PlayerStats baseStats;
     private void Awake() {
         if(instance == null) {
 
@@ -41,21 +40,35 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update() {
         Scene thisScene = SceneManager.GetActiveScene();
-        if (thisScene.name == "Buffs") {
-
-        }
-        else {
-            foreach (KeyValuePair<int, Player> entry in activePlayers) {
-                if (entry.Value.GetHealth() <= 0) {
-                    buffOrder.Add(entry.Value);
-                    entry.Value.gameObject.SetActive(false);
-                    if (CheckRoundEnd()) {
-                        DeactivateAll();
-                        SceneManager.LoadScene("Buffs");
-                        buffOrder[0].gameObject.SetActive(true);
+        switch (thisScene.name) {
+            case "Lobby":
+                break;
+            case "Buffs":
+                if (buffOrder.Count == 0) {
+                    SceneManager.LoadScene("Map1");
+                    SetAllPlayers(true);
+                }
+                break;
+            default:
+                foreach (KeyValuePair<int, Player> entry in activePlayers) {
+                    if (entry.Value.GetHealth() <= 0) {
+                        buffOrder.Add(entry.Value);
+                        entry.Value.gameObject.SetActive(false);
+                        if (CheckRoundEnd()) {
+                            SetAllPlayers(false);
+                            SceneManager.LoadScene("Buffs");
+                            buffOrder[0].gameObject.SetActive(true);
+                        }
                     }
                 }
-            }
+                break;
+        }
+
+        if (thisScene.name == "Buffs") {
+            
+        }
+        else {
+            
         }
 
 
@@ -66,14 +79,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void DeactivateAll() {
+    private void SetAllPlayers(bool value) {
         foreach (KeyValuePair<int, Player> entry in activePlayers) {
-            entry.Value.gameObject.SetActive(false);        }
+            entry.Value.gameObject.SetActive(value);        }
     }
 
     private void ResetPlayers() {
         foreach (KeyValuePair<int, Player> entry in activePlayers) {
-            entry.Value.SetStats(baseStats);
+            entry.Value.ResetStats();
             entry.Value.gameObject.SetActive(true);
             entry.Value.ChangeScenes();
             spawners[entry.Value.playerID].SpawnPlayer();
@@ -133,5 +146,12 @@ public class GameManager : MonoBehaviour
         else {
             Destroy(newPlayer.gameObject);
         }
+    }
+
+    public void SelectedBuff(Buff buff) {
+        buffOrder[0].AddBuff(buff);
+        buffOrder.RemoveAt(0);
+        if (buffOrder.Count > 0)
+            buffOrder[0].gameObject.SetActive(true);
     }
 }
