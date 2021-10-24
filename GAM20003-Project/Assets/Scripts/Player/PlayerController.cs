@@ -114,25 +114,15 @@ public class PlayerController : MonoBehaviour {
 
     private void Move() {
 
-        Vector2 moveForce = (movementInput * player.GetStats().GetAcceleration()) - player.GetRigidbody().velocity;
-        //clamps velocity
-        
-        if ((player.GetRigidbody().velocity.x > player.GetStats().GetMaxSpeed()) && (moveForce.x > 0))
-            moveForce.x = 0;
-        else if ((player.GetRigidbody().velocity.x < -player.GetStats().GetMaxSpeed()) && (moveForce.x < 0))
-            moveForce.x = 0;
+        Vector2 moveForce = (movementInput * player.GetStats().GetMaxSpeed()) - player.GetRigidbody().velocity;
+        moveForce *= player.GetStats().GetAcceleration();
+
+        if (isGrounded) {
+            moveForce *= groundFriction;
+        }
 
         moveForce.y = 0;
         player.GetRigidbody().AddForce(moveForce);
-
-        if (isGrounded && (movementInput == Vector2.zero)) {
-            player.GetRigidbody().AddForce(player.GetRigidbody().velocity * -groundFriction);
-        }
-
-        if (wall != Wall.None) {
-            float wallSpeed = player.GetStats().GetMaxSpeed() * player.GetStats().GetWallFriction();
-            player.GetRigidbody().velocity = new Vector2(player.GetRigidbody().velocity.x, Mathf.Clamp(player.GetRigidbody().velocity.y, -wallSpeed, float.MaxValue));
-        }
     }
 
     void Update() {
@@ -146,7 +136,6 @@ public class PlayerController : MonoBehaviour {
 
     public void OnMovement(InputValue value) {
         movementInput = value.Get<Vector2>();
-        movementInput.Normalize();
     }
 
     public void OnJump() {

@@ -40,6 +40,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update() {
         Scene thisScene = SceneManager.GetActiveScene();
+        if (currentScene.buildIndex != thisScene.buildIndex) {
+            ChangedActiveScene(currentScene, thisScene);
+            currentScene = thisScene;
+            //transform.position = originalPos;
+        }
+
         switch (thisScene.name) {
             case "Lobby":
                 break;
@@ -64,12 +70,6 @@ public class GameManager : MonoBehaviour
                     }
                 }
                 break;
-        }
-
-        if (currentScene.buildIndex != thisScene.buildIndex) {
-            ChangedActiveScene(currentScene, thisScene);
-            currentScene = thisScene;
-            //transform.position = originalPos;
         }
     }
 

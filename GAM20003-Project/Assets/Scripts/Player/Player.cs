@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
 
     public void ChangeScenes() {
         weaponHandler.ChangeScene();
+        health = stats.GetMaxHealth();
     }
 
     private void OnEnable() {
@@ -40,13 +41,12 @@ public class Player : MonoBehaviour {
         stats = GetComponent<PlayerStats>();
         stats.ResetStats();
         health = stats.GetMaxHealth();
-        healthBar.UpdateProgressBar(stats.GetMaxHealth(), health);
 
         UpdateUIReloadTimer(1f, 0f);
     }
 
     private void Update() {
-
+        healthBar.UpdateProgressBar(stats.GetMaxHealth(), health);
     }
 
     public void AssignID(int newID) {
@@ -61,7 +61,6 @@ public class Player : MonoBehaviour {
 
     public void Hit(float damage) {
         health -= damage;
-        healthBar.UpdateProgressBar(stats.GetMaxHealth(), health);
     }
 
     public void UpdateUIAmmoCount(int maxAmmo, int remainingAmmo){
