@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour {
     private Player player;
     [SerializeField] private LayerMask terrain;
     [SerializeField] private float groundFriction;
-    [SerializeField] private float coyoteTime;
 
     private Vector2 movementInput = Vector2.zero;
     private Vector2 aimInput = Vector2.zero;
@@ -15,10 +14,10 @@ public class PlayerController : MonoBehaviour {
     private bool dashInput = false;
     private bool dashing = false;
     private int dashCount = 0;
+    private int jumpCount = 0;
     private bool isGrounded = false;
 
     private float dashT;
-    private float canJumpT;
 
     enum Wall {
         Left,
@@ -49,29 +48,28 @@ public class PlayerController : MonoBehaviour {
 
     private void Jump() {
         if (isGrounded) {
-            canJumpT = coyoteTime;
+            jumpCount = player.GetStats().GetJumpCount();
         }
+        if (wall != Wall.None)
+            jumpCount = player.GetStats().GetJumpCount();
         if (jumpInput) {
-            if (canJumpT > 0) {
-                player.GetRigidbody().AddForce(new Vector2(0, player.GetStats().GetJumpHeight()), ForceMode2D.Impulse);
-                
-            }
-            else {
+            if (jumpCount > 0) {
+                player.GetRigidbody().velocity = new Vector2(player.GetRigidbody().velocity.x, 0);
                 switch (wall) {
                     case Wall.Left:
-                        player.GetRigidbody().velocity = Vector2.zero;
                         player.GetRigidbody().AddForce(new Vector2(player.GetStats().GetJumpHeight(), player.GetStats().GetJumpHeight()), ForceMode2D.Impulse);
                         break;
                     case Wall.Right:
-                        player.GetRigidbody().velocity = Vector2.zero;
                         player.GetRigidbody().AddForce(new Vector2(-player.GetStats().GetJumpHeight(), player.GetStats().GetJumpHeight()), ForceMode2D.Impulse);
                         break;
+                    case Wall.None:
+                        player.GetRigidbody().AddForce(new Vector2(0, player.GetStats().GetJumpHeight()), ForceMode2D.Impulse);
+                        break;
                 }
+                jumpCount--;
             }
-            canJumpT = 0;
             jumpInput = false;
         }
-        canJumpT -= Time.deltaTime;
     }
 
     private void Dash() {

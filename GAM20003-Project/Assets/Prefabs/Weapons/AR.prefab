@@ -84,12 +84,20 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: knockback
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: baseDamage
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: reloadTime
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: reserveAmmo
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: bloomMaximum
@@ -97,7 +105,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: bloomDecayRate
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: bloomAccumulationRate

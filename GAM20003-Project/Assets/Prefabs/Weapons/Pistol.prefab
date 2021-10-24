@@ -92,8 +92,12 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: knockback
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: baseDamage
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: reserveAmmo
@@ -113,11 +117,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: bloomDecayRate
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: bloomAccumulationRate
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8968656491310200173, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: m_LocalPosition.x

@@ -20,9 +20,9 @@ MonoBehaviour:
   bloomAccumulationRate: 0
   bloomDecayRate: 10
   bloomMinimum: 0
-  magSize: 2
-  reloadTime: 3
-  reserveAmmo: 4
+  magSize: 1
+  reloadTime: 2
+  reserveAmmo: 3
   baseDamage: 70
   infiniteAmmo: 0
   particleHitPrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}

@@ -186,7 +186,7 @@ public class Weapon : MonoBehaviour
         if (hit.collider != null) {
             if (hit.transform.name == "Player(Clone)") {
                 hit.rigidbody.AddForce(aimInput * knockback * player.GetStats().GetKnockback(), ForceMode2D.Impulse);
-                hit.transform.GetComponent<Player>().Hit(baseDamage);
+                hit.transform.GetComponent<Player>().Hit(baseDamage * player.GetStats().GetDamageMultiplier());
             }
 
             Instantiate(particleHitPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));

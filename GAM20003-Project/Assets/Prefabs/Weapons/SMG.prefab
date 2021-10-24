@@ -92,6 +92,10 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: knockback
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: ReloadClip
       value: 
       objectReference: {fileID: 8300000, guid: 86b4bc7be6b662241a031a4366f9dd77, type: 3}
@@ -117,7 +121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: bloomDecayRate
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: AudioClips.Array.size

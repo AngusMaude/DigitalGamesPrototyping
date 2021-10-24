@@ -335,8 +335,10 @@ MonoBehaviour:
   defAcceleration: 2
   defJumpHeight: 20
   defReloadTime: 1
+  defDamageMultiplier: 1
   defDashTime: 0.15
   defDashCount: 1
+  defJumpCount: 1
   defBloom: 1
   defWallFriction: 0.5
 --- !u!114 &4147758859450482348

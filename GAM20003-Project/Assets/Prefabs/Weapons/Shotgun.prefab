@@ -21,7 +21,7 @@ MonoBehaviour:
   bloomDecayRate: 10
   bloomMinimum: 40
   magSize: 1
-  reloadTime: 3
+  reloadTime: 1.5
   reserveAmmo: 3
   baseDamage: 10
   infiniteAmmo: 0

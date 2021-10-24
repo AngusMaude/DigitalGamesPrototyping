@@ -120,6 +120,11 @@ public class GameManager : MonoBehaviour
             if (child.name != "DroppedWeapons") {
                 Destroy(child.gameObject);
             }
+            else {
+                foreach(Transform weapon in child.gameObject.transform) {
+                    Destroy(weapon.gameObject);
+                }
+            }
         }
 
         foreach (WeaponSpawner weaponSpawner in FindObjectsOfType(typeof(WeaponSpawner)) as WeaponSpawner[]) {
