@@ -15,13 +15,13 @@ public class WeaponHandler : MonoBehaviour {
     // Start is called before the first frame update
     private void Start() {
         ChangeScene();
+        sceneWeapons = GameObject.Find("SceneWeapons");
+        droppedWeapons = sceneWeapons.transform.Find("DroppedWeapons");
     }
     public void ChangeScene() {
         foreach (Transform weapon in transform) {
             Destroy(weapon.gameObject);
         }
-        sceneWeapons = GameObject.Find("SceneWeapons");
-        droppedWeapons = sceneWeapons.transform.Find("DroppedWeapons");
         defaultWeapon = Instantiate(defaultWeaponPrefab, transform);
         defaultWeapon.GetComponent<Weapon>().SetInfiniteAmmo(true);
     }

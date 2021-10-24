@@ -85,4 +85,6 @@ public class Player : MonoBehaviour {
     public string GetControlScheme() { return controlScheme; }
     public float GetHealth() { return health; }
 
+    public void SetStats(PlayerStats value) { stats = value; }
+
 }

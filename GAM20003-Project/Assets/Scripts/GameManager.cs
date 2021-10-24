@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public IDictionary<int, PlayerSpawner> spawners = new Dictionary<int, PlayerSpawner>();
     public GameObject spawnEffect;
     private Scene currentScene;
+    private List<Player> buffOrder = new List<Player>();
+    private GameObject sceneWeapons;
+    [SerializeField] private PlayerStats baseStats;
     private void Awake() {
         if(instance == null) {
 
@@ -29,7 +32,8 @@ public class GameManager : MonoBehaviour
     void Start() {
         currentScene = SceneManager.GetActiveScene();
         PlayerSpawner[] spawnpoints = FindObjectsOfType(typeof(PlayerSpawner)) as PlayerSpawner[];
-        foreach(PlayerSpawner spawn in spawnpoints) {
+        sceneWeapons = transform.Find("SceneWeapons").gameObject;
+        foreach (PlayerSpawner spawn in spawnpoints) {
             spawners.Add(spawn.spawnID, spawn);
         }
     }
@@ -37,25 +41,39 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update() {
         Scene thisScene = SceneManager.GetActiveScene();
+        if (thisScene.name == "Buffs") {
+
+        }
+        else {
+            foreach (KeyValuePair<int, Player> entry in activePlayers) {
+                if (entry.Value.GetHealth() <= 0) {
+                    buffOrder.Add(entry.Value);
+                    entry.Value.gameObject.SetActive(false);
+                    if (CheckRoundEnd()) {
+                        DeactivateAll();
+                        SceneManager.LoadScene("Buffs");
+                        buffOrder[0].gameObject.SetActive(true);
+                    }
+                }
+            }
+        }
+
+
         if (currentScene.buildIndex != thisScene.buildIndex) {
             ChangedActiveScene(currentScene, thisScene);
             currentScene = thisScene;
             //transform.position = originalPos;
         }
-
-        foreach (KeyValuePair<int, Player> entry in activePlayers) {
-            if (entry.Value.GetHealth() <= 0) {
-                entry.Value.gameObject.SetActive(false);
-                if (CheckRoundEnd()) {
-                    // TEMP FOR PLAYTEST
-                    ResetArena();
-                }
-            }
-        }
     }
 
-    private void ResetArena() {
+    private void DeactivateAll() {
         foreach (KeyValuePair<int, Player> entry in activePlayers) {
+            entry.Value.gameObject.SetActive(false);        }
+    }
+
+    private void ResetPlayers() {
+        foreach (KeyValuePair<int, Player> entry in activePlayers) {
+            entry.Value.SetStats(baseStats);
             entry.Value.gameObject.SetActive(true);
             entry.Value.ChangeScenes();
             spawners[entry.Value.playerID].SpawnPlayer();
@@ -63,13 +81,10 @@ public class GameManager : MonoBehaviour
     }
 
     private bool CheckRoundEnd() {
-        int i = 0;
-        foreach (KeyValuePair<int, Player> entry in activePlayers) {
-            if (entry.Value.gameObject.activeSelf) {
-                i++;
-            }
+        if (buffOrder.Count >= activePlayers.Count - 1) {
+            return true;
         }
-        return i <= 1;
+        return false;
     }
 
     private void ChangedActiveScene(Scene current, Scene next) {
@@ -90,10 +105,20 @@ public class GameManager : MonoBehaviour
                     spawn.SpawnPlayer();
                 }
             }
-            Debug.Log("Spawner list length: " + spawners.Count);
-            // Scene1 has been removed
-            currentName = "Replaced";
-            Debug.Log("Scenes: " + currentName + ", " + next.name);
+
+            ResetSceneWeapons();
+        }
+    }
+
+    private void ResetSceneWeapons() {
+        foreach (Transform child in sceneWeapons.transform) {
+            if (child.name != "DroppedWeapons") {
+                Destroy(child.gameObject);
+            }
+        }
+
+        foreach (WeaponSpawner weaponSpawner in FindObjectsOfType(typeof(WeaponSpawner)) as WeaponSpawner[]) {
+            weaponSpawner.transform.SetParent(sceneWeapons.transform);
         }
     }
 
