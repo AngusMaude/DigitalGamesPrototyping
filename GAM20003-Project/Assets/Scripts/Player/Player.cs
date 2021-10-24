@@ -29,7 +29,7 @@ public class Player : MonoBehaviour {
         weaponHandler.ChangeScene();
     }
 
-    private void Start() {
+    private void OnEnable() {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         buffHandler = transform.Find("BuffHandler").GetComponent<BuffHandler>();
@@ -87,6 +87,7 @@ public class Player : MonoBehaviour {
     public PlayerStats GetStats () { return stats; }
     public string GetControlScheme() { return controlScheme; }
     public float GetHealth() { return health; }
+    public void SetHealth(float value) { health = value; }
 
     
 

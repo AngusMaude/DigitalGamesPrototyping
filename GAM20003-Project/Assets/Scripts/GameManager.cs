@@ -58,22 +58,13 @@ public class GameManager : MonoBehaviour
                         buffOrder.Add(entry.Value);
                         entry.Value.gameObject.SetActive(false);
                         if (CheckRoundEnd()) {
-                            SetAllPlayers(false);
+                            SetAllPlayers(true);
                             SceneManager.LoadScene("Buffs");
-                            buffOrder[0].gameObject.SetActive(true);
                         }
                     }
                 }
                 break;
         }
-
-        if (thisScene.name == "Buffs") {
-            
-        }
-        else {
-            
-        }
-
 
         if (currentScene.buildIndex != thisScene.buildIndex) {
             ChangedActiveScene(currentScene, thisScene);
@@ -152,7 +143,5 @@ public class GameManager : MonoBehaviour
     public void SelectedBuff(Buff buff) {
         buffOrder[0].AddBuff(buff);
         buffOrder.RemoveAt(0);
-        if (buffOrder.Count > 0)
-            buffOrder[0].gameObject.SetActive(true);
     }
 }
