@@ -5,10 +5,8 @@ using UnityEngine;
 public class BloomBuff : Buff
 {
     public void Start() {
-        string[] temp = {
-            "Decrease bloom by 30%"
-        };
-        SetBuffString(temp);
+        title = "Steady Hands";
+        description[0] = "Decrease bullet spread by 30%";
     }
 
     public override void ApplyBuff() {

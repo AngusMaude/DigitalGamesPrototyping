@@ -5,10 +5,8 @@ using UnityEngine;
 public class MovementBuff : Buff
 {
     public void Start() {
-        string[] temp = {
-            "Increase move speed by 30%"
-        };
-        SetBuffString(temp);
+        title = "Float like a butterfly";
+        description[0] = "Increase move speed by 30%";
     }
 
     public override void ApplyBuff() {

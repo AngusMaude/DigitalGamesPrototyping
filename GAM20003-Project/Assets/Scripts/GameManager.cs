@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour
                 if (buffOrder.Count == 0) {
                     SceneManager.LoadScene("Map1");
                     SetAllPlayers(true);
+                    foreach (KeyValuePair<int, Player> entry in activePlayers) {
+                        entry.Value.ResetStats();
+                    }
                 }
                 break;
             default:
@@ -110,10 +113,8 @@ public class GameManager : MonoBehaviour
             spawners.Clear();
             PlayerSpawner[] spawnpoints = FindObjectsOfType(typeof(PlayerSpawner)) as PlayerSpawner[];
             foreach (PlayerSpawner spawn in spawnpoints) {
-                Debug.Log("Spawner found with ID: " + spawn.spawnID);
                 spawners.Add(spawn.spawnID, spawn);
                 if (activePlayers.ContainsKey(spawn.spawnID)) {
-                    Debug.Log("Player found with ID: " + spawn.spawnID);
                     activePlayers[spawn.spawnID].AssignSpawn(spawn);
                     spawn.SpawnPlayer();
                 }

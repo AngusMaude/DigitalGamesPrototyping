@@ -13,7 +13,6 @@ public class PlayerSpawner : MonoBehaviour {
     private Vector2 spawnLocation;
 
     public void SpawnPlayer() {
-        Debug.Log("Spawning player with ID: " + spawnID);
         //spawning = spawnTime;
         playerToSpawn.GetRigidbody().position = spawnLocation;
         //playerToSpawn.GetRigidbody();

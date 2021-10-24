@@ -5,10 +5,8 @@ using UnityEngine;
 public class HealthBuff : Buff
 {
     public void Start() {
-        string[] temp = {
-            "Increase health by 50%"
-        };
-        SetBuffString(temp);
+        title = "Armour Up";
+        description[0] = "Increase health by 50%";
     }
 
     public override void ApplyBuff() {

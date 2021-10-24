@@ -5,10 +5,8 @@ using UnityEngine;
 public class JumpBuff : Buff
 {
     public void Start() {
-        string[] temp = {
-            "Increase jump by 30%"
-        };
-        SetBuffString(temp);
+        title = "Leg Day";
+        description[0] = "Increase jump by 30%";
     }
 
     public override void ApplyBuff() {

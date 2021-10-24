@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Buff : MonoBehaviour {
-    protected string[] buffString = { "" };
+    protected string title = "";
+    protected string[] description = { "" };
     protected PlayerStats GetStats() {
         return this.transform.parent.parent.gameObject.GetComponent<PlayerStats>(); ;
     }
-    // Start is called before the first frame update
+
     public virtual void ApplyBuff() { }
 
-    protected void SetBuffString(string[] value) { buffString = value; }
+    public string[] GetDescription() { return description; }
 
-    public string[] GetBuffString() { return buffString; }
+    public string GetTitle() { return title; }
 }

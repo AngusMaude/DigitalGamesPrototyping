@@ -5,10 +5,8 @@ using UnityEngine;
 public class ReloadBuff : Buff
 {
     public void Start() {
-        string[] temp = {
-            "Decrease reload time by 30%"
-        };
-        SetBuffString(temp);
+        title = "Fast Hands";
+        description[0] = "Decrease reload time by 30%";
     }
 
     public override void ApplyBuff() {

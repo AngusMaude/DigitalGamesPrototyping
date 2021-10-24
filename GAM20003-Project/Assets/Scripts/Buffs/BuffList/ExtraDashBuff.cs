@@ -5,10 +5,8 @@ using UnityEngine;
 public class ExtraDashBuff : Buff
 {
     public void Start() {
-        string[] temp = {
-            "Gain an extra dash"
-        };
-        SetBuffString(temp);
+        title = "Spare Thruster";
+        description[0] = "Gain an extra dash";
     }
 
     public override void ApplyBuff() {

@@ -24,18 +24,14 @@ public class Player : MonoBehaviour {
     public ProgressBar reloadTimer;
 
     private float health;
-    private float maxHealth;
 
     public void ChangeScenes() {
         weaponHandler.ChangeScene();
-        health = stats.GetMaxHealth();
-        healthBar.UpdateProgressBar(maxHealth, health);
     }
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
-        
         buffHandler = transform.Find("BuffHandler").GetComponent<BuffHandler>();
         weaponHandler = transform.Find("WeaponHandler").GetComponent<WeaponHandler>();
         controlScheme = GetComponent<PlayerInput>().currentControlScheme;
@@ -44,14 +40,13 @@ public class Player : MonoBehaviour {
         stats = GetComponent<PlayerStats>();
         stats.ResetStats();
         health = stats.GetMaxHealth();
-        maxHealth = health;
-        healthBar.UpdateProgressBar(maxHealth, health);
+        healthBar.UpdateProgressBar(stats.GetMaxHealth(), health);
 
         UpdateUIReloadTimer(1f, 0f);
     }
 
     private void Update() {
-        Debug.Log(health);
+
     }
 
     public void AssignID(int newID) {
@@ -66,8 +61,7 @@ public class Player : MonoBehaviour {
 
     public void Hit(float damage) {
         health -= damage;
-        Debug.Log("hit " + health);
-        healthBar.UpdateProgressBar(maxHealth, health);
+        healthBar.UpdateProgressBar(stats.GetMaxHealth(), health);
     }
 
     public void UpdateUIAmmoCount(int maxAmmo, int remainingAmmo){
