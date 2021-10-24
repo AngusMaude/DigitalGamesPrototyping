@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovementBuff : Buff
 {
     public void Start() {
-        title = "Float like a butterfly";
+        title = "Float Like A Butterfly";
         description[0] = "Increase move speed by 30%";
     }
 

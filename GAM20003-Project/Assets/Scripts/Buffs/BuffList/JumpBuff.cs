@@ -6,7 +6,7 @@ public class JumpBuff : Buff
 {
     public void Start() {
         title = "Leg Day";
-        description[0] = "Increase jump by 30%";
+        description[0] = "Increase jump height by 30%";
     }
 
     public override void ApplyBuff() {
