@@ -14,10 +14,14 @@ public class Player : MonoBehaviour {
     private string controlScheme;
     private SpriteRenderer spriteR;
     [SerializeField] private Sprite[] playerSpriteList;
+    public AudioClip SpawnSound;
+    public AudioClip[] HurtClips;
+    public AudioSource PlayerAudio;
 
     [SerializeField] public int playerID = -1;
     private PlayerSpawner spawner;
     [SerializeField] private Vector2 spawnPoint;
+
 
     public ProgressBar healthBar;
     public ProgressBar ammoCount;
@@ -43,6 +47,11 @@ public class Player : MonoBehaviour {
         health = stats.GetMaxHealth();
 
         UpdateUIReloadTimer(1f, 0f);
+        if (SpawnSound != null) {
+            PlayerAudio.clip = SpawnSound;
+            PlayerAudio.Play(0);
+        }
+
     }
 
     private void Update() {
@@ -61,6 +70,10 @@ public class Player : MonoBehaviour {
 
     public void Hit(float damage) {
         health -= damage;
+        if (HurtClips.Length > 0) {
+            PlayerAudio.clip = HurtClips[Random.Range(0, HurtClips.Length)];
+            PlayerAudio.Play(0);
+        }
     }
 
     public void UpdateUIAmmoCount(int maxAmmo, int remainingAmmo){

@@ -28,11 +28,17 @@ MonoBehaviour:
   particleHitPrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}
   particleFirePrefab: {fileID: 8127829906890014, guid: f3a36a2fce2a53f4fbb052999cbba319, type: 3}
   WeaponAudio: {fileID: 0}
-  AudioClips:
-  - {fileID: 8300000, guid: 68d9bcfac828e534cbdd236c164875c4, type: 3}
-  - {fileID: 8300000, guid: 7d5b22a3e528b8b45a80db94b481f0d2, type: 3}
+  FireClips:
+  - {fileID: 8300000, guid: 923b2458f09b3ab489d202313eb10639, type: 3}
+  - {fileID: 8300000, guid: 2b0aee52c64494341ad73b8b7e4dfff2, type: 3}
+  - {fileID: 8300000, guid: 56b2561ec3cfd554ca8f6e4a1a78e540, type: 3}
+  - {fileID: 8300000, guid: 896e732d3ecb4b74fbc2aecbf44e66e4, type: 3}
+  - {fileID: 8300000, guid: 58c1837de4d99b741bfdb58a30060883, type: 3}
+  - {fileID: 8300000, guid: b9611e72cfd18d74e80ae4400d4a8531, type: 3}
+  - {fileID: 8300000, guid: 2d05e86831fd2724a88f0bfc92ecc976, type: 3}
+  - {fileID: 8300000, guid: 416c38f5a94cf5240804dba8da3dc279, type: 3}
   ReloadClip: {fileID: 8300000, guid: 5699e9babef41a64bbd4d851aeed0d8c, type: 3}
-  DryFireClip: {fileID: 8300000, guid: e817f8ca21bf33b459ea17ea98e470bc, type: 3}
+  DryFireClip: {fileID: 0}
   bloomLines: {fileID: 3703431105490669101, guid: 3d89228b719511845bf54769927fd88c, type: 3}
   pelletCount: 5
 --- !u!1001 &7608395284548019468

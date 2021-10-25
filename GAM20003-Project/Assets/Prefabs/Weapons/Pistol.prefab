@@ -100,6 +100,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: WeaponAudio
+      value: 
+      objectReference: {fileID: 4084488191958346843}
+    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: reserveAmmo
       value: 30
       objectReference: {fileID: 0}
@@ -120,12 +124,29 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: FireClips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: bloomAccumulationRate
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: FireClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d2ef73d423bf484098df5fc681932e1, type: 3}
+    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: FireClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: e5996a778a66cb647a74868d30c1207d, type: 3}
     - target: {fileID: 8968656491310200173, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.021
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+--- !u!82 &4084488191958346843 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4255173725421498481, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+  m_PrefabInstance: {fileID: 261892313367092266}
+  m_PrefabAsset: {fileID: 0}

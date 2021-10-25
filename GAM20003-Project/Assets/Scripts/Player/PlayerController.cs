@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour {
     private Player player;
     [SerializeField] private LayerMask terrain;
     [SerializeField] private float groundFriction;
+    public AudioSource PlayerControllerAudio;
+    public AudioClip[] DashClips;
+    public AudioClip[] JumpClips;
 
     private Vector2 movementInput = Vector2.zero;
     private Vector2 aimInput = Vector2.zero;
@@ -16,6 +19,7 @@ public class PlayerController : MonoBehaviour {
     private int dashCount = 0;
     private int jumpCount = 0;
     private bool isGrounded = false;
+
 
     private float dashT;
 
@@ -66,6 +70,10 @@ public class PlayerController : MonoBehaviour {
                         player.GetRigidbody().AddForce(new Vector2(0, player.GetStats().GetJumpHeight()), ForceMode2D.Impulse);
                         break;
                 }
+                if (JumpClips.Length > 0) {
+                    PlayerControllerAudio.clip = JumpClips[UnityEngine.Random.Range(0, JumpClips.Length)];
+                    PlayerControllerAudio.Play(0);
+                }
                 jumpCount--;
             }
             jumpInput = false;
@@ -98,6 +106,10 @@ public class PlayerController : MonoBehaviour {
             dashT = player.GetStats().GetDashTime();
             dashing = true;
             dashCount -= 1;
+            if (DashClips.Length > 0) {
+                PlayerControllerAudio.clip = DashClips[UnityEngine.Random.Range(0, DashClips.Length)];
+                PlayerControllerAudio.Play(0);
+            }
         }
         dashInput = false;
 

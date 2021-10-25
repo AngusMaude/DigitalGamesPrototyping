@@ -39,6 +39,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4255173725421498481, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4675099176148300192, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -124,6 +128,10 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: FireClips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: AudioClips.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -131,6 +139,14 @@ PrefabInstance:
       propertyPath: bloomAccumulationRate
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: FireClips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 50929144ef6c2804ea575b2adae0821c, type: 3}
+    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: FireClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1610f780d7ea59044a966517964c70e0, type: 3}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: AudioClips.Array.data[0]
       value: 
