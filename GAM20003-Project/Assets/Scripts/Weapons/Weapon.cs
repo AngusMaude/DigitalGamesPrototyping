@@ -35,7 +35,7 @@ public class Weapon : MonoBehaviour
 
     // Audio
     public AudioSource WeaponAudio;
-    public AudioClip[] AudioClips;
+    public AudioClip[] FireClips;
     public AudioClip ReloadClip;
     public AudioClip DryFireClip;
 
@@ -119,8 +119,8 @@ public class Weapon : MonoBehaviour
             Shoot();
 
             // Play audio
-            if (AudioClips.Length > 0) {
-                WeaponAudio.clip = AudioClips[Random.Range(0, AudioClips.Length)];
+            if (FireClips.Length > 0) {
+                WeaponAudio.clip = FireClips[Random.Range(0, FireClips.Length)];
                 WeaponAudio.Play(0);
             }
 
@@ -133,18 +133,22 @@ public class Weapon : MonoBehaviour
             magAmmo -= 1;
             player.UpdateUIAmmoCount(magSize, magAmmo);
         }
-        weaponCooldown -= Time.deltaTime;
-
-        UpdateBloom();
-
-        if (magAmmo <= 0 && !reloading) {
-            weaponCooldown = reloadTime * player.GetStats().GetReloadTime();
-            reloading = true;
+        else if (shooting && magAmmo <= 0 && !reloading) {
             if (DryFireClip != null) {
                 WeaponAudio.clip = DryFireClip;
                 WeaponAudio.Play(0);
             }
         }
+        if (magAmmo <= 0 && !reloading) {
+            weaponCooldown = reloadTime * player.GetStats().GetReloadTime();
+            reloading = true;
+            
+        }
+        weaponCooldown -= Time.deltaTime;
+
+        UpdateBloom();
+
+        
     }
 
     protected virtual void UpdateBloom() {
