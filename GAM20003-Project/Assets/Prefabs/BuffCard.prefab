@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 4526508651416250146}
   - component: {fileID: 4526508651416250149}
   - component: {fileID: 4526508651416250148}
-  - component: {fileID: 2519389382578219258}
+  - component: {fileID: 5895522243660182121}
   m_Layer: 5
   m_Name: BuffCard
   m_TagString: Untagged
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2519389382578219258}
+      - m_Target: {fileID: 5895522243660182121}
         m_TargetAssemblyTypeName: BuffButton, Assembly-CSharp
         m_MethodName: ButtonPress
         m_Mode: 1
@@ -403,7 +403,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2519389382578219258
+--- !u!114 &5895522243660182121
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -412,6 +412,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4526508651416250169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32fa95681ac4f6d47a6c47c5235131ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 07da670ffd3e7b342af719c365c6a4d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buffList:
+  - {fileID: 4497189745487409454, guid: aea6fc60b685662468a0092ea8159920, type: 3}
+  - {fileID: 8758384080288041531, guid: 10081c63b60fec14a94ddbeb9f7e2dee, type: 3}
+  - {fileID: -2358429619757493495, guid: debbfc0d39ace3948bac717c4f71f449, type: 3}
+  - {fileID: 9021796601887322405, guid: 0208251126ec93a40ae677dbb096f309, type: 3}
+  - {fileID: -8976776717365734027, guid: b4b858b0ad7376e438ce5c06d2a02a33, type: 3}
+  - {fileID: 5404959992568698423, guid: 4a02cf0795e9dcd4b903b87a29428a16, type: 3}
+  - {fileID: 8473335777700058639, guid: 62682b6a4e8d3eb4db866d940c45bd65, type: 3}
+  - {fileID: -7195996291572731925, guid: 19a3f1335acf0f34e845a06332ec11e9, type: 3}
+  - {fileID: 3777756227583861331, guid: 69c448bc14d60c34c98ed4d69c334e8d, type: 3}
+  - {fileID: 4866760036932368804, guid: fb4e9d070174e0f4586321a201122b05, type: 3}
+  title: {fileID: 4526508650943200319}
+  description: {fileID: 6105453441147647044}
