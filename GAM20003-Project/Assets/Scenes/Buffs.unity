@@ -614,7 +614,7 @@ PrefabInstance:
     - target: {fileID: 4526508651416250148, guid: e4004d830a8d2c94b9cdb0d88cea0cdb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 889491196}
+      objectReference: {fileID: 0}
     - target: {fileID: 4526508651416250148, guid: e4004d830a8d2c94b9cdb0d88cea0cdb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ButtonPress
@@ -711,24 +711,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuffCard
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2519389382578219258, guid: e4004d830a8d2c94b9cdb0d88cea0cdb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e4004d830a8d2c94b9cdb0d88cea0cdb, type: 3}
 --- !u!224 &889491195 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4526508651416250150, guid: e4004d830a8d2c94b9cdb0d88cea0cdb, type: 3}
   m_PrefabInstance: {fileID: 889491194}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &889491196 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2519389382578219258, guid: e4004d830a8d2c94b9cdb0d88cea0cdb, type: 3}
-  m_PrefabInstance: {fileID: 889491194}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 787652082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07da670ffd3e7b342af719c365c6a4d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &907484659
 GameObject:
   m_ObjectHideFlags: 0
