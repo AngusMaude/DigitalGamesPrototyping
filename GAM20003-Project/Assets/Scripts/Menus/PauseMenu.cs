@@ -42,6 +42,17 @@ public void mainMenu()
         Time.timeScale = 1f;
         SceneManager.LoadScene(menuScene);
     }
+
+    public void Lobby()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Lobby");
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+        
 }
 
 
