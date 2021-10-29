@@ -27,18 +27,18 @@ MonoBehaviour:
   infiniteAmmo: 0
   particleHitPrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}
   particleFirePrefab: {fileID: 8127829906890014, guid: f3a36a2fce2a53f4fbb052999cbba319, type: 3}
-  WeaponAudio: {fileID: 0}
+  WeaponAudio: {fileID: 5952380770733462909}
   FireClips:
-  - {fileID: 8300000, guid: 923b2458f09b3ab489d202313eb10639, type: 3}
-  - {fileID: 8300000, guid: 2b0aee52c64494341ad73b8b7e4dfff2, type: 3}
-  - {fileID: 8300000, guid: 56b2561ec3cfd554ca8f6e4a1a78e540, type: 3}
-  - {fileID: 8300000, guid: 896e732d3ecb4b74fbc2aecbf44e66e4, type: 3}
-  - {fileID: 8300000, guid: 58c1837de4d99b741bfdb58a30060883, type: 3}
-  - {fileID: 8300000, guid: b9611e72cfd18d74e80ae4400d4a8531, type: 3}
-  - {fileID: 8300000, guid: 2d05e86831fd2724a88f0bfc92ecc976, type: 3}
-  - {fileID: 8300000, guid: 416c38f5a94cf5240804dba8da3dc279, type: 3}
+  - {fileID: 8300000, guid: 165a0c27dbd76af4b99c4c9f2f627a01, type: 3}
+  - {fileID: 8300000, guid: ab0a81e1d7276f745966249283fc9980, type: 3}
+  - {fileID: 8300000, guid: cfdaca51ecaa11a4ea293661a887073f, type: 3}
+  - {fileID: 8300000, guid: b2d71310e620f284489ce64260fc33d9, type: 3}
+  - {fileID: 8300000, guid: 656ee754c44e9a944b96e93efcd2ad34, type: 3}
+  - {fileID: 8300000, guid: 0149348041711e642bb7ad5f820f2a0f, type: 3}
+  - {fileID: 8300000, guid: dd9c569ef9743b14a97dd5b5ef0a9700, type: 3}
+  - {fileID: 8300000, guid: 4837420074602ca4487baf620dd28aaa, type: 3}
   ReloadClip: {fileID: 8300000, guid: 5699e9babef41a64bbd4d851aeed0d8c, type: 3}
-  DryFireClip: {fileID: 0}
+  DryFireClip: {fileID: 8300000, guid: e817f8ca21bf33b459ea17ea98e470bc, type: 3}
   bloomLines: {fileID: 3703431105490669101, guid: 3d89228b719511845bf54769927fd88c, type: 3}
   pelletCount: 5
 --- !u!1001 &7608395284548019468
@@ -134,6 +134,11 @@ PrefabInstance:
 --- !u!1 &4470909801896250618 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6313395722178488822, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+  m_PrefabInstance: {fileID: 7608395284548019468}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &5952380770733462909 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4255173725421498481, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
   m_PrefabInstance: {fileID: 7608395284548019468}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1576649907693310049 stripped

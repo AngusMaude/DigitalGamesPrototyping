@@ -104,6 +104,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: WeaponAudio
+      value: 
+      objectReference: {fileID: 1549847774428815700}
+    - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: reserveAmmo
       value: 20
       objectReference: {fileID: 0}
@@ -137,3 +141,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+--- !u!82 &1549847774428815700 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4255173725421498481, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+  m_PrefabInstance: {fileID: 3354974617919852837}
+  m_PrefabAsset: {fileID: 0}

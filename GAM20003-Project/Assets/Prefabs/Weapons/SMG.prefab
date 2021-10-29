@@ -150,7 +150,7 @@ PrefabInstance:
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: FireClips.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: 1610f780d7ea59044a966517964c70e0, type: 3}
+      objectReference: {fileID: 8300000, guid: fbab410a6adc0554d84b84bd3ff57e42, type: 3}
     - target: {fileID: 8145472398774227313, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: AudioClips.Array.data[0]
       value: 
