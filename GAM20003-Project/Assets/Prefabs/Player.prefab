@@ -296,13 +296,13 @@ MonoBehaviour:
   - {fileID: -6367560908665664636, guid: d348dff3819df794186a80cb95777629, type: 3}
   - {fileID: -6367560908665664636, guid: cd947491a13509945aa1b644f9db3ef2, type: 3}
   - {fileID: -6367560908665664636, guid: df7bc1a505b8d6c4295d23ab5d157b55, type: 3}
-  SpawnSound: {fileID: 8300000, guid: 7d6219c150153a641aaab8c209159180, type: 3}
+  SpawnSound: {fileID: 8300000, guid: 571437a101430844791d9b91bfa0fb24, type: 3}
   HurtClips:
-  - {fileID: 8300000, guid: ed3c23904281e2f47b7a0867d82f63c4, type: 3}
-  - {fileID: 8300000, guid: 1f7a1557e034c504bbb4de4c09ccf9fb, type: 3}
-  - {fileID: 8300000, guid: 75512d66bd8de3c4d9790341a4355b51, type: 3}
-  - {fileID: 8300000, guid: 95cc1f1dba7de0341ad373e07d3fe48b, type: 3}
-  - {fileID: 8300000, guid: ae0011b4986925e4285c030a81a34ba1, type: 3}
+  - {fileID: 8300000, guid: f931975277901a24691cb0970baf1375, type: 3}
+  - {fileID: 8300000, guid: b638d617579bf964b96b31d64c11b3b1, type: 3}
+  - {fileID: 8300000, guid: ee4f10120cb127545834838b990a63f2, type: 3}
+  - {fileID: 8300000, guid: 579f94d4770f3eb4db3ef24599a53e12, type: 3}
+  - {fileID: 8300000, guid: 22252d6c7fa95634882d282302807daa, type: 3}
   PlayerAudio: {fileID: 7171770865452187546}
   playerID: 0
   spawnPoint: {x: 0, y: 0}
@@ -582,7 +582,7 @@ AudioSource:
   m_GameObject: {fileID: 4147758859450482344}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: c3b16aba403e57c45bf522f099dafc12, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.388

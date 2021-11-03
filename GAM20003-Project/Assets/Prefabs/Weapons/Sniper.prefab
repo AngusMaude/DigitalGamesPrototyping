@@ -27,30 +27,30 @@ MonoBehaviour:
   infiniteAmmo: 0
   particleHitPrefab: {fileID: 1468224012026714806, guid: 5e558d92013f7694aa799f8702e73e8a, type: 3}
   particleFirePrefab: {fileID: 8127829906890014, guid: f3a36a2fce2a53f4fbb052999cbba319, type: 3}
-  WeaponAudio: {fileID: 0}
+  WeaponAudio: {fileID: 4219312489056311379}
   FireClips:
-  - {fileID: 8300000, guid: a358e0bf69018c34880bf068467f982c, type: 3}
-  - {fileID: 8300000, guid: 5d705e0a8c751d24b8a814362db98668, type: 3}
-  - {fileID: 8300000, guid: 7a92eeada9ac7b54c96fde953eebff76, type: 3}
-  - {fileID: 8300000, guid: c144e3514f2827248831dde3f6c84dba, type: 3}
+  - {fileID: 8300000, guid: 283e3e9526c8247449cec756203b8dfb, type: 3}
+  - {fileID: 8300000, guid: c33773696de6d4e4aabee69155962669, type: 3}
+  - {fileID: 8300000, guid: 6735742d719e64f4fa43d6f3e580412e, type: 3}
+  - {fileID: 8300000, guid: 7b0d04f2249f38147ac41d5955ca89ce, type: 3}
   ReloadClip: {fileID: 8300000, guid: 5699e9babef41a64bbd4d851aeed0d8c, type: 3}
   DryFireClip: {fileID: 8300000, guid: e817f8ca21bf33b459ea17ea98e470bc, type: 3}
   bloomLines: {fileID: 3703431105490669101, guid: 3d89228b719511845bf54769927fd88c, type: 3}
   chargeRate: 60
   ChargeSounds:
-  - {fileID: 8300000, guid: 3a8985d762aa3864ebef0e64f2375c58, type: 3}
-  - {fileID: 8300000, guid: 44a4f3911bfbfa24caf70fe196ecca6e, type: 3}
-  - {fileID: 8300000, guid: 58b57e430bc94044b886e75975d6d042, type: 3}
-  - {fileID: 8300000, guid: 55a28fa7e6d933847898aa244bb922c0, type: 3}
-  - {fileID: 8300000, guid: 7efa9f1c6b83c1d43b479cfb591ece8a, type: 3}
-  - {fileID: 8300000, guid: 61ca0451e5d872341a0bfcdc885d71dd, type: 3}
-  - {fileID: 8300000, guid: a4bd19ff8b0260e47bc7c05100bef28a, type: 3}
-  - {fileID: 8300000, guid: a04540fb24b84054f93bb14c0852687d, type: 3}
-  - {fileID: 8300000, guid: fff9898c2e0d50149ab740aa5cf8a5ae, type: 3}
-  - {fileID: 8300000, guid: 5395ac0bd56ad904783f10cbb57db6b0, type: 3}
-  - {fileID: 8300000, guid: 80676e350fa7efa41a25c1c3ce8577cb, type: 3}
-  - {fileID: 8300000, guid: 66c9ef7a0861dd44a9fc5d7aabce3d27, type: 3}
-  - {fileID: 8300000, guid: eed740ea1614b1849a24027ee1e54486, type: 3}
+  - {fileID: 8300000, guid: f24ac5f4a80ab114eae5144b1cb0b81b, type: 3}
+  - {fileID: 8300000, guid: 34720dc279b285340aedde0784c5eb31, type: 3}
+  - {fileID: 8300000, guid: 0027c0a4f2fce894d9baa84e36004cfa, type: 3}
+  - {fileID: 8300000, guid: 8c81cc1f2ca303d459d8accd54215c4a, type: 3}
+  - {fileID: 8300000, guid: bf7cc7c5a9a5363459c8ddaa347c3dd9, type: 3}
+  - {fileID: 8300000, guid: d74194051c1471849bfd46a0de372a77, type: 3}
+  - {fileID: 8300000, guid: 2f3d785aec1826b4f81917449948bef9, type: 3}
+  - {fileID: 8300000, guid: 51d08ebb4f514644dac00f8dd02f26d0, type: 3}
+  - {fileID: 8300000, guid: 177ebe9bf459e684da588cca5ccf8fcc, type: 3}
+  - {fileID: 8300000, guid: c6c452f540f9d1042a4faec061190d50, type: 3}
+  - {fileID: 8300000, guid: 76e82c25316d05041add11068b9fcfcd, type: 3}
+  - {fileID: 8300000, guid: 683a16de682f63a478087bef7a0a3f81, type: 3}
+  - {fileID: 8300000, guid: f4f83ce97bf1c494ca728f9a300d9cc2, type: 3}
 --- !u!1001 &109049218634672162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94,6 +94,14 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.421
       objectReference: {fileID: 0}
+    - target: {fileID: 4255173725421498481, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d5b22a3e528b8b45a80db94b481f0d2, type: 3}
+    - target: {fileID: 4255173725421498481, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: c3b16aba403e57c45bf522f099dafc12, type: 2}
     - target: {fileID: 4255173725421498481, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 0.874
@@ -160,6 +168,11 @@ PrefabInstance:
 --- !u!1 &6205613229019464148 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6313395722178488822, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+  m_PrefabInstance: {fileID: 109049218634672162}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &4219312489056311379 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4255173725421498481, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
   m_PrefabInstance: {fileID: 109049218634672162}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &9076013428372102479 stripped
