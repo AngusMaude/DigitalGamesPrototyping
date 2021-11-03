@@ -29,28 +29,28 @@ MonoBehaviour:
   particleFirePrefab: {fileID: 8127829906890014, guid: f3a36a2fce2a53f4fbb052999cbba319, type: 3}
   WeaponAudio: {fileID: 4219312489056311379}
   FireClips:
-  - {fileID: 8300000, guid: 283e3e9526c8247449cec756203b8dfb, type: 3}
-  - {fileID: 8300000, guid: c33773696de6d4e4aabee69155962669, type: 3}
-  - {fileID: 8300000, guid: 6735742d719e64f4fa43d6f3e580412e, type: 3}
-  - {fileID: 8300000, guid: 7b0d04f2249f38147ac41d5955ca89ce, type: 3}
+  - {fileID: 8300000, guid: 76be8c27b8c559642a7269a38a442008, type: 3}
+  - {fileID: 8300000, guid: 479b1a8f07969b04c9b22d4a6d5bf512, type: 3}
+  - {fileID: 8300000, guid: 8e4233d6b4c7d5347a1d3dbc4b549f69, type: 3}
+  - {fileID: 8300000, guid: 590513e172e600645be47cf284c540df, type: 3}
   ReloadClip: {fileID: 8300000, guid: 5699e9babef41a64bbd4d851aeed0d8c, type: 3}
   DryFireClip: {fileID: 8300000, guid: e817f8ca21bf33b459ea17ea98e470bc, type: 3}
   bloomLines: {fileID: 3703431105490669101, guid: 3d89228b719511845bf54769927fd88c, type: 3}
   chargeRate: 60
   ChargeSounds:
-  - {fileID: 8300000, guid: f24ac5f4a80ab114eae5144b1cb0b81b, type: 3}
-  - {fileID: 8300000, guid: 34720dc279b285340aedde0784c5eb31, type: 3}
-  - {fileID: 8300000, guid: 0027c0a4f2fce894d9baa84e36004cfa, type: 3}
-  - {fileID: 8300000, guid: 8c81cc1f2ca303d459d8accd54215c4a, type: 3}
-  - {fileID: 8300000, guid: bf7cc7c5a9a5363459c8ddaa347c3dd9, type: 3}
-  - {fileID: 8300000, guid: d74194051c1471849bfd46a0de372a77, type: 3}
-  - {fileID: 8300000, guid: 2f3d785aec1826b4f81917449948bef9, type: 3}
-  - {fileID: 8300000, guid: 51d08ebb4f514644dac00f8dd02f26d0, type: 3}
-  - {fileID: 8300000, guid: 177ebe9bf459e684da588cca5ccf8fcc, type: 3}
-  - {fileID: 8300000, guid: c6c452f540f9d1042a4faec061190d50, type: 3}
-  - {fileID: 8300000, guid: 76e82c25316d05041add11068b9fcfcd, type: 3}
-  - {fileID: 8300000, guid: 683a16de682f63a478087bef7a0a3f81, type: 3}
-  - {fileID: 8300000, guid: f4f83ce97bf1c494ca728f9a300d9cc2, type: 3}
+  - {fileID: 8300000, guid: 8c342d0a2e1c91d49975e23acd570188, type: 3}
+  - {fileID: 8300000, guid: 511e2cefb5b00324599d376d0a1cefc3, type: 3}
+  - {fileID: 8300000, guid: 54e328bbedad8104098cdef6abf0ae7a, type: 3}
+  - {fileID: 8300000, guid: 607ce446293843943beed394d8f29d71, type: 3}
+  - {fileID: 8300000, guid: 38732f2d81051ef498868c5ecf8a3b04, type: 3}
+  - {fileID: 8300000, guid: 77faaf319bcd4ff48a4ab9fe14ba869c, type: 3}
+  - {fileID: 8300000, guid: dc4717c70ab67aa4db9f9ee41fbe7074, type: 3}
+  - {fileID: 8300000, guid: 9faba77357c5bb94fab7cf3252ec8dda, type: 3}
+  - {fileID: 8300000, guid: 744a4ae06c4f5cc428be22760853447a, type: 3}
+  - {fileID: 8300000, guid: 161d0b2ba9816e748832d2ab34cd001b, type: 3}
+  - {fileID: 8300000, guid: e31abf3cade6a0d4484bfc2bb443331f, type: 3}
+  - {fileID: 8300000, guid: 47543b83a6934d940a680891dd500529, type: 3}
+  - {fileID: 8300000, guid: ff692ce682c75344e939bc29e1196fe9, type: 3}
 --- !u!1001 &109049218634672162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,7 +101,7 @@ PrefabInstance:
     - target: {fileID: 4255173725421498481, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
-      objectReference: {fileID: 24300002, guid: c3b16aba403e57c45bf522f099dafc12, type: 2}
+      objectReference: {fileID: 24300002, guid: 1443860da372ef24e95c9ac6cf50dd1a, type: 2}
     - target: {fileID: 4255173725421498481, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 0.874
