@@ -327,23 +327,23 @@ MonoBehaviour:
   groundFriction: 1.5
   PlayerControllerAudio: {fileID: 7171770865452187546}
   DashClips:
-  - {fileID: 8300000, guid: 65bab764f6c95d8469eec9bdcb400629, type: 3}
-  - {fileID: 8300000, guid: 3d0d7d59c9864534fbd579a784ac9398, type: 3}
-  - {fileID: 8300000, guid: 1a0058547d66fca4baeb1d12d2458f6d, type: 3}
-  - {fileID: 8300000, guid: 1d785900cceb3ae44b8931c0f965ba6a, type: 3}
-  - {fileID: 8300000, guid: 784f38abb146b4d4289b6016a9c9cc9b, type: 3}
-  - {fileID: 8300000, guid: 3e427a9d492e21440b83fef502520bf1, type: 3}
-  - {fileID: 8300000, guid: f2c23f568099bf94ab09ac1adfd0ffb7, type: 3}
-  - {fileID: 8300000, guid: 6ffaf40b2ea33db4e8b249dfb921f7b7, type: 3}
+  - {fileID: 8300000, guid: bc50cd411c6ee8a40b064e028f89126f, type: 3}
+  - {fileID: 8300000, guid: ff7dfcc0adf1a61478f26ed678e7d1e4, type: 3}
+  - {fileID: 8300000, guid: df6c881e70594394a9385199ce4aadf2, type: 3}
+  - {fileID: 8300000, guid: 091db6b1d96879f4489ca624d6ad2815, type: 3}
+  - {fileID: 8300000, guid: fbf2075ade107b34c91cc3529559a708, type: 3}
+  - {fileID: 8300000, guid: d1b1b0422588b97418a85f2f08a21779, type: 3}
+  - {fileID: 8300000, guid: b0a3c73561820b549bd1a26e8a7234d9, type: 3}
+  - {fileID: 8300000, guid: 5cca69976cc87894dad24fff13327fe7, type: 3}
   JumpClips:
-  - {fileID: 8300000, guid: c41c74574120eaa4c87fbf7753750605, type: 3}
-  - {fileID: 8300000, guid: 16bd53d1b5dcc6a49a6feab69ce77c26, type: 3}
-  - {fileID: 8300000, guid: 3dec2b4bdf2547348ab6487a482abc6e, type: 3}
-  - {fileID: 8300000, guid: 18acb2f34b5079f4b9fd5b3051bc9d4c, type: 3}
-  - {fileID: 8300000, guid: 0a0f0392c88a4464f9492c6b20b1956b, type: 3}
-  - {fileID: 8300000, guid: 03204caa923e2a94a8b17514a3c3a9bc, type: 3}
-  - {fileID: 8300000, guid: e247cd449a68eb74184bd900f551b610, type: 3}
-  - {fileID: 8300000, guid: 9311d0de3070f7d46a681e80582f12fd, type: 3}
+  - {fileID: 8300000, guid: 8cc1c0b738d3a9949bac601a348d0d8a, type: 3}
+  - {fileID: 8300000, guid: 5083d88c10575fc4bb8ef74e93fa9c74, type: 3}
+  - {fileID: 8300000, guid: 84554aa6fcaac0b48b41bbe4abbe0e0d, type: 3}
+  - {fileID: 8300000, guid: 5d4e772c8ce63ef44a0cf60c6e4079f7, type: 3}
+  - {fileID: 8300000, guid: a08a400ec356a184daee6c7aad5e29a6, type: 3}
+  - {fileID: 8300000, guid: 1fd544a8827e09849b3979f965aaf4d9, type: 3}
+  - {fileID: 8300000, guid: a53b87ef5115f4c4cb55ea4a398139db, type: 3}
+  - {fileID: 8300000, guid: 651c32f74892876448476f47b4906fed, type: 3}
 --- !u!114 &962872899619598014
 MonoBehaviour:
   m_ObjectHideFlags: 0
