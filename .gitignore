@@ -67,26 +67,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
 # Temporary auto-generated Android Assets
-/[Aa]ssets/[Ss]treamingAssets/aa.meta
-/[Aa]ssets/[Ss]treamingAssets/aa/*
-GAM20003-Project/ProjectSettings/PackageManagerSettings.asset
-GAM20003-Project/ProjectSettings/EditorBuildSettings.asset
-GAM20003-Project/ProjectSettings/ProjectSettings.asset
-GAM20003-Project/UserSettings/EditorUserSettings.asset
-GAM20003-Project/ProjectSettings/ProjectSettings.asset
-GAM20003-Project/UserSettings/EditorUserSettings.asset
-GAM20003-Project/ProjectSettings/ProjectSettings.asset
-*.asset
-GAM20003-Project/ProjectSettings/ProjectSettings.asset
-GAM20003-Project/UserSettings/EditorUserSettings.asset
-GAM20003-Project/UserSettings/EditorUserSettings.asset
-GAM20003-Project/UserSettings/EditorUserSettings.asset
-GAM20003-Project/Assets/TextMesh Pro/Fonts/GravityRegular5 SDF.asset.meta
-GAM20003-Project/Assets/TextMesh Pro/Fonts/GravityBold8 SDF.asset.meta
-GAM20003-Project/Assets/Sprites/Pitch_Powerpoint.pptx.png
-GAM20003-Project/Assets/Sprites/Pitch_Powerpoint.pptx.png.meta
-GAM20003-Project/UserSettings/EditorUserSettings.asset
-*.asset
-*.meta
-GAM20003-Project/UserSettings/EditorUserSettings.asset
-*.asset
+
