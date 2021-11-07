@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
                             SceneManager.LoadScene("Buffs");
                             int i = -15;
                             foreach (KeyValuePair<int, Player> p in activePlayers) {
-                                p.Value.GetRigidbody().position = new Vector2(i, -7);
+                                p.Value.GetRigidbody().position = new Vector2(i, -1);
                                 i += 10;
                             }
 
