@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     private int musicPlayItt = 0;
     public AudioClip menuMusic;
     public AudioClip[] map1Music;
-    public AudioClip buffMusic;
     public AudioClip lobbyMusic;
     private double musicStartTime;
     public float musicVolume = 0.5f;
