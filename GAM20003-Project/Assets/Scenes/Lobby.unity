@@ -3747,7 +3747,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -21, y: -410}
+  m_AnchoredPosition: {x: 9.000017, y: -406}
   m_SizeDelta: {x: 165.537, y: 176.365}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &755910200
@@ -4199,7 +4199,7 @@ GameObject:
   - component: {fileID: 1110036108}
   - component: {fileID: 1110036107}
   m_Layer: 5
-  m_Name: Countdown Text (1)
+  m_Name: )ountdown Text (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4221,7 +4221,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15, y: -279}
+  m_AnchoredPosition: {x: 13, y: -279}
   m_SizeDelta: {x: 918.463, y: 50.642}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1110036107
@@ -5731,7 +5731,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075693339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0713749, y: -0.9989789, z: -1.1391509}
+  m_LocalPosition: {x: -0.1, y: -1.92, z: -1.1391509}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
