@@ -44,16 +44,15 @@ public class GameManager : MonoBehaviour
             if (newScene) {
                 switch (thisScene.name) {
                     case "Lobby":
+                        musicAudioSource.Stop();
                         musicAudioSource.clip = lobbyMusic;
                         break;
-                    case "Buffs":
-                        //musicAudioSource.clip = buffMusic;
-                        //audioMixer.TransitionToSnapshots(snapshotArray, weightsArray, time.DeltaTime);
-                        break;
-                    case "Menu":
+                    case "MainMenu":
+                        musicAudioSource.Stop();
                         musicAudioSource.clip = menuMusic;
                         break;
                     default:
+                        musicAudioSource.Stop();
                         if (musicPlayItt == 0) {
                             musicAudioSource.clip = map1Music[0];
                             musicPlayItt = 1;
@@ -67,8 +66,10 @@ public class GameManager : MonoBehaviour
             double startTime = AudioSettings.dspTime + 0.2;
             musicAudioSource.PlayScheduled(startTime);
             lowpass.cutoffFrequency = 22000;
+            lowpass.lowpassResonanceQ = 1;
         } else {
-            lowpass.cutoffFrequency = 4000;
+            lowpass.cutoffFrequency = 3000;
+            lowpass.lowpassResonanceQ = 2;
         }
 
     }
