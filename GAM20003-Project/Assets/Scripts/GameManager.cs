@@ -66,6 +66,12 @@ public class GameManager : MonoBehaviour
                         if (CheckRoundEnd()) {
                             SetAllPlayers(true);
                             SceneManager.LoadScene("Buffs");
+                            int i = -15;
+                            foreach (KeyValuePair<int, Player> p in activePlayers) {
+                                p.Value.GetRigidbody().position = new Vector2(i, -7);
+                                i += 10;
+                            }
+
                         }
                     }
                 }
@@ -139,14 +145,22 @@ public class GameManager : MonoBehaviour
             Debug.Log("Player added with ID: " + newPlayer.playerID);
             Instantiate(spawnEffect, newPlayer.transform.position, newPlayer.transform.rotation);
             newPlayer.transform.SetParent(this.transform);
+            newPlayer.ActivateInput();
         }
         else {
             Destroy(newPlayer.gameObject);
         }
     }
 
-    public void SelectedBuff(Buff buff) {
-        buffOrder[0].AddBuff(buff);
-        buffOrder.RemoveAt(0);
+    public bool SelectedBuff(Buff buff, Player player) {
+        if (player == buffOrder[0]) {
+            buffOrder[0].AddBuff(buff);
+            buffOrder.RemoveAt(0);
+            return true;
+        }
+        else
+            return false;
     }
+
+    public Player GetBuffPlayer() { return buffOrder[0]; }
 }

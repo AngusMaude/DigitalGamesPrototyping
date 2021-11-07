@@ -6,8 +6,8 @@ using TMPro;
 public class BuffButton : MonoBehaviour
 {
     [SerializeField] private Buff[] buffList;
-    [SerializeField] private TextMeshProUGUI title;
-    [SerializeField] private TextMeshProUGUI description;
+    [SerializeField] private TextMeshPro title;
+    [SerializeField] private TextMeshPro description;
 
     private Buff buff;
     // Start is called before the first frame update
@@ -24,9 +24,9 @@ public class BuffButton : MonoBehaviour
         buff = Instantiate(buffList[Random.Range(0, buffList.Length)], transform);
     }
 
-    public void ButtonPress() {
+    public void BuffSelected(Player player) {
         GameManager gameManager = FindObjectOfType(typeof(GameManager)) as GameManager;
-        gameManager.SelectedBuff(buff);
-        gameObject.SetActive(false);
+        if (gameManager.SelectedBuff(buff, player))
+            gameObject.SetActive(false);
     }
 }

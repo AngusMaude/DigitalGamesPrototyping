@@ -188,9 +188,19 @@ public class Weapon : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(firePoint.position, bloomAim);
         Debug.DrawRay(firePoint.position, new Vector3(bloomAim.x * 10f, bloomAim.y * 10f, 0f), Color.red, 1f, false);
         if (hit.collider != null) {
-            if (hit.transform.name == "Player(Clone)") {
-                hit.rigidbody.AddForce(aimInput * knockback * player.GetStats().GetKnockback(), ForceMode2D.Impulse);
-                hit.transform.GetComponent<Player>().Hit(baseDamage * player.GetStats().GetDamageMultiplier());
+            switch (hit.transform.name) {
+                case "Player(Clone)":
+                    hit.rigidbody.AddForce(aimInput * knockback * player.GetStats().GetKnockback(), ForceMode2D.Impulse);
+                    hit.transform.GetComponent<Player>().Hit(baseDamage * player.GetStats().GetDamageMultiplier());
+                    break;
+
+                case "BuffPrefab":
+                    hit.transform.GetComponent<BuffButton>().BuffSelected(player);
+                    Debug.Log("Hit buff");
+                    break;
+
+                default:
+                    break;
             }
 
             Instantiate(particleHitPrefab, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));

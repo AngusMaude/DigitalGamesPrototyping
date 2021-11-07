@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
     private PlayerStats stats;
     private BuffHandler buffHandler;
     private WeaponHandler weaponHandler;
+    private PlayerInput playerInput;
     private string controlScheme;
     private SpriteRenderer spriteR;
     [SerializeField] private Sprite[] playerSpriteList;
@@ -35,11 +36,28 @@ public class Player : MonoBehaviour {
     }
 
     private void OnEnable() {
+        ActivateInput();
+    }
+
+    public void ActivateInput() {
+        foreach (InputDevice device in playerInput.devices) {
+            InputSystem.EnableDevice(device);
+        }
+    }
+
+    private void OnDisable() {
+        foreach (InputDevice device in playerInput.devices) {
+            InputSystem.DisableDevice(device);
+        }
+    }
+
+    private void Start() {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         buffHandler = transform.Find("BuffHandler").GetComponent<BuffHandler>();
         weaponHandler = transform.Find("WeaponHandler").GetComponent<WeaponHandler>();
         controlScheme = GetComponent<PlayerInput>().currentControlScheme;
+        playerInput = GetComponent<PlayerInput>();
         spriteR = GetComponent<SpriteRenderer>();
 
         stats = GetComponent<PlayerStats>();
@@ -100,7 +118,5 @@ public class Player : MonoBehaviour {
     public string GetControlScheme() { return controlScheme; }
     public float GetHealth() { return health; }
     public void SetHealth(float value) { health = value; }
-
-    
-
+    public PlayerInput GetPlayerInput() { return playerInput; }
 }

@@ -469,7 +469,7 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b743a01d-4c65-40f4-852f-a4ed99eb10a3
     m_ActionName: Player/Aiming[/XInputControllerWindows/rightStick]
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
