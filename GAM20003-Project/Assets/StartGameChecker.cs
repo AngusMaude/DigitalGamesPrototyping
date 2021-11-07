@@ -12,6 +12,9 @@ public class StartGameChecker : MonoBehaviour
 
     public TMP_Text startCountdownText;
     public TMP_Text startExtraText;
+    public TMP_Text startCountdownText2;
+    public TMP_Text startExtraText2;
+
 
     public float timetoStart =3f;
     private float startCounter;
@@ -28,6 +31,7 @@ public class StartGameChecker : MonoBehaviour
         {
             startCountdownText.gameObject.SetActive(true);
             startExtraText.gameObject.SetActive(true);
+            startExtraText2.gameObject.SetActive(true);
 
             startCounter -= Time.deltaTime;
 
@@ -42,6 +46,7 @@ public class StartGameChecker : MonoBehaviour
         {
             startCountdownText.gameObject.SetActive(false);
             startExtraText.gameObject.SetActive(false);
+            startExtraText2.gameObject.SetActive(false);
             startCounter = timetoStart;
         }
     }
