@@ -71,8 +71,9 @@ public class PlayerController : MonoBehaviour {
                         break;
                 }
                 if (JumpClips.Length > 0) {
-                    PlayerControllerAudio.clip = JumpClips[UnityEngine.Random.Range(0, JumpClips.Length)];
-                    PlayerControllerAudio.Play(0);
+                    //PlayerControllerAudio.clip = JumpClips[UnityEngine.Random.Range(0, JumpClips.Length)];
+                    //PlayerControllerAudio.Play(0);
+                    AudioSource.PlayClipAtPoint(JumpClips[UnityEngine.Random.Range(0, JumpClips.Length)], player.GetCollider().bounds.center);
                 }
                 jumpCount--;
             }
@@ -107,8 +108,9 @@ public class PlayerController : MonoBehaviour {
             dashing = true;
             dashCount -= 1;
             if (DashClips.Length > 0) {
-                PlayerControllerAudio.clip = DashClips[UnityEngine.Random.Range(0, DashClips.Length)];
-                PlayerControllerAudio.Play(0);
+                //PlayerControllerAudio.clip = DashClips[UnityEngine.Random.Range(0, DashClips.Length)];
+                //PlayerControllerAudio.Play(0);
+                AudioSource.PlayClipAtPoint(DashClips[UnityEngine.Random.Range(0, DashClips.Length)], player.GetCollider().bounds.center);
             }
         }
         dashInput = false;

@@ -31,6 +31,8 @@ public class Sniper : Weapon
                 if (ChargeSounds.Length > 0) {
                     WeaponAudio.clip = ChargeSounds[Random.Range(0, ChargeSounds.Length)];
                     WeaponAudio.Play(0);
+                    
+                    //AudioSource.PlayClipAtPoint(DashClips[UnityEngine.Random.Range(0, DashClips.Length)], player.GetCollider().bounds.center);
                 }
             }
 
@@ -38,6 +40,7 @@ public class Sniper : Weapon
         else if(charging){
             shooting = true;
             charging = false;
+            
         }
     }
 }

@@ -120,8 +120,9 @@ public class Weapon : MonoBehaviour
 
             // Play audio
             if (FireClips.Length > 0) {
-                WeaponAudio.clip = FireClips[Random.Range(0, FireClips.Length)];
-                WeaponAudio.Play(0);
+                //WeaponAudio.clip = FireClips[Random.Range(0, FireClips.Length)];
+                //WeaponAudio.Play(0);
+                AudioSource.PlayClipAtPoint(FireClips[Random.Range(0, FireClips.Length)], firePoint.position);
             }
 
             weaponCooldown = fireRate;
@@ -135,8 +136,8 @@ public class Weapon : MonoBehaviour
         }
         else if (shooting && magAmmo <= 0 && !reloading) {
             if (DryFireClip != null) {
-                WeaponAudio.clip = DryFireClip;
-                WeaponAudio.Play(0);
+                //WeaponAudio.clip = DryFireClip;
+                AudioSource.PlayClipAtPoint(DryFireClip, firePoint.position);
             }
         }
         if (magAmmo <= 0 && !reloading) {
@@ -160,6 +161,7 @@ public class Weapon : MonoBehaviour
 
     protected virtual void Shoot() {
         HitScanShot();
+        WeaponAudio.Stop(); // This is to end the charge sfx when firing, other sounds ignore this
     }
 
     protected void DrawDebugLines() {
@@ -222,8 +224,9 @@ public class Weapon : MonoBehaviour
             }
             player.UpdateUIReloadTimer(reloadTime * player.GetStats().GetReloadTime(), 0);
             if (ReloadClip != null) {
-                WeaponAudio.clip = ReloadClip;
-                WeaponAudio.Play(0);
+                //WeaponAudio.clip = ReloadClip;
+                //WeaponAudio.Play(0);
+                AudioSource.PlayClipAtPoint(ReloadClip, firePoint.position);
             }
         }
         player.UpdateUIReloadTimer(reloadTime * player.GetStats().GetReloadTime(), weaponCooldown);
