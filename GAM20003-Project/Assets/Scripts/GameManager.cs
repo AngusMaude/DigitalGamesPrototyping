@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -15,6 +17,17 @@ public class GameManager : MonoBehaviour
     private Scene currentScene;
     private List<Player> buffOrder = new List<Player>();
     private GameObject sceneWeapons;
+
+    public AudioSource musicAudioSource;
+    private AudioLowPassFilter lowpass;
+    private int musicPlayItt = 0;
+    public AudioClip menuMusic;
+    public AudioClip[] map1Music;
+    public AudioClip buffMusic;
+    public AudioClip lobbyMusic;
+    private double musicStartTime;
+    public float musicVolume = 0.5f;
+
     private void Awake() {
         if(instance == null) {
 
@@ -26,16 +39,57 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void PlayAudio(Scene thisScene, bool newScene) {
+        if (newScene) {
+            switch (thisScene.name) {
+                case "Lobby":
+                    musicAudioSource.clip = lobbyMusic;
+                    break;
+                case "Buffs":
+                    //musicAudioSource.clip = buffMusic;
+                    //audioMixer.TransitionToSnapshots(snapshotArray, weightsArray, time.DeltaTime);
+                    break;
+                case "Menu":
+                    musicAudioSource.clip = menuMusic;
+                    break;
+                default:
+                    if (musicPlayItt == 0) {
+                        musicAudioSource.clip = map1Music[0];
+                        musicPlayItt = 1;
+                    } else {
+                        musicAudioSource.clip = map1Music[1];
+                        musicPlayItt = 0;
+                    }
+                    break;
+            }
+            if (thisScene.name != "Buffs") {
+                double startTime = AudioSettings.dspTime + 0.2;
+                musicAudioSource.PlayScheduled(startTime);
+                lowpass.cutoffFrequency = 22000;
+            } else {
+                lowpass.cutoffFrequency = 4000;
+            }
+        }
+
+    }
     // Start is called before the first frame update
 
     void Start() {
+        musicAudioSource = GetComponent<AudioSource>();
+        lowpass = GetComponent<AudioLowPassFilter>();
+        musicAudioSource.volume = musicVolume;
+
         currentScene = SceneManager.GetActiveScene();
         PlayerSpawner[] spawnpoints = FindObjectsOfType(typeof(PlayerSpawner)) as PlayerSpawner[];
         sceneWeapons = transform.Find("SceneWeapons").gameObject;
+        PlayAudio(currentScene, true);
+
         foreach (PlayerSpawner spawn in spawnpoints) {
             spawners.Add(spawn.spawnID, spawn);
         }
     }
+
 
     // Update is called once per frame
     void Update() {
@@ -43,8 +97,24 @@ public class GameManager : MonoBehaviour
         if (currentScene.buildIndex != thisScene.buildIndex) {
             ChangedActiveScene(currentScene, thisScene);
             currentScene = thisScene;
+            PlayAudio(currentScene, true);
             //transform.position = originalPos;
-        }
+        } //else {
+           // SetAudio(currentScene, false);
+        //}
+        //double time = AudioSettings.dspTime;
+        //if (time + 2f > musicStartTime) {
+        //    musicSources[flip].PlayScheduled(musicStartTime);
+        //    double clipDuration = (double)clips[flip].samples / (double)clips[flip].frequency;
+        //    
+        //    musicStartTime += clipDuration;
+        //    flip = 1 - flip;
+        //    Debug.Log("Time is " + time + ". Source " + flip + " scheduled queue to play in " + (musicStartTime - time) + ", at " + musicStartTime);
+        //
+        //
+        //    // Flip between two audio sources so that the loading process of one does not interfere with the one that's playing out
+
+        //}
 
         switch (thisScene.name) {
             case "Lobby":
@@ -77,6 +147,7 @@ public class GameManager : MonoBehaviour
                 }
                 break;
         }
+
     }
 
     private void SetAllPlayers(bool value) {
@@ -99,6 +170,7 @@ public class GameManager : MonoBehaviour
         }
         return false;
     }
+
 
     private void ChangedActiveScene(Scene current, Scene next) {
         foreach(KeyValuePair<int, Player> entry in activePlayers) {
