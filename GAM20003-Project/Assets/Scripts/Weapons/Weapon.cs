@@ -125,8 +125,9 @@ public class Weapon : MonoBehaviour
             // Play audio
             if (FireClips.Length > 0) {
                 //WeaponAudio.clip = FireClips[Random.Range(0, FireClips.Length)];
-                //WeaponAudio.Play(0);
-                AudioSource.PlayClipAtPoint(FireClips[Random.Range(0, FireClips.Length)], firePoint.position);
+                WeaponAudio.PlayOneShot(FireClips[Random.Range(0, FireClips.Length)], 1f);
+
+                //AudioSource.PlayOneShot(FireClips[Random.Range(0, FireClips.Length)], 1f);// new Vector3(firePoint.position.x, firePoint.position.y, ));
             }
 
             weaponCooldown = fireRate;
@@ -141,7 +142,8 @@ public class Weapon : MonoBehaviour
         else if (shooting && magAmmo <= 0 && !reloading) {
             if (DryFireClip != null) {
                 //WeaponAudio.clip = DryFireClip;
-                AudioSource.PlayClipAtPoint(DryFireClip, firePoint.position);
+                WeaponAudio.PlayOneShot(DryFireClip, 1f);
+                //AudioSource.PlayClipAtPoint(DryFireClip, firePoint.position);
             }
         }
         if (magAmmo <= 0 && !reloading) {
@@ -230,7 +232,7 @@ public class Weapon : MonoBehaviour
             if (ReloadClip != null) {
                 //WeaponAudio.clip = ReloadClip;
                 //WeaponAudio.Play(0);
-                AudioSource.PlayClipAtPoint(ReloadClip, firePoint.position);
+                WeaponAudio.PlayOneShot(ReloadClip, 1);
             }
         }
         player.UpdateUIReloadTimer(reloadTime * player.GetStats().GetReloadTime(), weaponCooldown);
