@@ -6,6 +6,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     protected Player player;
+    protected SpriteRenderer sprite;
     protected Vector2 aimInput = Vector2.zero;
 
     [SerializeField] protected Transform firePoint;
@@ -44,6 +45,7 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         WeaponAudio = GetComponent<AudioSource>();
+        sprite = GetComponent<SpriteRenderer>();
         bloomLines = Instantiate(bloomLines, firePoint.position, firePoint.rotation);
         bloomLines.transform.SetParent(this.transform);
         magAmmo = magSize;
@@ -93,9 +95,11 @@ public class Weapon : MonoBehaviour
         // flip player depending on aiming direction
         if (aimInput.x > 0.1) {
             player.transform.eulerAngles = new Vector3(0f, 0f, 0f);
+            sprite.flipY = false;
         }
         else if (aimInput.x < -0.1) {
             player.transform.eulerAngles = new Vector3(0f, 180f, 0f);
+            sprite.flipY = true;
         }
     }
 
