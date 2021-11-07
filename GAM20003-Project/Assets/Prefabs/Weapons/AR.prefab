@@ -16,6 +16,10 @@ PrefabInstance:
       value: 1.5454545
       objectReference: {fileID: 0}
     - target: {fileID: 2256806326169272738, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256806326169272738, guid: 1164f44baf961bf4099b9c9389794ee2, type: 3}
       propertyPath: m_Size.x
       value: 2.1363637
       objectReference: {fileID: 0}
