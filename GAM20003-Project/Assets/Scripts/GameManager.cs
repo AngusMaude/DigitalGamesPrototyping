@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public AudioClip[] map1Music;
     public AudioClip lobbyMusic;
     private double musicStartTime;
-    public float musicVolume = 0.5f;
+    public float musicVolume = 0.25f;
 
     private void Awake() {
         if(instance == null) {
@@ -40,35 +40,35 @@ public class GameManager : MonoBehaviour
     }
 
     private void PlayAudio(Scene thisScene, bool newScene) {
-        if (newScene) {
-            switch (thisScene.name) {
-                case "Lobby":
-                    musicAudioSource.clip = lobbyMusic;
-                    break;
-                case "Buffs":
-                    //musicAudioSource.clip = buffMusic;
-                    //audioMixer.TransitionToSnapshots(snapshotArray, weightsArray, time.DeltaTime);
-                    break;
-                case "Menu":
-                    musicAudioSource.clip = menuMusic;
-                    break;
-                default:
-                    if (musicPlayItt == 0) {
-                        musicAudioSource.clip = map1Music[0];
-                        musicPlayItt = 1;
-                    } else {
-                        musicAudioSource.clip = map1Music[1];
-                        musicPlayItt = 0;
-                    }
-                    break;
+        if (thisScene.name != "Buffs") {
+            if (newScene) {
+                switch (thisScene.name) {
+                    case "Lobby":
+                        musicAudioSource.clip = lobbyMusic;
+                        break;
+                    case "Buffs":
+                        //musicAudioSource.clip = buffMusic;
+                        //audioMixer.TransitionToSnapshots(snapshotArray, weightsArray, time.DeltaTime);
+                        break;
+                    case "Menu":
+                        musicAudioSource.clip = menuMusic;
+                        break;
+                    default:
+                        if (musicPlayItt == 0) {
+                            musicAudioSource.clip = map1Music[0];
+                            musicPlayItt = 1;
+                        } else {
+                            musicAudioSource.clip = map1Music[1];
+                            musicPlayItt = 0;
+                        }
+                        break;
+                }
             }
-            if (thisScene.name != "Buffs") {
-                double startTime = AudioSettings.dspTime + 0.2;
-                musicAudioSource.PlayScheduled(startTime);
-                lowpass.cutoffFrequency = 22000;
-            } else {
-                lowpass.cutoffFrequency = 4000;
-            }
+            double startTime = AudioSettings.dspTime + 0.2;
+            musicAudioSource.PlayScheduled(startTime);
+            lowpass.cutoffFrequency = 22000;
+        } else {
+            lowpass.cutoffFrequency = 4000;
         }
 
     }
